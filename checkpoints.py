@@ -17,6 +17,12 @@ def check_point(csv_value, json_value):
 def check_ki(csv_ki, json_ki):
     return ((csv_ki < json_ki * 1.02) and (csv_ki > json_ki * 0.98))
 
+def csv_write(row):
+    with open('outfile.csv', 'a', newline='') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=',',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        spamwriter.writerow(row)
+
+
 # Read in Andrew data as 
 # ['Point #', 'Building', 'x', 'y', 'z', 'w', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor']
 checkpoints = csv_read('Test Case 1.B Floating Castle Data.csv') 
@@ -26,16 +32,23 @@ print('Looking for y value of',checkpoints[6][3])
 print('Looking for z value of',checkpoints[6][4])
 print('Looking for ki reductive of',checkpoints[6][9]) """
 
+#reductive = []
+
 f = open('CVM_ Floating_Castles_1.B.json')
 #All virtual points have a parent point populated
 data = json.load(f)
-for k in range(6,49):     
+for k in range(6,48):     
     for i in data['points']:  
         if(check_point(checkpoints[k][2], i['position']['x']) and check_point(checkpoints[k][3], i['position']['y']) and check_point(checkpoints[k][4], i['position']['z'])):
             if(i['parentPointGuid'] == ''):
-                print(i['pointGuid'])
+                #print(i['position']['x'],",",i['position']['y'],",",i['position']['z'])
+                #print(checkpoints[k][2],",",checkpoints[k][3],",",checkpoints[k][4])
+                row = [i['position']['x'],i['position']['y'],i['position']['z'],checkpoints[k][2],checkpoints[k][3],checkpoints[k][4],i['pointGuid'],i['kiTotalReductive'],check_ki(float(checkpoints[k][10]),float(i['kiTotalReductive']))]
+                csv_write(row)
+                #print(i['pointGuid'])
                 #print(i['kiTotalReductive'])
-                #print(check_ki(float(checkpoints[k][9]),float(i['kiTotalReductive'])))
+                #reductive.append(i['kiTotalReudctive'])
+                #print(check_ki(float(checkpoints[k][10]),float(i['kiTotalReductive'])))
             
         
 f.close()
