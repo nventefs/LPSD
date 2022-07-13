@@ -32,11 +32,11 @@ def row_count(csv_file):
     return(row_count)
 
 
-csv_name = 'Test Case - 7/Test Case 7.csv'
+csv_name = 'Test Case - 1/Test Case 1.csv'
 # Read in Andrew data as 
-# ['Point #', 'Building', 'x', 'y', 'z', 'w', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor']
+# ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
 checkpoints = csv_read(csv_name)
-f = open('Test Case - 7/Cvm_Test_Case_7_V55_7-8-22.json')
+f = open('Test Case - 1/Cvm_Test_Case_1 Metric_V61_7-7-22.json')
 
 data = json.load(f)
 for k in range(1,row_count(csv_name)):     
@@ -47,12 +47,14 @@ for k in range(1,row_count(csv_name)):
                 #print(checkpoints[k][2],",",checkpoints[k][3],",",checkpoints[k][4])
                 if(i['magicPoint'] != None):
                     row = [checkpoints[k][0],i['position']['x'],i['position']['y'],i['position']['z'], \
-                        checkpoints[k][2],checkpoints[k][3],checkpoints[k][4],i['pointGuid'],checkpoints[k][7], \
+                        checkpoints[k][2],checkpoints[k][3],checkpoints[k][4],i['pointGuid'], \
+                        checkpoints[k][10], i['kiTotalMultiplicative'],check_ki(float(checkpoints[k][10]),float(i['kiTotalMultiplicative'])),checkpoints[k][7], \
                         i['kiTotalReductive'],checkpoints[k][9],check_ki(float(checkpoints[k][9]),float(i['kiTotalReductive'])),\
                             i['magicPoint']['bottomPoint']['x'], i['magicPoint']['bottomPoint']['y'], i['magicPoint']['bottomPoint']['z']]
                 else:
                     row = [checkpoints[k][0],i['position']['x'],i['position']['y'],i['position']['z'], \
-                    checkpoints[k][2],checkpoints[k][3],checkpoints[k][4],i['pointGuid'],checkpoints[k][7], \
+                    checkpoints[k][2],checkpoints[k][3],checkpoints[k][4],i['pointGuid'], \
+                    checkpoints[k][10], i['kiTotalMultiplicative'],check_ki(float(checkpoints[k][10]),float(i['kiTotalMultiplicative'])),checkpoints[k][7], \
                         i['kiTotalReductive'],checkpoints[k][9],check_ki(float(checkpoints[k][9]),float(i['kiTotalReductive']))]
                 
                 csv_write(row)
