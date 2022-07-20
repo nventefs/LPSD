@@ -31,17 +31,17 @@ def row_count(csv_file): # count total rows in csv file
     return(row_count)
 
 
-# Read in Andrew data as 
+# Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-csv_name = 'Test Case - 2/Test Case 2.csv'
+csv_name = 'Test Case - 7/Test Case 7_1.csv'
 checkpoints = csv_read(csv_name)
-f = open('Test Case - 2/Cvm_Test_Case_2_V47_7-8-22.json')
+f = open('Test Case - 7/Cvm_Test_Case_7_V55_7-8-22.json')
 data = json.load(f)
 
 for k in range(1,row_count(csv_name)):     
     for i in data['points']:  
         if(check_point(checkpoints[k][2], i['position']['x']) and check_point(checkpoints[k][3], i['position']['y']) and check_point(checkpoints[k][4], i['position']['z'])):
-            if(i['parentPointGuid'] == ''): # All virtual points (manual point) have a parent point populated
+            if(i['parentPointGuid'] == ''): # All virtual points (manual points) have a parent point populated
                 # Add .csv row [point, json x, json y, json z, xl x, xl y, xl z, pointguid, xl multi, json multi, check multi, json reduc, xl reduc, check reduc, json magic point, json mp_x, json mp_y, json mp_z]
                 if(i['magicPoint'] != None):
                     row = [checkpoints[k][0],i['position']['x'],i['position']['y'],i['position']['z'], \
