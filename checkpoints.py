@@ -4,8 +4,10 @@ from types import NoneType
 import numpy as np
 import json
 
-rows    = []
-row     = []
+rows        = []
+row         = []
+jsonnames   = ['Cvm_Test_Case_1 Metric_V61_7-7-22', 'Cvm_Test_Case_2_V47_7-8-22', 'Cvm_Test_Case_3_RevB_V26_7-8-22',\
+                'Cvm_Test_Case_4_V39_7-8-22',  'Cvm_Test_Case_5_V52_7-8-22', '', 'Cvm_Test_Case_7_V55_7-8-22']
 
 def csv_read(datafile): # import csv file
     with open(datafile, newline = '') as csvfile:
@@ -30,12 +32,16 @@ def row_count(csv_file): # count total rows in csv file
         row_count = sum(1 for row in csvfile)
     return(row_count)
 
+def test_case(i):
+    csvname = 'Test Case - '+ str(i) + '/Test Case '+ str(i) +'.csv'
+    jsonname = 'Test Case - '+ str(i) + '/' + jsonnames[i-1] + '.json'
+    return [csvname, jsonname]
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-csv_name = 'Test Case - 5/Test Case 5.csv'
+[csv_name, json_name] = test_case(1)
 checkpoints = csv_read(csv_name)
-f = open('Test Case - 5/Cvm_Test_Case_5_V52_7-8-22.json')
+f = open(json_name)
 data = json.load(f)
 
 for k in range(1,row_count(csv_name)):     
@@ -63,4 +69,4 @@ for k in range(1,row_count(csv_name)):
                 #print(i['position']['x'],",",i['position']['y'],",",i['position']['z'])
                 #print(checkpoints[k][2],",",checkpoints[k][3],",",checkpoints[k][4])
        
-f.close()  
+f.close()
