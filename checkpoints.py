@@ -3,6 +3,7 @@ import csv
 from types import NoneType
 import numpy as np
 import json
+from Multiplicative import multiplicative
 
 rows        = []
 row         = []
