@@ -38,20 +38,12 @@ def test_case(i):
     jsonname = 'Test Case - '+ str(i) + '/' + jsonnames[i-1] + '.json'
     return [csvname, jsonname]
 
-
-#print(multiplicative.eq_a(20.0,10.0,0.38))
-
-
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
 [csv_name, json_name] = test_case(1)
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
-
-""" for i in data['levels']:
-    print(i['elevation'])
- """
 
 for k in range(1,row_count(csv_name)):     
     for i in data['points']:  
@@ -72,10 +64,5 @@ for k in range(1,row_count(csv_name)):
                         i['kiTotalReductive'],checkpoints[k][9],check_ki(float(checkpoints[k][9]),float(i['kiTotalReductive']))]
                 
                 csv_write(row)
-                #print(i['pointGuid'])
-                #print(i['kiTotalReductive'])
-                #print(check_ki(float(checkpoints[k][9]),float(i['kiTotalReductive'])))
-                #print(i['position']['x'],",",i['position']['y'],",",i['position']['z'])
-                #print(checkpoints[k][2],",",checkpoints[k][3],",",checkpoints[k][4])
-       
-f.close() 
+
+f.close()
