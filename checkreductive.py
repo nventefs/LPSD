@@ -3,7 +3,6 @@ import csv
 from types import NoneType
 import numpy as np
 import json
-from Multiplicative import multiplicative
 
 rows        = []
 row         = []
@@ -40,7 +39,7 @@ def test_case(i):
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-[csv_name, json_name] = test_case(1)
+[csv_name, json_name] = test_case(1) # SET TEST CASE NUMBER HERE
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
