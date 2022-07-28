@@ -5,7 +5,7 @@ def eq_a(H, W, Rc): # Rc = 0.38, Extended or lvl0: H = Z_p, W = Level min width 
     return (0.43 * (H**0.8) * (W**-0.14) * (Rc**-0.57) + 1)
 
 def eq_b(H, W, Rc): # Rc = 0.38, Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width
-    return (0.55 * (H**0.544) * (W**-0.14) * (Rc ** -0.367) + 1)
+    return (0.55 * (H**0.544) * (W**-0.14) * (Rc**-0.367) + 1)
 
 def eq_c(H, W, Rc): # Rc = 0.38, H = Z_p, W = Level min width, Rc = 0.38
     e = 2.718281828459045
