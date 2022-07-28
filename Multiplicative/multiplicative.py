@@ -48,14 +48,14 @@ def eq_k(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf =
 def eq_k5(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
     return (0.84 * (H**0.474) * (W**-0.109) * (Hf ** -0.326) + 0.27)
 
-def eq_l(H, W, Hf): # H = Building height, W = Level min width, Hf = Z_p - H
+def eq_l(H, W, Hf): # H = Level 0 height, W = Level 0 min width, Hf = Z_p - H
     e = 2.718281828459045
     return (0.95 * ((H/W)**0.57) * (e**(-0.55*((Hf/W)**1.33))) + 1)
 
 def eq_m(H, W, Hf):
     return (0.68 * (H**0.78) * (W**-0.28) * (Hf ** -0.43) + 0.45)
 
-def eq_n(H, W, Hf):
+def eq_n(H, W, Hf): # H = Level - Level 0 height, W = Level min width, Hf = Z_p - H
     e = 2.718281828459045
     return (1.375 * ((H/W)**0.839) * (e**(-1.33*((Hf/W)**1.43))) + 1)
 
