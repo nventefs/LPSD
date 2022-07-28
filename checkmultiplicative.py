@@ -117,13 +117,12 @@ for k in range(1,row_count(csv_name)):
             if (i['levelGuid'] == level_g[len(level_g)-1] or i['extendedPoint']):
                 if(i['isCorner']):
                     H = i['position']['z']
-                    W = min_width(i['levelGuid'])
-                    print(H)
-                    print(W)
+                    W = min_width(level_g[len(level_g)-1])
                     multi_5 = [multiplicative.eq_a(H, W, 0.38), "A"]
                 elif(i['isEdgeRectangular']):
                     H = i['position']['z']
-                    W = min_width(i['levelGuid'])
+                    #W = min_width(i['levelGuid'])
+                    W = min_width(level_g[len(level_g)-1])
                     multi_5 = [multiplicative.eq_b(H, W, 0.38), "B"]
                 elif(i['isFaceHorizontal']):
                     H = i['position']['z']
