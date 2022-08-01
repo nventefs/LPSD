@@ -7,7 +7,7 @@ import json
 rows        = []
 row         = []
 jsonnames   = ['Cvm_Test_Case_1 Metric_V61_7-7-22', 'Cvm_Test_Case_2_V47_7-8-22', 'Cvm_Test_Case_3_RevB_V26_7-8-22',\
-                'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', '', 'Cvm_Test_Case_7_V55_7-8-22']
+                'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', 'Cvm_Test_Case_6_Rev_E_V7_7-26-22', 'Cvm_Test_Case_7_V55_7-8-22']
 
 def csv_read(datafile): # import csv file
     with open(datafile, newline = '') as csvfile:
@@ -17,7 +17,7 @@ def csv_read(datafile): # import csv file
         return rows
 
 def check_point(csv_value, json_value): # compare csv and json x,y,z (+/- 5% or within 1m)
-    return ((float(csv_value) < float(json_value * 1.05) and float(csv_value) > float(json_value) * 0.95) or (float(csv_value) < float(json_value) + 1 and float(csv_value) > float(json_value) - 1))
+    return ((float(csv_value) < float(json_value * 1.02) and float(csv_value) > float(json_value) * 0.98) or (float(csv_value) < float(json_value) + 0.5 and float(csv_value) > float(json_value) - 0.5))
 
 def check_ki(csv_ki, json_ki): # compare csv and json ki (+/- 2%)
     return ((csv_ki < json_ki * 1.02) and (csv_ki > json_ki * 0.98))
@@ -39,7 +39,7 @@ def test_case(i):
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-[csv_name, json_name] = test_case(1) # SET TEST CASE NUMBER HERE
+[csv_name, json_name] = test_case(6) # SET TEST CASE NUMBER HERE
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
