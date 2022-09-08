@@ -4,10 +4,11 @@ from types import NoneType
 import numpy as np
 import json
 
+# Update jsonnames with new JSON files as they are added.  Do not need to add directory location
 rows        = []
 row         = []
 jsonnames   = ['Cvm_Test_Case_1 Metric_V61_7-7-22', 'Cvm_Test_Case_2_V47_7-8-22', 'Cvm_Test_Case_3_RevB_V26_7-8-22',\
-                'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', 'Cvm_Test_Case_6_Rev_E_V20_8-6-22', 'Cvm_Test_Case_7_V55_7-8-22']
+                'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', 'Cvm_Test_Case_6_Rev_E_V20_8-23-22', 'Cvm_Test_Case_7_V55_7-8-22']
 
 def csv_read(datafile): # import csv file
     with open(datafile, newline = '') as csvfile:
@@ -16,11 +17,11 @@ def csv_read(datafile): # import csv file
             rows.append(row)
         return rows
 
-def minWidth(levelGuid):
+def minWidth(levelGuid): # pull min_width from json files
     for k in range(len(level_g)):
         return(minwidth[k])
     
-def min_width2(level_guid): 
+def min_width2(level_guid): # calculate min_width for rectangular/circular buildings
     x = []
     y = []
     x_min = []
@@ -85,9 +86,9 @@ for i in data['levels']:
     level_z.append(i['elevation'])
     level_g.append(i['levelGuid'])
     minwidth.append(i["minWidth"])
-    print(i['levelName'], i['levelGuid'])
+    #print(i['levelName'] 
+    print(i['levelGuid'])
     print(i['minWidth'])
-
 
 for k in range(1,row_count(csv_name)):     
     for i in data['points']:  
@@ -112,5 +113,5 @@ for k in range(1,row_count(csv_name)):
                                 ]
                 
                 csv_write(row)
- 
+
 f.close()
