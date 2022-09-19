@@ -93,7 +93,7 @@ for k in iteration:
             coord_ref = (float(infile[k][4]), float(infile[k][5]), float(infile[k][6]))
             coord = compare(coord_ref, coord_0, coord_1)
 
-            val = compare(coord_ref, coord_0, coord_1, coord_2)
+            val = compare(coord_ref, coord_0, coord_1)
             try:
                 row = infile[k + val]
             except:
