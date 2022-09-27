@@ -1,6 +1,6 @@
 # LPSD 4.0 Quality Assurance Testing
 Lightning Protection System Designer: Active Repository
-Revision 0.1.12
+Revision 0.1.13
 
 # Contributors
 - Greg Martinjak <greg.martinjak@nvent.com>
@@ -52,3 +52,8 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 𝐾_𝑖=(𝐾_𝑖 (𝑃𝑂𝐼 @ 𝑧))/(𝑅_𝑓 (𝐻_1,𝐻_2,𝑊_2))
 
+# Project Progress
+
+| Test Case #  | Progress |
+| ------------- | ------------- |
+| Test Case 1  | https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Completion_Chart.png  |
