@@ -1,6 +1,6 @@
 # LPSD 4.0 Quality Assurance Testing
 Lightning Protection System Designer: Active Repository
-Revision 0.1.13
+Revision 0.2.1
 
 # Contributors
 - Greg Martinjak <greg.martinjak@nvent.com>
@@ -57,3 +57,9 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case #  | Progress |
 | ------------- | ------------- |
 | Test Case 1  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Completion_Chart.png?raw=true)  |
+| Test Case 2  | ![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%202/TC2_Completion_Chart.png?raw=true)  |
+| Test Case 3  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%203/TC3_Completion_Chart.png?raw=true)  |
+| Test Case 4  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%204/TC4_Completion_Chart.png?raw=true)  |
+| Test Case 5  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%205/TC5_Completion_Chart.png?raw=true)  |
+| Test Case 6  | Coming soon!  |
+| Test Case 7  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |
