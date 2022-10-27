@@ -54,8 +54,8 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Progress
 
-| Test Case #  | Progress |
-| ------------- | ------------- |
+| Test Case #  | Reductive | Multiplicative |
+| ------------- | ------------- | ------------- |
 | Test Case 1  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Reductive_Chart.png?raw=true)  |![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Multiplicative_Chart.png?raw=true)
 | Test Case 2  | ![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%202/TC2_Reductive_Chart.png?raw=true)  |![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC2_Multiplicative_Chart.png?raw=true)
 | Test Case 3  | ![Test case 3](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%203/TC3_Reductive_Chart.png?raw=true)  |![Test case 3](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC3_Multiplicative_Chart.png?raw=true)
