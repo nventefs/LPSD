@@ -1,6 +1,6 @@
 # LPSD 4.0 Quality Assurance Testing
 Lightning Protection System Designer: Active Repository
-Revision 0.2.1
+Revision 0.3.1
 
 # Contributors
 - Greg Martinjak <greg.martinjak@nvent.com>
