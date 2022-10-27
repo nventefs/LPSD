@@ -12,10 +12,11 @@ level_z             = []
 level_g             = []
 rows                = []
 row                 = []
-jsonnames           = ['Cvm_Test_Case_1 Metric_V61_7-7-22', 'Cvm_Test_Case_2_V47_7-8-22', 'Cvm_Test_Case_3_RevB_V26_7-8-22',\
-                        'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', '', 'Cvm_Test_Case_7_V55_7-8-22']
+jsonnames           = ['Cvm_Test_Case_1 Metric_V87_10-11-22', 'Cvm_Test_Case_2_V48_9-26-22', 'Cvm_Test_Case_3_RevB_V26_9-26-22',\
+                        'Cvm_Test_Case_4_V41_9-26-22',  'Cvm_Test_Case_5_V53_9-26-22', '', 'Cvm_Test_Case_7_V55_9-26-22']
 
 def min_width(level_guid): 
+    #print(level_guid)
     x = []
     y = []
     x_min = []
@@ -65,7 +66,7 @@ def test_case(i):
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative','Multiplicative Eq']
-[csv_name, json_name] = test_case(1)
+[csv_name, json_name] = test_case(7)
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
@@ -75,10 +76,14 @@ for i in data['levels']:
     level_z.append(i['elevation'])
     level_g.append(i['levelGuid'])
 
+#print(levels)
+#print(level_g)
+#print(level_z)
+
 for k in range(1,row_count(csv_name)):   
     for i in data['points']:
         if(i['pointGuid'] == checkpoints[k][12]):
-            print(i['pointGuid'])
+            #print(i['pointGuid'])
             multi_3 = 1
             multi_4 = 1
             multi_5 = 1
@@ -89,7 +94,10 @@ for k in range(1,row_count(csv_name)):
                     W = min_width(i['levelGuid'])
                     multi_3 = [multiplicative.eq_a(H, W, 0.38), "A"]
                 elif(i['isEdgeRectangular']): # Equation B
-                    H = i['position']['z']-level_z[len(level_z)-1]
+                    if(i['extendedPoint']):
+                        H = i['position']['z']-level_z[len(level_z)-1]
+                    else:
+                        H = level_z[len(level_z) - 1]
                     W = min_width(i['levelGuid'])
                     multi_3 = [multiplicative.eq_b(H, W, 0.38), "B"]
                 elif(i['isFaceHorizontal']): # Equation C
@@ -97,13 +105,16 @@ for k in range(1,row_count(csv_name)):
                     W = min_width(i['levelGuid'])
                     multi_3 = [multiplicative.eq_c(H, W, 0.38), "C"]
                 elif(i['isEdgeOval']): # Equation D
-                    H = i['position']['z']-level_z[len(level_z)-1]
+                    if(i['levelGuid'] == level_g[len(level_g) - 1]):
+                        H = i['position']['z']
+                    else:
+                        H = i['position']['z']-level_z[len(level_z)-1]
                     W = min_width(i['levelGuid'])
-                    multi_3 = [multiplicative.eq_b(H, W, 0.38), "D"]
+                    multi_3 = [multiplicative.eq_d(H, W, 0.38), "D"]
                 else: # Equation E
                     H = i['position']['z']
                     W = min_width(i['levelGuid'])
-                    multi_3 = [multiplicative.eq_c(H, W, 0.38), "E"]
+                    multi_3 = [multiplicative.eq_e(H, W, 0.38), "E"]
 
                 #Equation 4
                 if(i['isCorner']):
@@ -132,10 +143,14 @@ for k in range(1,row_count(csv_name)):
                     H = i['position']['z']
                     W = min_width(i['levelGuid'])
                     multi_5 = [multiplicative.eq_d(H, W, 0.38), "D"]
+                elif(i['isGableRidgeCorner'] or i['isGableEaveCorner']):
+                    H = i['position']['z']
+                    W = min_width(i['levelGuid'])
+                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "F"]
                 else:
                     H = i['position']['z']
                     W = min_width(i['levelGuid'])
-                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "E"]
+                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "G"]
             else:
                 if(i['isCorner'] or i['isEdgeRectangular']):
                     H = level_z[len(level_z)-1]
@@ -143,8 +158,8 @@ for k in range(1,row_count(csv_name)):
                     Hf = i['position']['z'] - H
                     multi_5 = [multiplicative.eq_l(H, W, Hf), "L"]
                 else:
-                    H = i['position']['z']-level_z[len(level_z)-1]
-                    W = min_width(i['levelGuid'])
+                    H = level_z[len(level_z)-1]
+                    W = min_width(level_g[len(level_g)-1])
                     Hf = i['position']['z'] - H
                     multi_5 = [multiplicative.eq_n(H, W, Hf), "N"]
 
@@ -154,7 +169,7 @@ for k in range(1,row_count(csv_name)):
             
             row = [checkpoints[k][0], checkpoints[k][2], checkpoints[k][3], checkpoints[k][4], i['position']['x'], i['position']['y'], i['position']['z'], \
                     checkpoints[k][12], checkpoints[k][10], i['kiTotalMultiplicative'], multi_3[0]*multi_4[0]*multi_5[0], multi_3[0], multi_3[1], \
-                    multi_4[0], multi_4[1], multi_5[0], multi_5[1]]
+                    multi_4[0], multi_4[1], multi_5[0], multi_5[1], i['levelGuid']]
             csv_write(row)
 
 f.close()
