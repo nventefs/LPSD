@@ -34,7 +34,7 @@ def xlsx_name(i):
             #return(f[14:])
 
 # DEFINE TEST CASE TO EVALUATE
-[xl_name, filename] = test_case(7)  
+[xl_name, filename] = test_case(4)  
 
 
 [wb, sheet, maxrow] = excel_read(xl_name)
@@ -57,7 +57,7 @@ for k in range(2,maxrow + 2):
 
 #filename = (xl_name[14:17] + '_Completion_Chart.png')  #stores chart locally
 filename = (xl_name[0:17] + '_Reductive_Chart.png') #stores chart in proper folder
-print(truecount)
+print('Reductive : {} // {}'.format(truecount, maxrow - 2))
 y = np.array([truecount, maxrow - 2 - truecount])
 pielabels = ['Accurate', 'Inaccurate']
 plt.pie(y, labels = pielabels)
@@ -77,7 +77,7 @@ for k in range(2,maxrow + 1):
     if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
         truecount = truecount + 1
 
-print(truecount)
+print('Multiplicative : {} // {}'.format(truecount, maxrow - 2))
 y = np.array([truecount, maxrow - 1 - truecount])
 pielabels = ['Accurate', 'Inaccurate']
 plt.pie(y, labels = pielabels)
