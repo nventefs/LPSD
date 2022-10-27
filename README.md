@@ -56,10 +56,30 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 | Test Case #  | Progress |
 | ------------- | ------------- |
-| Test Case 1  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Completion_Chart.png?raw=true)  |
-| Test Case 2  | ![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%202/TC2_Completion_Chart.png?raw=true)  |
-| Test Case 3  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%203/TC3_Completion_Chart.png?raw=true)  |
-| Test Case 4  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%204/TC4_Completion_Chart.png?raw=true)  |
-| Test Case 5  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%205/TC5_Completion_Chart.png?raw=true)  |
-| Test Case 6  | Coming soon!  |
-| Test Case 7  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |
+| Test Case 1  | ![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Reductive_Chart.png?raw=true)  |![Test case 1](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC1_Multiplicative_Chart.png?raw=true)
+| Test Case 2  | ![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%202/TC2_Reductive_Chart.png?raw=true)  |![Test case 2](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC2_Multiplicative_Chart.png?raw=true)
+| Test Case 3  | ![Test case 3](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%203/TC3_Reductive_Chart.png?raw=true)  |![Test case 3](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC3_Multiplicative_Chart.png?raw=true)
+| Test Case 4  | ![Test case 4](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%204/TC4_Reductive_Chart.png?raw=true)  |![Test case 4](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC4_Multiplicative_Chart.png?raw=true)
+| Test Case 5  | ![Test case 5](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%205/TC5_Reductive_Chart.png?raw=true)  |![Test case 5](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC5_Multiplicative_Chart.png?raw=true)
+| Test Case 6  | Coming soon!  |Coming soon!
+| Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%201/TC7_Multiplicative_Chart.png?raw=true)
+
+# Project Schedule
+
+10.26 Open issues:
+
+<b>Test Case 6F</b>
+- Model is uploaded and active
+- POIs are placed on model
+- Model is analyzed
+- Analysis is not correct and needs attention
+- Email sent to Carlo explaining the issue
+- Carlo hasn't looked at the air terminals not providing a CV
+
+<b>Layer Visibility</b>
+- Carlo figured out a primary issue for layers bypassing the visibility toggle when regenerating
+- The issue is expected to be resolved by 11.02
+
+<b>Multiplicative</b>
+- Greg is working through multiplicative analysis of all test cases
+- All multiplicative test cases are expected to be analyzed by end of this week
