@@ -9,7 +9,7 @@ row         = []
 
 
 def excel_read(datafile):
-    wb = openpyxl.load_workbook(datafile) 
+    wb = openpyxl.load_workbook(datafile, data_only = True) 
     sheet = wb.active 
     maxrow = sheet.max_row
     return [wb, sheet, maxrow]
@@ -38,25 +38,49 @@ def xlsx_name(i):
 
 
 [wb, sheet, maxrow] = excel_read(xl_name)
+
+# REDUCTIVE
+sheet = wb['Reductive']
+maxrow = sheet.max_row
 truecount = 0
 
-for k in range(1,maxrow + 1):
+for k in range(2,maxrow + 2):
     cell = sheet.cell(row = k, column = 12)
-    if(str(cell.value) == 'True'):
+    if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
         truecount = truecount + 1
 
-for k in range(1,maxrow + 1):
+for k in range(2,maxrow + 2):
     cell = sheet.cell(row = k, column = 17)
-    if(str(cell.value) == 'True'):
+    if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
         truecount = truecount + 1
 
 
 #filename = (xl_name[14:17] + '_Completion_Chart.png')  #stores chart locally
-filename = (xl_name[0:17] + '_Completion_Chart.png') #stores chart in proper folder
-
+filename = (xl_name[0:17] + '_Reductive_Chart.png') #stores chart in proper folder
+print(truecount)
 y = np.array([truecount, maxrow - 2 - truecount])
 pielabels = ['Accurate', 'Inaccurate']
 plt.pie(y, labels = pielabels)
-plt.title(xl_name[14:17])
+plt.title(xl_name[14:17] + 'Reductive')
+plt.savefig(filename)
+plt.close()
+
+# MULTIPLICATIVE
+
+filename = (xl_name[0:17] + '_Multiplicative_Chart.png')
+sheet = wb['Multiplicative']
+maxrow = sheet.max_row
+truecount = 0
+
+for k in range(2,maxrow + 1):
+    cell = sheet.cell(row = k, column = 20)
+    if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
+        truecount = truecount + 1
+
+print(truecount)
+y = np.array([truecount, maxrow - 1 - truecount])
+pielabels = ['Accurate', 'Inaccurate']
+plt.pie(y, labels = pielabels)
+plt.title(xl_name[14:17] + 'Multiplicative')
 plt.savefig(filename)
 plt.close()
