@@ -65,9 +65,23 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
 
 # Project Schedule
+```
+10.27 Open issues:
+```
+<b>Test Case 6F</b>
+- Carlo provided new code to allow for TC6F to run
+- TC6F has been ran and I need to request JSON file from Carlo
 
+<b>Layer Visibility</b>
+- This issue appears resolved as of last push
+
+<b>Multiplicative</b>
+- Greg has worked through all multiplicative values from JSON files on TC1-TC7 excluding 6
+- There appears to be some issues on TC7 with the multiplicative flowchart
+- There appears to be some issues on TC2 with the cylindrical calculations
+```
 10.26 Open issues:
-
+```
 <b>Test Case 6F</b>
 - Model is uploaded and active
 - POIs are placed on model
