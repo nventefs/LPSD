@@ -43,8 +43,7 @@ def compare(coord_ref, coord_0, coord_1, coord_2 = (0,0,0), coord_3 = (0,0,0), c
     if(d_4 < d_0 and d_4 < d_1 and d_4 < d_2 and d_4 < d_3):
         return 3
     else:
-        return Exception
-
+        return 0
 
 csv_name = 'outfile.csv'
 infile = csv_read(csv_name)
@@ -64,6 +63,8 @@ for k in iteration:
                     coord_ref = (float(infile[k][4]), float(infile[k][5]), float(infile[k][6]))
 
                     val = compare(coord_ref, coord_0, coord_1, coord_2, coord_3, coord_4)
+                    if val == Exception:
+                        print(k)
                     row = infile[k + val]
 
                 else:
@@ -75,6 +76,8 @@ for k in iteration:
                     coord_ref = (float(infile[k][4]), float(infile[k][5]), float(infile[k][6]))
 
                     val = compare(coord_ref, coord_0, coord_1, coord_2, coord_3)
+                    if val == Exception:
+                        print(k)
                     row = infile[k + val]
             else:
                 next(islice(iteration, 2, 2), None)  
@@ -84,6 +87,8 @@ for k in iteration:
                 coord_ref = (float(infile[k][4]), float(infile[k][5]), float(infile[k][6]))
 
                 val = compare(coord_ref, coord_0, coord_1, coord_2)
+                if val == Exception:
+                    print(k)
                 row = infile[k + val]
 
         else:
