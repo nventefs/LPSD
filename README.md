@@ -66,6 +66,31 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 ```
+11.02 Open issues:
+```
+<b>Test Case 6F</b>
+- .JSON file received and analyzed
+- Reductive and multiplicative charts to be created
+- Issue with Greg's multiplicative calculation needs to be resolved
+
+<b>Issues 194</b>
+
+- Carlo wants to look into this more
+- Graitec was added to the project
+
+<b>Issue 199</b>
+
+- Graitec/ASTI explained that if you zoom in, you can see that the ridge-line to the left of the terminal is showing red
+- Root cause found to be that POIs were not placed in the proper locations
+- End result was confirmed
+
+<b>Multiplicative General</b>
+- Greg working on resolving code issues in calculating Multiplicative on our side
+
+<b>Other</b>
+- Graitec/ASTI working on new update
+
+```
 10.27 Open issues:
 ```
 <b>Test Case 6F</b>
