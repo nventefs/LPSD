@@ -18,6 +18,7 @@ The quality testing for LPSD 4.0 confirms the CVM (Collection Volume Method) cal
 - Gable Roof Catchy Name
 
 These seven test cases cover the vast majority of use cases for LPSD 4.0.
+Bug repots and features are kept track in the intranet [Feedback Log](https://nventco.sharepoint.com/sites/Web12/Teams1/EFS/E19_02/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2FWeb12%2FTeams1%2FEFS%2FE19%5F02%2FShared%20Documents%2FUser%20Acceptance%20Testing)
 
 # CVM Summary
 Collection Volume Method consists of two primary parts:
@@ -65,6 +66,17 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
 
 # Project Schedule
+```
+11.03 Open issues:
+```
+<b>minWidth</b>
+- Found major bug with determining minWidth that prevents proper multiplicative calculations
+- Reached out to ASTI/Graitec and asked for a phone call
+
+<b>Test Case 6F</b>
+- Multiplicative calculation issue resolved
+- minWidth issue opened
+
 ```
 11.02 Open issues:
 ```
