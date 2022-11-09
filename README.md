@@ -67,6 +67,25 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 ```
+11.09 Open issues:
+```
+<b>minWidth</b>
+- Carlo will determine next steps with minWidth
+
+<b>Test Case 6F</b>
+- Reductive calculations accurate
+- Multiplicative calculations 'accurate' but minWidth an issue
+
+<b>Feedback Log</b>
+- Carlo to check Issue 197
+- Carlo to check Issue 193
+- Issues 199, 198 resolved
+- Matt & Greg to follow up on Issues 192, 194
+
+<b>SOW - LT Maintenance</b>
+- Sebastion to provide starting location for Long Term Maintenance Support
+
+```
 11.03 Open issues:
 ```
 <b>minWidth</b>
