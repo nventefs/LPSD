@@ -3,12 +3,15 @@ import csv
 from types import NoneType
 import numpy as np
 import json
+import os
 
 # Update jsonnames with new JSON files as they are added.  Do not need to add directory location
+filenames   = []
+timestamps  = []
 rows        = []
 row         = []
-jsonnames   = ['Cvm_Test_Case_1 Metric_V61_7-7-22', 'Cvm_Test_Case_2_V47_7-8-22', 'Cvm_Test_Case_3_RevB_V26_7-8-22',\
-                'Cvm_Test_Case_4_V41_7-22-22',  'Cvm_Test_Case_5_V52_7-8-22', 'Cvm_Test_Case_6_Rev_E_V20_8-23-22', 'Cvm_Test_Case_7_V55_7-8-22']
+jsonnames   = ['Cvm_Test_Case_1 Metric_V87_11-09-22', 'Cvm_Test_Case_2_V48_9-26-22', 'Cvm_Test_Case_3_RevB_V26_9-26-22',\
+                'Cvm_Test_Case_4_V41_9-26-22',  'Cvm_Test_Case_5_V53_9-26-22', 'Cvm_Test_Case_6_Rev_F_V20_10-27-22', 'Cvm_Test_Case_7_V55_9-26-22']
 
 def csv_read(datafile): # import csv file
     with open(datafile, newline = '') as csvfile:
@@ -64,13 +67,36 @@ def row_count(csv_file): # count total rows in csv file
     return(row_count)
 
 def test_case(i):
-    csvname = 'Test Case - '+ str(i) + '/Test Case '+ str(i) +'.csv'
-    jsonname = 'Test Case - '+ str(i) + '/' + jsonnames[i-1] + '.json'
-    return [csvname, jsonname]
+    csvname = 'Test Case - ' + str(i) + '/Test Case ' + str(i) +'.csv'
+    directory = './Test Case - ' + str(i) + '/'
+    global filenames
+    global timestamps
+
+    for filename in os.listdir(directory):
+        if(filename.endswith('.json')):
+            f = os.path.join(directory, filename)
+            filenames.append(f)
+            d = os.path.getmtime(f)
+            timestamps.append(str(d))
+
+    for j in range(len(filenames)):
+        index = j
+        try:
+            if timestamps[j + 1] > timestamps[j]:
+                index = j + 1
+        except:
+            index = j
+    print("Running reductive check on {}".format(filenames[index]))
+    return[csvname, filenames[index]]
+            
+
+    #jsonname = 'Test Case - '+ str(i) + '/' + jsonnames[i-1] + '.json'
+    #return [csvname, jsonname]
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-[csv_name, json_name] = test_case(6) # SET TEST CASE NUMBER HERE
+[csv_name, json_name] = test_case(1)
+#[csv_name, json_name] = test_case(1) # SET TEST CASE NUMBER HERE
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
@@ -81,14 +107,18 @@ level_g = []
 minwidth = []
 minwidth2 = []
 
+"""
 for i in data['levels']:
     levels.append(i['levelName'])
     level_z.append(i['elevation'])
     level_g.append(i['levelGuid'])
     minwidth.append(i["minWidth"])
-    #print(i['levelName'] 
+    print(i['levelName'])
     print(i['levelGuid'])
     print(i['minWidth'])
+"""
+
+
 
 for k in range(1,row_count(csv_name)):     
     for i in data['points']:  
