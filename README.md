@@ -71,6 +71,9 @@ For example, the total reductive effects of a rectangular structure on a lower P
 ```
 <b>minWidth</b>
 - Carlo sent a fix for minWidth including Test Case 2 with a fail-safe catch for infinite loops on the forge side
+- New minWidth issue found where levels are not including bounding boxes of levels above
+- Had phone call with Carlo and Ron to determine root cause and look at fixes
+- Possible issue with Equation 3: B or Equation 5: L
 
 
 ```
