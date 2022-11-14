@@ -67,6 +67,19 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 ```
+11.13 Open issues:
+```
+<b>minWidth</b>
+- Carlo sent a fix for minWidth including Test Case 2 with a fail-safe catch for infinite loops on the forge side
+
+
+```
+11.11 Open issues:
+```
+<b>minWidth</b>
+- Carlo sent a fix for minWidth excluding Test Case 2 where there is a risk of an infinite loop
+
+```
 11.09 Open issues:
 ```
 <b>minWidth</b>
