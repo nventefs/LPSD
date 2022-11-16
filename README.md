@@ -66,6 +66,24 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
 
 # Project Schedule
+<details>
+  <summary>
+```
+11.16 Open issues:
+```
+</summary>
+<b>Issue 193</b>
+- Angle protection is resolved when using terminals, mesh protection is not resolved
+- No analysis results on mesh when no terminals are used
+- Angle protection is not resolved when not using terminals
+
+<b>Issue 194</b>
+
+<b>Issue 203</b>
+
+<b>minWidth</b>
+</details>
+
 ```
 11.13 Open issues:
 ```
@@ -74,7 +92,6 @@ For example, the total reductive effects of a rectangular structure on a lower P
 - New minWidth issue found where levels are not including bounding boxes of levels above
 - Had phone call with Carlo and Ron to determine root cause and look at fixes
 - Possible issue with Equation 3: B or Equation 5: L
-
 
 ```
 11.11 Open issues:
