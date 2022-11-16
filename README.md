@@ -69,9 +69,9 @@ For example, the total reductive effects of a rectangular structure on a lower P
 <details>
   <summary><b>11.16 Open issues:</b></summary>
 <b>Issue 193</b>
-- Angle protection is resolved when using terminals, mesh protection is not resolved
-- No analysis results on mesh when no terminals are used
-- Angle protection is not resolved when not using terminals
+* Angle protection is resolved when using terminals, mesh protection is not resolved
+* No analysis results on mesh when no terminals are used
+* Angle protection is not resolved when not using terminals
 
 <b>Issue 194</b>
 
@@ -80,6 +80,7 @@ For example, the total reductive effects of a rectangular structure on a lower P
 <b>minWidth</b>
 
 </details>
+
 ```
 11.13 Open issues:
 ```
