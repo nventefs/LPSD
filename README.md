@@ -69,18 +69,37 @@ For example, the total reductive effects of a rectangular structure on a lower P
 <details>
   <summary><b>11.16 Open issues:</b></summary>
 
-### Issue 193
+### Issue 193 [Feature]
 - Angle protection is resolved when using terminals, mesh protection is not resolved
 - No analysis results on mesh when no terminals are used
 - Angle protection is not resolved when not using terminals
+- Mesh method was never setup for use with POIs
+- Need to create SOW to add Mesh method analysis with the use of POIs
+- The same analysis method should be included to the SOW for angle protection
 
-### Issue 194
+### Issue 194 
+- Ruud to send project # to Carlo for review
+- Greg to send feedback log file to Carlo and highlight issue 194
 
-### Issue 203
+### Issue 203 [Feature]
+- Flyout sets default
+- The initial settings greatly impact the analysis of the model
+- SOW to be created to add a button/functionality 
+- Hotfix to use new option functionality to change the analysis method
 
 ### minWidth
+- Analyze form tool spheres need to be assigned to a level
+- Vertical points will have levels again
+- Boundary conditions will look for POIs at z<level_z
 
 ### User roles
+- Role comes from BIM360
+- Region will assign people to projects by default based on region
+- Administrator role controls access in BIM360
+- The role for external administrator doesn't role
+- The template does allow for various restrictions in BIM360
+- "Customized Administrator Role"
+- Logging in with Autodesk ID allows for restrictions
 
 </details>
 
