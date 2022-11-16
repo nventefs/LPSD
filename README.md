@@ -80,17 +80,18 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 ### minWidth
 
+### User roles
+
 </details>
 
 <details>
   <summary><b>11.13 Open issues:</b></summary>
 
-### minWidth
-- Carlo sent a fix for minWidth including Test Case 2 with a fail-safe catch for infinite loops on the forge side
-- New minWidth issue found where levels are not including bounding boxes of levels above
-- Had phone call with Carlo and Ron to determine root cause and look at fixes
-- Possible issue with Equation 3: B or Equation 5: L
-
+    ### minWidth
+    - Carlo sent a fix for minWidth including Test Case 2 with a fail-safe catch for infinite loops on the forge side
+    - New minWidth issue found where levels are not including bounding boxes of levels above
+    - Had phone call with Carlo and Ron to determine root cause and look at fixes
+    - Possible issue with Equation 3: B or Equation 5: L
 </details>
 
 <details>
@@ -176,7 +177,7 @@ For example, the total reductive effects of a rectangular structure on a lower P
 </details>
 
 <details>
-  <summary><b>10.2 Open issues:</b></summary>
+  <summary><b>10.25 Open issues:</b></summary>
 
 ### Test Case 6F
 - Model is uploaded and active
@@ -193,4 +194,5 @@ For example, the total reductive effects of a rectangular structure on a lower P
 ### Multiplicative
 - Greg is working through multiplicative analysis of all test cases
 - All multiplicative test cases are expected to be analyzed by end of this week
+
 </details>
