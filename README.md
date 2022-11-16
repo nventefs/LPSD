@@ -70,9 +70,9 @@ For example, the total reductive effects of a rectangular structure on a lower P
   <summary><b>11.16 Open issues:</b></summary>
 
 ### Issue 193
-* Angle protection is resolved when using terminals, mesh protection is not resolved
-* No analysis results on mesh when no terminals are used
-* Angle protection is not resolved when not using terminals
+- Angle protection is resolved when using terminals, mesh protection is not resolved
+- No analysis results on mesh when no terminals are used
+- Angle protection is not resolved when not using terminals
 
 ### Issue 194
 
@@ -82,94 +82,103 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 </details>
 
-```
-11.13 Open issues:
-```
-<b>minWidth</b>
+<details>
+  <summary><b>11.13 Open issues:</b></summary>
+
+### minWidth
 - Carlo sent a fix for minWidth including Test Case 2 with a fail-safe catch for infinite loops on the forge side
 - New minWidth issue found where levels are not including bounding boxes of levels above
 - Had phone call with Carlo and Ron to determine root cause and look at fixes
 - Possible issue with Equation 3: B or Equation 5: L
 
-```
-11.11 Open issues:
-```
-<b>minWidth</b>
+</details>
+
+<details>
+  <summary><b>11.11 Open issues:</b></summary>
+
+### minWidth
 - Carlo sent a fix for minWidth excluding Test Case 2 where there is a risk of an infinite loop
 
-```
-11.09 Open issues:
-```
-<b>minWidth</b>
+</details>
+<details>
+  <summary><b>11.09 Open issues:</b></summary>
+
+### minWidth
 - Carlo will determine next steps with minWidth
 
-<b>Test Case 6F</b>
+### Test Case 6F
 - Reductive calculations accurate
 - Multiplicative calculations 'accurate' but minWidth an issue
 
-<b>Feedback Log</b>
+### Feedback Log
 - Carlo to check Issue 197
 - Carlo to check Issue 193
 - Issues 199, 198 resolved
 - Matt & Greg to follow up on Issues 192, 194
 
-<b>SOW - LT Maintenance</b>
+### SOW - LT Maintenance
 - Sebastion to provide starting location for Long Term Maintenance Support
 
-```
-11.03 Open issues:
-```
-<b>minWidth</b>
+</details>
+
+<details>
+  <summary><b>11.03 Open issues:</b></summary>
+
+### minWidth
 - Found major bug with determining minWidth that prevents proper multiplicative calculations
 - Reached out to ASTI/Graitec and asked for a phone call
 
-<b>Test Case 6F</b>
+### Test Case 6F
 - Multiplicative calculation issue resolved
 - minWidth issue opened
 
-```
-11.02 Open issues:
-```
-<b>Test Case 6F</b>
+</details>
+
+<details>
+  <summary><b>11.02 Open issues:</b></summary>
+
+### Test Case 6F
 - .JSON file received and analyzed
 - Reductive and multiplicative charts to be created
 - Issue with Greg's multiplicative calculation needs to be resolved
 
-<b>Issues 194</b>
-
+### Issue 194
 - Carlo wants to look into this more
 - Graitec was added to the project
 
-<b>Issue 199</b>
-
+### Issue 199
 - Graitec/ASTI explained that if you zoom in, you can see that the ridge-line to the left of the terminal is showing red
 - Root cause found to be that POIs were not placed in the proper locations
 - End result was confirmed
 
-<b>Multiplicative General</b>
+### Multiplicative General
 - Greg working on resolving code issues in calculating Multiplicative on our side
 
-<b>Other</b>
+### Other
 - Graitec/ASTI working on new update
 
-```
-10.27 Open issues:
-```
-<b>Test Case 6F</b>
+</details>
+<details>
+  <summary><b>10.27 Open issues:</b></summary>
+
+### Test Case 6F
 - Carlo provided new code to allow for TC6F to run
 - TC6F has been ran and I need to request JSON file from Carlo
 
-<b>Layer Visibility</b>
+### Layer Visibility
 - This issue appears resolved as of last push
 
-<b>Multiplicative</b>
+### Multiplicative
 - Greg has worked through all multiplicative values from JSON files on TC1-TC7 excluding 6
 - There appears to be some issues on TC7 with the multiplicative flowchart
 - There appears to be some issues on TC2 with the cylindrical calculations
-```
-10.26 Open issues:
-```
-<b>Test Case 6F</b>
+
+</details>
+
+<details>
+  <summary><b>10.2 Open issues:</b></summary>
+
+### Test Case 6F
 - Model is uploaded and active
 - POIs are placed on model
 - Model is analyzed
@@ -177,10 +186,11 @@ For example, the total reductive effects of a rectangular structure on a lower P
 - Email sent to Carlo explaining the issue
 - Carlo hasn't looked at the air terminals not providing a CV
 
-<b>Layer Visibility</b>
+### Layer Visibility
 - Carlo figured out a primary issue for layers bypassing the visibility toggle when regenerating
 - The issue is expected to be resolved by 11.02
 
-<b>Multiplicative</b>
+### Multiplicative
 - Greg is working through multiplicative analysis of all test cases
 - All multiplicative test cases are expected to be analyzed by end of this week
+</details>
