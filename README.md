@@ -96,7 +96,7 @@ For example, the total reductive effects of a rectangular structure on a lower P
 - Role comes from BIM360
 - Region will assign people to projects by default based on region
 - Administrator role controls access in BIM360
-- The role for external administrator doesn't role
+- The role for external administrator doesn't exist
 - The template does allow for various restrictions in BIM360
 - "Customized Administrator Role"
 - Logging in with Autodesk ID allows for restrictions
