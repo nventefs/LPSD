@@ -63,7 +63,7 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case 4  | ![Test case 4](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%204/TC4_Reductive_Chart.png?raw=true)  |![Test case 4](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%204/TC4_Multiplicative_Chart.png?raw=true)
 | Test Case 5  | ![Test case 5](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%205/TC5_Reductive_Chart.png?raw=true)  |![Test case 5](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%205/TC5_Multiplicative_Chart.png?raw=true)
 | Test Case 6  | ![Test case 6](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%206/TC6_Reductive_Chart.png?raw=true)  |![Test case 6](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%206/TC6_Multiplicative_Chart.png?raw=true)
-| Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Completion_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
+| Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Reductive_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
 
 # Project Schedule
 <details>
