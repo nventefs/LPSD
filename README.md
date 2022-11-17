@@ -8,7 +8,8 @@ Revision 0.3.1
 - Andrew Ritosa <andrew.ritosa@nvent.com>
 
 # Summary of Project
-The quality testing for LPSD 4.0 confirms the CVM (Collection Volume Method) calculations for LPSD.  Seven test cases are selected to cover the various buildings that LPSD is epected to handle and a CVM model was created for each of these test cases.  The test cases are as follows:
+The quality testing for LPSD 4.0 confirms the CVM (Collection Volume Method) calculations for LPSD.  Seven test cases are selected to cover the various buildings that LPSD is expected to handle and a CVM model was created for each of these test cases.  The test cases are as follows:
+
 - Rectangular Castle
 - Cylindrical Cake
 - Tall Apartments
@@ -18,7 +19,7 @@ The quality testing for LPSD 4.0 confirms the CVM (Collection Volume Method) cal
 - Gable Roof Catchy Name
 
 These seven test cases cover the vast majority of use cases for LPSD 4.0.
-Bug repots and features are kept track in the intranet [Feedback Log](https://nventco.sharepoint.com/sites/Web12/Teams1/EFS/E19_02/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2FWeb12%2FTeams1%2FEFS%2FE19%5F02%2FShared%20Documents%2FUser%20Acceptance%20Testing)
+Bug reports and features are kept track of within the intranet [Feedback Log](https://nventco.sharepoint.com/sites/Web12/Teams1/EFS/E19_02/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2FWeb12%2FTeams1%2FEFS%2FE19%5F02%2FShared%20Documents%2FUser%20Acceptance%20Testing)
 
 # CVM Summary
 Collection Volume Method consists of two primary parts:
@@ -66,6 +67,23 @@ For example, the total reductive effects of a rectangular structure on a lower P
 | Test Case 7  | ![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Reductive_Chart.png?raw=true)  |![Test case 7](https://github.com/nventefs/LPSD/blob/main/Test%20Case%20-%207/TC7_Multiplicative_Chart.png?raw=true)
 
 # Project Schedule
+
+<details>
+  <summary><b>11.17 Open issues:</b></summary>
+
+### Issue 193 [Feature]
+- Meeting with Matt and Ruud to begin scope document
+- Ruud to take the lead on determining the design guidelines per IEC 62305
+
+### Issue 194
+- Unable to acquire project # at the moment since LPSD login is down
+
+### Issue 196
+- Matt leading the design requirements for the metric template
+- Scope document in progress
+
+</details>
+
 <details>
   <summary><b>11.16 Open issues:</b></summary>
 
