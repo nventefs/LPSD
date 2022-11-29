@@ -69,6 +69,19 @@ For example, the total reductive effects of a rectangular structure on a lower P
 # Project Schedule
 
 <details>
+  <summary><b>11.29 Open issues:</b></summary>
+
+### Minimum Width
+- Carlo fixed minimum width calculations and verified every level for each project
+- Carlo applied the proper sublevels to the seven test cases 
+
+### Reductive/Multiplicative
+- Ran through results from .json files sent by Carlo
+- As a cursory glance there appears to be additional issues from the changes made that will need to be evaluated
+
+</details>
+
+<details>
   <summary><b>11.17 Open issues:</b></summary>
 
 ### Issue 193 [Feature]
