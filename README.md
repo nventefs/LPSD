@@ -69,6 +69,26 @@ For example, the total reductive effects of a rectangular structure on a lower P
 # Project Schedule
 
 <details>
+  <summary><b>11.30 Open issues:</b></summary>
+
+### Reductive/Multiplicative
+- Looks good at first glance
+- Reductive report update by end of week
+- Multiplicative review within 3 weeks
+
+### Issue 204
+- Issue resolved, the issue was a local hardware issue (Laptop non-functional)
+
+## Other
+- Bug in pulling in new components into the revit family folder
+- Found components, terminals, bases that were unable to be found before
+
+### Debug prompt
+- Carlo implemented a debug prompt allowing for json data to be pulled instantly by the user
+- CTRL+ALT+Q is the hotkey to get to the debug prompt
+
+</details>
+<details>
   <summary><b>11.29 Open issues:</b></summary>
 
 ### Minimum Width
@@ -91,7 +111,7 @@ For example, the total reductive effects of a rectangular structure on a lower P
 ### Issue 194
 - Unable to acquire project # at the moment since LPSD login is down
 
-### Issue 196
+### Issue 196 [Feature]
 - Matt leading the design requirements for the metric template
 - Scope document in progress
 
