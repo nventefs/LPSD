@@ -69,6 +69,20 @@ For example, the total reductive effects of a rectangular structure on a lower P
 # Project Schedule
 
 <details>
+  <summary><b>12.07 Open issues:</b></summary>
+
+### Reductive/Multiplicative
+- Reductive report completed and approved by nVent
+- Multiplicative report in process
+- Awaiting push for correction on extended points with awnings underneath
+- Multiplicative report to be finalized after push and sent out for approval
+
+### Air terminal verification
+- Last step is to verify angle of protection and other air terminal values to finalize S3000 and provide approval for production
+
+</details>
+
+<details>
   <summary><b>11.30 Open issues:</b></summary>
 
 ### Reductive/Multiplicative
