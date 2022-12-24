@@ -69,6 +69,21 @@ For example, the total reductive effects of a rectangular structure on a lower P
 # Project Schedule
 
 <details>
+  <summary><b>12.14 Open issues:</b></summary>
+  
+### Reductive/Multiplicative
+- Reductive report completed and reviewed briefly with Graitec/ASTI
+- Report to be sent for final approval
+- Multiplicative report on-hold until bug fixes with multiplicative TC5, TC7
+- TC6 multiplicative analysis needs updated code for multiple building influence calculations
+- TC6 multiplicative analysis is currently being done manually in excel and may not be required for code updates
+
+### Air terminal verification
+- Code pushed to production, issue resolved
+
+</details>
+
+<details>
   <summary><b>12.07 Open issues:</b></summary>
 
 ### Reductive/Multiplicative
