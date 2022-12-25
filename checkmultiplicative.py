@@ -19,8 +19,6 @@ rows                = []
 row                 = []
 minwidth            = {}
 display_levels      = {}
-jsonnames           = ['Cvm_Test_Case_1 Metric_V87_10-11-22', 'Cvm_Test_Case_2_V48_9-26-22', 'Cvm_Test_Case_3_RevB_V26_9-26-22',\
-                        'Cvm_Test_Case_4_V41_9-26-22',  'Cvm_Test_Case_5_V53_9-26-22', 'Cvm_Test_Case_6_Rev_F_V20_10-27-22', 'Cvm_Test_Case_7_V55_9-26-22']
 
 def min_width(level_guid): 
     #print(level_guid)
@@ -96,7 +94,7 @@ def test_case(i):
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative','Multiplicative Eq']
-[csv_name, json_name] = test_case(1)
+[csv_name, json_name] = test_case(7)
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
@@ -111,7 +109,8 @@ for i in data['levels']:
 #print(levels)
 #print(level_g)
 #print(level_z)
-
+guid_investigate = "c5f768b0-37e3-405c-95d6-868f15b59fc3"
+POI_investigate = 14
 
 for k in range(1,row_count(csv_name)):   
     for i in data['points']:
@@ -123,14 +122,32 @@ for k in range(1,row_count(csv_name)):
             if(i['levelGuid'] != level_g[len(level_g)-1] and not(i['extendedPoint'])):
                 #Equation 3
                 if(i['isCorner']): # Equation A
-                    H = i['position']['z']-level_z[len(level_z)-1]
+                    if(i['extendedPoint']):
+                        H = level_z[len(level_z) - 1]
+                    else:
+                        H = i['position']['z']-level_z[len(level_z)-1]
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_a(H, W, 0.38), "A"]
+                
+                elif(i['isGableEaveCorner'] or i['isGableRidgeCorner']): # Equation F
+                    if(i['extendedPoint']):
+                        H = i['position']['z']
+                    else:
+                        H = level_z[0]
+                    W = minwidth[i['levelGuid']]
+                    multi_3 = [multiplicative.eq_f(H, W, 0.38,0.18), "F"]
+                elif(i['isGableEaveEdge'] or i['isGableRidgeEdge']): # Equation G
+                    if(i['extendedPoint']):
+                        H = i['position']['z']
+                    else:
+                        H = level_z[0]
+                    W = minwidth[i['levelGuid']]
+                    multi_3 = [multiplicative.eq_g(H, W, 0.38,0.18), "G"]
                 elif(i['isEdgeRectangular']): # Equation B
                     if(i['extendedPoint']):
-                        H = i['position']['z']-level_z[len(level_z)-1]
-                    else:
                         H = level_z[len(level_z) - 1]
+                    else:
+                        H = i['position']['z']-level_z[len(level_z)-1]
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_b(H, W, 0.38), "B"]
                 elif(i['isFaceHorizontal']): # Equation C
@@ -148,11 +165,15 @@ for k in range(1,row_count(csv_name)):
                     H = i['position']['z']
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_e(H, W, 0.38), "E"]
+                
+                if(i['pointGuid'] == guid_investigate):
+                    print("POI {} H:{}, W:{}".format(POI_investigate, H,W))
+                    print("POI {} is extended: {}".format(POI_investigate, i['extendedPoint']))
 
                 #Equation 4
-                if(i['isCorner']):
+                if(i['isCorner'] or i['isGableEaveCorner'] or i['isGableRidgeCorner']):
                     multi_4 = [multiplicative.eq_q(0.05), "Q"]
-                elif(i['isEdgeOval'] or i['isEdgeRectangular']):
+                elif(i['isEdgeOval'] or i['isEdgeRectangular'] or i['isGableEaveEdge'] or i['isGableRidgeEdge']):
                     multi_4 = [multiplicative.eq_r(), "R"]
                 else:
                     multi_4 = [multiplicative.eq_s(0.05), "S"]
@@ -160,11 +181,17 @@ for k in range(1,row_count(csv_name)):
             #Equation 5
             if (i['levelGuid'] == level_g[len(level_g)-1] or i['extendedPoint']):
                 if(i['isCorner']):
-                    H = i['position']['z']
-                    W = minwidth[level_g[len(level_g)-1]]
+                    if(i['extendedPoint']):
+                        H = i['position']['z']
+                    else:
+                        H = i['position']['z']-level_z[len(level_z)-1]
+                    W = minwidth[i['levelGuid']]
                     multi_5 = [multiplicative.eq_a(H, W, 0.38), "A"]
                 elif(i['isEdgeRectangular']):
-                    H = i['position']['z']
+                    if(i['extendedPoint']):
+                        H = level_z[len(level_z) - 1]
+                    else:
+                        H = i['position']['z']-level_z[len(level_z)-1]
                     #W = minwidth[i['levelGuid']]
                     W = minwidth[level_g[len(level_g)-1]]
                     multi_5 = [multiplicative.eq_b(H, W, 0.38), "B"]
@@ -179,11 +206,13 @@ for k in range(1,row_count(csv_name)):
                 elif(i['isGableRidgeCorner'] or i['isGableEaveCorner']):
                     H = i['position']['z']
                     W = minwidth[i['levelGuid']]
-                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "F"]
+                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "F"] # UPDATE TO EQUATION F
+                    #print(i['slope'])
                 else:
                     H = i['position']['z']
                     W = minwidth[i['levelGuid']]
-                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "G"]
+                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "G"] # UPDATE TO EQUATION G
+                    #print(i['slope'])
             else:
                 if(i['isCorner'] or i['isEdgeRectangular']):
                     H = level_z[len(level_z)-1]
@@ -195,6 +224,10 @@ for k in range(1,row_count(csv_name)):
                     W = minwidth[level_g[len(level_g)-1]]
                     Hf = i['position']['z'] - H
                     multi_5 = [multiplicative.eq_n(H, W, Hf), "N"]
+
+            if(i['pointGuid'] == guid_investigate):
+                print("POI {}, {} is extended:{}".format(POI_investigate, i['pointGuid'], i['extendedPoint']))
+                print("POI {} H:{}, W:{}, Rc:0.38".format(POI_investigate, H,W))
 
             if(multi_3 == 1): multi_3 = [1, ""]
             if(multi_4 == 1): multi_4 = [1, ""]
