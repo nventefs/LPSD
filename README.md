@@ -68,6 +68,21 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 
+
+<details>
+  <summary><b>02.06 Open issues:</b></summary>
+
+### Multiplicative - Test Case 7
+- Determined two different formulas for passing height of a point to equation F
+- Will need to determine which approach is the correct approach for passing height through to point F
+- Determined incorrect application of Height to Equation F in excel spreadsheet where it utilized equation B which uses a different height
+
+### Rolling Sphere Method Improper Calculation
+- Verified that the calculations in the use-case that Ruud provided are correct
+- Will need to ask for an additional use-case where the calculations are not correct to continue investigating this issue
+
+</details>
+
 <details>
   <summary><b>01.11 Open issues:</b></summary>
   
