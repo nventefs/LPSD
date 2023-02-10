@@ -68,6 +68,14 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 
+<details>
+  <summary><b>02.07 Open issues:</b></summary>
+
+### Rolling Sphere Method Improper Calculation
+- Created new use case where RSM calculations are incorrect
+- Added findings to feedback log and will present to Graitec on 02.08
+
+</details>
 
 <details>
   <summary><b>02.06 Open issues:</b></summary>
