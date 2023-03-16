@@ -87,12 +87,12 @@ def test_case(i):
         except:
             index = j
     print("Running reductive check on {}".format(filenames[index]))
-    
+
     return[csvname, filenames[index]]
             
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative']
-[csv_name, json_name] = test_case(1)   # SET TEST CASE NUMBER HERE
+[csv_name, json_name] = test_case(5)   # SET TEST CASE NUMBER HERE
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
