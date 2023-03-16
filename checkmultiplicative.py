@@ -109,62 +109,66 @@ for i in data['levels']:
 #print(levels)
 #print(level_g)
 #print(level_z)
-guid_investigate = "c5f768b0-37e3-405c-95d6-868f15b59fc3"
-POI_investigate = 14
+guid_investigate = "88afb1c7-1193-488d-b5ec-31dbd3651350"
+POI_investigate = 12    
 
 for k in range(1,row_count(csv_name)):   
     for i in data['points']:
         if(i['pointGuid'] == checkpoints[k][12]):
             #print(i['pointGuid'])
-            multi_3 = 1
-            multi_4 = 1
-            multi_5 = 1
-            if(i['levelGuid'] != level_g[len(level_g)-1] and not(i['extendedPoint'])):
+            multi_3 = 1.0
+            multi_4 = 1.0
+            multi_5 = 1.0
+            if(i['levelGuid'] != level_g[len(level_g)-1] and not(i['extendedPoint'])): # IF not level 0 AND not extended 
                 #Equation 3
-                if(i['isCorner']): # Equation A
+                if(i['isCorner']):                                  # Equation A
                     if(i['extendedPoint']):
                         H = level_z[len(level_z) - 1]
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_a(H, W, 0.38), "A"]
-                
-                elif(i['isGableEaveCorner'] or i['isGableRidgeCorner']): # Equation F
-                    if(i['extendedPoint']):
-                        H = i['position']['z']
-                    else:
-                        H = level_z[0]
-                    W = minwidth[i['levelGuid']]
-                    multi_3 = [multiplicative.eq_f(H, W, 0.38,0.18), "F"]
-                elif(i['isGableEaveEdge'] or i['isGableRidgeEdge']): # Equation G
-                    if(i['extendedPoint']):
-                        H = i['position']['z']
-                    else:
-                        H = level_z[0]
-                    W = minwidth[i['levelGuid']]
-                    multi_3 = [multiplicative.eq_g(H, W, 0.38,0.18), "G"]
-                elif(i['isEdgeRectangular']): # Equation B
+                elif(i['isEdgeRectangular']):                       # Equation B
                     if(i['extendedPoint']):
                         H = level_z[len(level_z) - 1]
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_b(H, W, 0.38), "B"]
-                elif(i['isFaceHorizontal']): # Equation C
+                elif(i['isFaceHorizontal']):                        # Equation C
                     H = i['position']['z']
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_c(H, W, 0.38), "C"]
-                elif(i['isEdgeOval']): # Equation D
+                elif(i['isEdgeOval']):                              # Equation D
                     if(i['levelGuid'] == level_g[len(level_g) - 1]):
                         H = i['position']['z']
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
                     W = minwidth[i['levelGuid']]
                     multi_3 = [multiplicative.eq_d(H, W, 0.38), "D"]
-                else: # Equation E
-                    H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
-                    multi_3 = [multiplicative.eq_e(H, W, 0.38), "E"]
+                #else:                                           # Equation E
+                #    H = i['position']['z']
+                #    W = minwidth[i['levelGuid']]
+                #    multi_3 = [multiplicative.eq_e(H, W, 0.38), "E"]
+                elif(i['isGableEaveCorner'] or i['isGableRidgeCorner']): # Equation F
+                    if(i['extendedPoint']):
+                        H = i['position']['z']
+                        print("this never happens")
+                    else:
+                        H = i['position']['z'] - level_z[len(level_z) - 1]
+                    W = minwidth[level_g[(len(level_g) - 1)]]
+                    P = float(checkpoints[k][13])
+                    multi_3 = [multiplicative.eq_f(H, W, 0.38,P), "F"]
+                elif(i['isGableEaveEdge'] or i['isGableRidgeEdge'] or i['isGableRoof']): # Equation G
+                    if(i['extendedPoint']):
+                        H = i['position']['z']
+                    else:
+                        H = i['position']['z'] - level_z[len(level_z) - 1]
+                    W = minwidth[level_g[(len(level_g) - 1)]]
+                    P = float(checkpoints[k][13])
+                    multi_3 = [multiplicative.eq_g(H, W, 0.38,P), "G"]
+                else:
+                    raise
                 
                 if(i['pointGuid'] == guid_investigate):
                     print("POI {} H:{}, W:{}".format(POI_investigate, H,W))
@@ -173,7 +177,7 @@ for k in range(1,row_count(csv_name)):
                 #Equation 4
                 if(i['isCorner'] or i['isGableEaveCorner'] or i['isGableRidgeCorner']):
                     multi_4 = [multiplicative.eq_q(0.05), "Q"]
-                elif(i['isEdgeOval'] or i['isEdgeRectangular'] or i['isGableEaveEdge'] or i['isGableRidgeEdge']):
+                elif(i['isEdgeOval'] or i['isEdgeRectangular'] or i['isGableEaveEdge'] or i['isGableRidgeEdge'] or i['isGableRoof']):
                     multi_4 = [multiplicative.eq_r(), "R"]
                 else:
                     multi_4 = [multiplicative.eq_s(0.05), "S"]
@@ -204,15 +208,24 @@ for k in range(1,row_count(csv_name)):
                     W = minwidth[i['levelGuid']]
                     multi_5 = [multiplicative.eq_d(H, W, 0.38), "D"]
                 elif(i['isGableRidgeCorner'] or i['isGableEaveCorner']):
-                    H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
-                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "F"] # UPDATE TO EQUATION F
-                    #print(i['slope'])
+                    if(i['extendedPoint']):                                 # IF Extended
+                        H = i['position']['z']                              # Height of the point
+                    else: # Otherwise
+                        H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
+                    W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    P = float(checkpoints[k][13])                           # Pitch
+                    multi_5 = [multiplicative.eq_f(H, W, 0.38, P), "F"]     # EQUATION F
+                elif(i['isGableRidgeEdge'] or i['isGableEaveEdge'] or i['isGableRoof']):
+                    if(i['extendedPoint']):                                 # IF Extended
+                        H = i['position']['z']                              # Height of the point
+                    else:
+                        H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
+                    W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    P = float(checkpoints[k][13])                           # Pitch
+                    multi_5 = [multiplicative.eq_g(H, W, 0.38, P), "G"]     # EQUATION G
                 else:
-                    H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
-                    multi_5 = [multiplicative.eq_e(H, W, 0.38), "G"] # UPDATE TO EQUATION G
-                    #print(i['slope'])
+                    raise
+
             else:
                 if(i['isCorner'] or i['isEdgeRectangular']):
                     H = level_z[len(level_z)-1]
@@ -228,6 +241,9 @@ for k in range(1,row_count(csv_name)):
             if(i['pointGuid'] == guid_investigate):
                 print("POI {}, {} is extended:{}".format(POI_investigate, i['pointGuid'], i['extendedPoint']))
                 print("POI {} H:{}, W:{}, Rc:0.38".format(POI_investigate, H,W))
+                print("POI Slope: {}".format(i['slope']))
+
+                quit()
 
             if(multi_3 == 1): multi_3 = [1, ""]
             if(multi_4 == 1): multi_4 = [1, ""]
@@ -237,7 +253,7 @@ for k in range(1,row_count(csv_name)):
                     checkpoints[k][12], checkpoints[k][10], i['kiTotalMultiplicative'], multi_3[0]*multi_4[0]*multi_5[0], multi_3[0], multi_3[1], \
                     multi_4[0], multi_4[1], multi_5[0], multi_5[1], i['levelGuid']]
             csv_write(row)
-
+            
 for k in level_g:
     print('GUID : {}, Values : {}'.format(k, display_levels[k]))
 
