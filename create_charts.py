@@ -34,24 +34,27 @@ def xlsx_name(i):
             #return(f[14:])
 
 # DEFINE TEST CASE TO EVALUATE
-[xl_name, filename] = test_case(4)  
+[xl_name, filename] = test_case(5)  
 
 
 [wb, sheet, maxrow] = excel_read(xl_name)
 
 # REDUCTIVE
+
 sheet = wb['Reductive']
 maxrow = sheet.max_row
+print(xl_name)
+print(maxrow)
 truecount = 0
 
-for k in range(2,maxrow + 2):
+for k in range(2,maxrow + 1):
     cell = sheet.cell(row = k, column = 12)
-    if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
+    if((str(cell.value) == True) or (str(cell.value) == 'True')):
         truecount = truecount + 1
 
-for k in range(2,maxrow + 2):
+for k in range(2,maxrow + 1):
     cell = sheet.cell(row = k, column = 17)
-    if((str(cell.value) == True) or (str(cell.value) == 'True') or (cell.value == True) or (cell.value == 1)):
+    if((str(cell.value) == True) or (str(cell.value) == 'True')):
         truecount = truecount + 1
 
 
@@ -78,7 +81,7 @@ for k in range(2,maxrow + 1):
         truecount = truecount + 1
 
 print('Multiplicative : {} // {}'.format(truecount, maxrow - 2))
-y = np.array([truecount, maxrow - 1 - truecount])
+y = np.array([truecount, maxrow - 2 - truecount])
 pielabels = ['Accurate', 'Inaccurate']
 plt.pie(y, labels = pielabels)
 plt.title(xl_name[14:17] + 'Multiplicative')
