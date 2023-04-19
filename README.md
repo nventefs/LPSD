@@ -68,6 +68,98 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 # Project Schedule
 
+
+<details>
+  <summary><b>04.18 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+- asked for source code of CVMBase.cs, Carlo suggested sending over full backend code
+- Ran compliance on push from 04.16 and added POI report 04.17 (See TC7 POI Report 23.04.17.docx)
+
+</details>
+
+<details>
+  <summary><b>04.12 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+<details>
+  <summary><b>03.30 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- Ran compliance on push from 03.29 and added POI report (See TC7 POI Report 23.03.30.docx)
+
+</details>
+<details>
+  <summary><b>03.29 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+<details>
+  <summary><b>03.24 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- Ran compliance on push from 03.23 and added POI report (See TC7 POI Report 23.03.24.docx)
+
+</details>
+<details>
+  <summary><b>03.22 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+
+<details>
+  <summary><b>03.16 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- Ran compliance on push from 03.15 and added POI report (See TC7 POI Report 23.03.15.docx)
+
+</details>
+<details>
+  <summary><b>03.15 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+
+<details>
+  <summary><b>03.08 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+
+<details>
+  <summary><b>03.01 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+<details>
+  <summary><b>02.28 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- Ran compliance on push from 02.27 and added POI report (See TC7 POI Report 23.02.28.docx)
+
+</details>
+<details>
+  <summary><b>02.22 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+
+</details>
+
 <details>
   <summary><b>02.07 Open issues:</b></summary>
 
