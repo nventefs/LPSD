@@ -18,17 +18,17 @@ def eq_e(H, W, Rc): # Rc = 0.38, H = Z_p, W = Level min width
     e = 2.718281828459045
     return (1.375 * ((H/W)**0.839) * (e**(-1.33*((Rc/W)**1.43))) + 1)
 
-def eq_f(H, W, Rc, P): # 
+def eq_f(H, W, Rc, P): # W = Building min width, P = Gable pitch  | Extended: H = H_level | else: H = H_lvl - H_lvl0 
     K_imax = 0.47 * ((H + W)**0.76) * (W**-0.1) * (Rc**-0.61) + 1
     K_imin = 0.55 * (H**0.544) * (W**-0.14) * (Rc**-0.367) + 1
     K_i = ((K_imax - K_imin)/2) * P + K_imin
-    return ([K_imax, K_imin, K_i])
+    return (K_i)
 
-def eq_g(H, W, Rc, P): # 
+def eq_g(H, W, Rc, P): # W = Building min width, P = Gable pitch  | Extended: H = H_level | else: H = H_lvl - H_lvl0
     K_imax = 0.48 * ((H + W)**0.568) * (W**-0.037) * (Rc**-0.508) + 1
     K_imin = 0.95 * ((H/W)**0.57) + 1
     K_i = ((K_imax - K_imin)/2) * P + K_imin
-    return ([K_imax, K_imin, K_i])
+    return (K_i)
 
 def eq_h(h_at, r_d): # h_at = air terminal height, r_d = 0.175
     return (1.4 * ((h_at/r_d)**0.87) + 1)
