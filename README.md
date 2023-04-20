@@ -70,6 +70,20 @@ For example, the total reductive effects of a rectangular structure on a lower P
 
 
 <details>
+  <summary><b>04.20 Open issues:</b></summary>
+
+### Test Case 7 Updates
+- awaiting updates to test case 7 from graitec
+- Received source code , reviewed, found issues, and sent over report
+- Created POI report 04.19 (See TC7 POI Report 23.04.19.docx)
+
+### Test Case 6 Multiplicative
+- Finished updates to QA code and reran with 7 'non-compliant' points
+- Wrote TC6F report (TC6F POI Report - 23.04.20) which found compliance with all 7 points
+- Updated TC6 Multiplicative chart
+
+</details>
+<details>
   <summary><b>04.18 Open issues:</b></summary>
 
 ### Test Case 7 Updates
