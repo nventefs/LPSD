@@ -19,37 +19,7 @@ rows                = []
 row                 = []
 minwidth            = {}
 display_levels      = {}
-
-def min_width(level_guid): 
-    #print(level_guid)
-    x = []
-    y = []
-    x_min = []
-    y_min = []
-    for i in data['points']:
-        if(i['parentPointGuid'] == ''):
-            if(i['levelGuid'] == level_guid):
-                x.append(i['position']['x'])
-                y.append(i['position']['y'])
-
-    if x:
-        x_min = (max(x) - min(x))
-    if y:
-        y_min = (max(y) - min(y))
-    if x_min:
-        if(x_min < y_min): 
-            #print(x_min)
-            return x_min
-        else:
-            #print(y_min)
-            return y_min
-    else:
-        #print(y_min)
-        return y_min
-
-def min_width2(level_guid):
-    print("a")
-
+building_dictionary            = {}
 
 def csv_read(datafile): # import csv file
     with open(datafile, newline = '') as csvfile:
@@ -67,7 +37,6 @@ def row_count(csv_file): # count total rows in csv file
     with open(csv_file, 'r', newline='') as csvfile:
         row_count = sum(1 for row in csvfile)
     return(row_count)
-
 
 def test_case(i):
     csvname = 'Test Case - ' + str(i) + '/Test Case ' + str(i) +'.csv'
@@ -89,12 +58,12 @@ def test_case(i):
                 index = j + 1
         except:
             index = j
-    print("Running multiplicative check on {}".format(filenames[index]))
+    print("Read data from {}".format(filenames[index]))
     return[csvname, filenames[index]]
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative','Multiplicative Eq']
-[csv_name, json_name] = test_case(7)
+[csv_name, json_name] = test_case(6)
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
@@ -105,17 +74,15 @@ for i in data['levels']:
     level_g.append(i['levelGuid'])
     minwidth[i['levelGuid']] = i["minWidth"]
     display_levels[i['levelGuid']] = [i["minWidth"], i['levelName']]
+    building_dictionary[i['hostGuid']] = [i['minWidth'], i['levelGuid']]
 
-#print(levels)
-#print(level_g)
-#print(level_z)
-guid_investigate = "88afb1c7-1193-488d-b5ec-31dbd3651350"
-POI_investigate = 12    
+guid_investigate            = ""
+point_number_investigate    = 0
 
 for k in range(1,row_count(csv_name)):   
     for i in data['points']:
         if(i['pointGuid'] == checkpoints[k][12]):
-            #print(i['pointGuid'])
+            #print(building_dictionary[i['hostGuid']][0])
             multi_3 = 1.0
             multi_4 = 1.0
             multi_5 = 1.0
@@ -126,25 +93,29 @@ for k in range(1,row_count(csv_name)):
                         H = level_z[len(level_z) - 1]
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_3 = [multiplicative.eq_a(H, W, 0.38), "A"]
                 elif(i['isEdgeRectangular']):                       # Equation B
                     if(i['extendedPoint']):
                         H = level_z[len(level_z) - 1]
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_3 = [multiplicative.eq_b(H, W, 0.38), "B"]
                 elif(i['isFaceHorizontal']):                        # Equation C
                     H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_3 = [multiplicative.eq_c(H, W, 0.38), "C"]
                 elif(i['isEdgeOval']):                              # Equation D
                     if(i['levelGuid'] == level_g[len(level_g) - 1]):
                         H = i['position']['z']
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_3 = [multiplicative.eq_d(H, W, 0.38), "D"]
                 #else:                                           # Equation E
                 #    H = i['position']['z']
@@ -156,7 +127,8 @@ for k in range(1,row_count(csv_name)):
                         print("this never happens")
                     else:
                         H = i['position']['z'] - level_z[len(level_z) - 1]
-                    W = minwidth[level_g[(len(level_g) - 1)]]
+                    #W = minwidth[level_g[(len(level_g) - 1)]]
+                    W = building_dictionary[i['hostGuid']][0]
                     P = float(checkpoints[k][13])
                     multi_3 = [multiplicative.eq_f(H, W, 0.38,P), "F"]
                 elif(i['isGableEaveEdge'] or i['isGableRidgeEdge'] or i['isGableRoof']): # Equation G
@@ -164,15 +136,16 @@ for k in range(1,row_count(csv_name)):
                         H = i['position']['z']
                     else:
                         H = i['position']['z'] - level_z[len(level_z) - 1]
-                    W = minwidth[level_g[(len(level_g) - 1)]]
+                    #W = minwidth[level_g[(len(level_g) - 1)]]
+                    W = building_dictionary[i['hostGuid']][0]
                     P = float(checkpoints[k][13])
                     multi_3 = [multiplicative.eq_g(H, W, 0.38,P), "G"]
                 else:
                     raise
                 
                 if(i['pointGuid'] == guid_investigate):
-                    print("POI {} H:{}, W:{}".format(POI_investigate, H,W))
-                    print("POI {} is extended: {}".format(POI_investigate, i['extendedPoint']))
+                    print("POI {} H:{}, W:{}".format(point_number_investigate, H,W))
+                    print("POI {} is extended: {}".format(point_number_investigate, i['extendedPoint']))
 
                 #Equation 4
                 if(i['isCorner'] or i['isGableEaveCorner'] or i['isGableRidgeCorner']):
@@ -189,30 +162,36 @@ for k in range(1,row_count(csv_name)):
                         H = i['position']['z']
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_5 = [multiplicative.eq_a(H, W, 0.38), "A"]
                 elif(i['isEdgeRectangular']):
                     if(i['extendedPoint']):
-                        H = level_z[len(level_z) - 1]
+                        #H = level_z[len(level_z) - 1]
+                        H = i['position']['z']
                     else:
                         H = i['position']['z']-level_z[len(level_z)-1]
                     #W = minwidth[i['levelGuid']]
-                    W = minwidth[level_g[len(level_g)-1]]
+                    #W = minwidth[level_g[len(level_g)-1]]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_5 = [multiplicative.eq_b(H, W, 0.38), "B"]
                 elif(i['isFaceHorizontal']):
                     H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_5 = [multiplicative.eq_c(H, W, 0.38), "C"]
                 elif(i['isEdgeOval']):
                     H = i['position']['z']
-                    W = minwidth[i['levelGuid']]
+                    #W = minwidth[i['levelGuid']]
+                    W = building_dictionary[i['hostGuid']][0]
                     multi_5 = [multiplicative.eq_d(H, W, 0.38), "D"]
                 elif(i['isGableRidgeCorner'] or i['isGableEaveCorner']):
                     if(i['extendedPoint']):                                 # IF Extended
                         H = i['position']['z']                              # Height of the point
                     else: # Otherwise
                         H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
-                    W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    #W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    W = building_dictionary[i['hostGuid']][0]
                     P = float(checkpoints[k][13])                           # Pitch
                     multi_5 = [multiplicative.eq_f(H, W, 0.38, P), "F"]     # EQUATION F
                 elif(i['isGableRidgeEdge'] or i['isGableEaveEdge'] or i['isGableRoof']):
@@ -220,7 +199,8 @@ for k in range(1,row_count(csv_name)):
                         H = i['position']['z']                              # Height of the point
                     else:
                         H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
-                    W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    #W = minwidth[level_g[(len(level_g) - 1)]]               # Minimum width of level 0
+                    W = building_dictionary[i['hostGuid']][0]
                     P = float(checkpoints[k][13])                           # Pitch
                     multi_5 = [multiplicative.eq_g(H, W, 0.38, P), "G"]     # EQUATION G
                 else:
@@ -229,18 +209,20 @@ for k in range(1,row_count(csv_name)):
             else:
                 if(i['isCorner'] or i['isEdgeRectangular']):
                     H = level_z[len(level_z)-1]
-                    W = minwidth[level_g[len(level_g)-1]]
+                    #W = minwidth[level_g[len(level_g)-1]]
+                    W = building_dictionary[i['hostGuid']][0]
                     Hf = i['position']['z'] - H
                     multi_5 = [multiplicative.eq_l(H, W, Hf), "L"]
                 else:
                     H = level_z[len(level_z)-1]
-                    W = minwidth[level_g[len(level_g)-1]]
+                    #W = minwidth[level_g[len(level_g)-1]]
+                    W = building_dictionary[i['hostGuid']][0]
                     Hf = i['position']['z'] - H
                     multi_5 = [multiplicative.eq_n(H, W, Hf), "N"]
 
             if(i['pointGuid'] == guid_investigate):
-                print("POI {}, {} is extended:{}".format(POI_investigate, i['pointGuid'], i['extendedPoint']))
-                print("POI {} H:{}, W:{}, Rc:0.38".format(POI_investigate, H,W))
+                print("POI {}, {} is extended:{}".format(point_number_investigate, i['pointGuid'], i['extendedPoint']))
+                print("POI {} H:{}, W:{}, Rc:0.38".format(point_number_investigate, H,W))
                 print("POI Slope: {}".format(i['slope']))
 
                 quit()
@@ -253,7 +235,7 @@ for k in range(1,row_count(csv_name)):
                     checkpoints[k][12], checkpoints[k][10], i['kiTotalMultiplicative'], multi_3[0]*multi_4[0]*multi_5[0], multi_3[0], multi_3[1], \
                     multi_4[0], multi_4[1], multi_5[0], multi_5[1], i['levelGuid']]
             csv_write(row)
-            
+                    
 for k in level_g:
     print('GUID : {}, Values : {}'.format(k, display_levels[k]))
 
