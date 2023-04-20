@@ -38,9 +38,12 @@ def xlsx_name(i):
             d = os.path.getmtime(f)
             timestamps.append(str(d))
 
+    index = 0
     for j in range(len(filenames)-1):
-        if timestamps[j + 1] > timestamps[j]:
-            index = j + 1
+        print("Checking file: {} with timestamp: {}".format(filenames[j],timestamps[j]))       
+        if timestamps[j] > timestamps[index]:
+            index = j
+            print("Most recent file is: {} with timestamp: {}".format(filenames[index],timestamps[index]))
 
     xl_name = filenames[index]
     xl_name = xl_name.replace('~','')
@@ -50,7 +53,7 @@ def xlsx_name(i):
 
 
 # DEFINE TEST CASE TO EVALUATE
-[xl_name, filename] = test_case(6)  
+[xl_name, filename] = test_case(7)  
 
 [wb, sheet, maxrow] = excel_read(xl_name)
 
