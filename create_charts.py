@@ -6,7 +6,8 @@ import os
 
 rows        = []
 row         = []
-
+filenames           = []
+timestamps          = []
 
 def excel_read(datafile):
     wb = openpyxl.load_workbook(datafile, data_only = True) 
@@ -21,21 +22,35 @@ def row_count(datafile): # count total rows in csv file
 
 def test_case(i):
     xlname = xlsx_name(i)
-    directory = 'Test Case - ' + str(i)
+    directory = 'Test Case - ' + str(i)    
     return [xlname, directory]
 
 def xlsx_name(i):
     directory = 'Test Case - '+ str(i)
+
+    global filenames
+    global timestamps
+
     for filename in os.listdir(directory):
-        f = os.path.join(directory, filename)
-        # checking if it is a file
-        if (os.path.isfile(f) and f[-5:] == '.xlsx' and f[14:16] == 'TC'):
-            return(f)
-            #return(f[14:])
+        if(filename.endswith('.xlsx')):
+            f = os.path.join(directory, filename)
+            filenames.append(f)
+            d = os.path.getmtime(f)
+            timestamps.append(str(d))
+
+    for j in range(len(filenames)-1):
+        if timestamps[j + 1] > timestamps[j]:
+            index = j + 1
+
+    xl_name = filenames[index]
+    xl_name = xl_name.replace('~','')
+    xl_name = xl_name.replace('$','')
+    print("Read data from {}".format(xl_name))
+    return(xl_name)
+
 
 # DEFINE TEST CASE TO EVALUATE
-[xl_name, filename] = test_case(5)  
-
+[xl_name, filename] = test_case(6)  
 
 [wb, sheet, maxrow] = excel_read(xl_name)
 
