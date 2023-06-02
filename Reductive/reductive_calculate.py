@@ -39,7 +39,7 @@ def csv_read(csv_name):
         return rows, len(rows)
 
 # checks results in the reductvie calculations given xl/json/vscode calculations and +/- tolerance 3%
-def reduc_check(xl_reduc, json_reduc, vscode_reduc):
+def check_reduc(xl_reduc, json_reduc, vscode_reduc):
     if(((vscode_reduc>json_reduc*0.97) and (vscode_reduc<json_reduc*1.03)) or ((xl_reduc>json_reduc*0.97) and (xl_reduc<json_reduc*1.03))):
         return True
     else:
