@@ -15,17 +15,19 @@ timestamps          = []
 levels              = []
 level_z             = []
 level_g             = []
-rows                = []
-row                 = []
+#rows                = []
+#row                 = []
 minwidth            = {}
 display_levels      = {}
-building_dictionary            = {}
+building_dictionary = {}
 
 def csv_read(datafile): # import csv file
+    rows = []
     with open(datafile, newline = '') as csvfile:
         csv_object = csv.reader(csvfile, delimiter = ',')
         for row in csv_object:
             rows.append(row)
+        print(len(rows))
         return rows
 
 def csv_write(row): # write the csv outfile
@@ -63,7 +65,7 @@ def test_case(i):
 
 # Read in Andrew data: 
 # ['Point #', 'Building', 'x', 'y', 'z', 'dmin', 'Max Magic Number', 'Magic Point', 'Max Reductive Factor', 'Total Reductive Factor', 'Ki Multiplicative','Multiplicative Eq']
-[csv_name, json_name] = test_case(6)
+[csv_name, json_name] = test_case(7)
 checkpoints = csv_read(csv_name)
 f = open(json_name)
 data = json.load(f)
@@ -76,13 +78,13 @@ for i in data['levels']:
     display_levels[i['levelGuid']] = [i["minWidth"], i['levelName']]
     building_dictionary[i['hostGuid']] = [i['minWidth'], i['levelGuid']]
 
-guid_investigate            = ""
-point_number_investigate    = 0
+guid_investigate            = "1f9d6c68-d43c-40b2-a5f8-77ed6de29218"
+point_number_investigate    = 4
 
 for k in range(1,row_count(csv_name)):   
     for i in data['points']:
         if(i['pointGuid'] == checkpoints[k][12]):
-            #print(building_dictionary[i['hostGuid']][0])
+
             multi_3 = 1.0
             multi_4 = 1.0
             multi_5 = 1.0
