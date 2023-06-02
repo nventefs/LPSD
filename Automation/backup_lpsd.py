@@ -95,7 +95,7 @@ def backup_lpsd():
 def sanitize_input(input_str):
     if input_str == "Yes" or input_str == "YES" or input_str == "yEs":
         return "yes"
-    elif input_str == "No" or input_str == "NO":
+    elif input_str == "No" or input_str == "NO" or input_str == "no":
         return "no"
     else:
         raise
