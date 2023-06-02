@@ -13,13 +13,13 @@ import datetime
 import os
 
 def sanitize_input(input_str):
-    if input_str == "Yes" or input_str == "YES" or input_str == "yEs":
+    if input_str == "Yes" or input_str == "YES" or input_str == "yEs" or input_str == "yes":
         return "yes"
-    elif input_str == "No" or input_str == "NO":
+    elif input_str == "No" or input_str == "NO" or input_str == "no":
         return "no"
     else:
         raise
-
+#TODO: sanitize based on file presence and not folder presence
 def generate_folder_location():
 
     # Generate a folder C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD
@@ -36,6 +36,8 @@ def generate_folder_location():
         try: 
             if(sanitize_input(x) == "no"):
                 return
+            else:
+                return(folder_name)
         except:
             print("Input not recognized.")
 
@@ -52,10 +54,7 @@ def test_case_to_string(test_case):
     return tc.get(test_case)
 
 #TODO: Update the callout for individual test case json pull
-#TODO: Write a script to move the file from download folder to the newly created folder and renamed
 def get_json(test_case):
-
-
 
     options = Options()
     try:
@@ -66,7 +65,7 @@ def get_json(test_case):
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-        driver.get("https://qa-lpsd.nvent.com/")
+        driver.get("https://qa-lpsd.nvent.com/") #TODO: allow for production server testing
 
         try:
             search_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
