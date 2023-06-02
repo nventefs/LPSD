@@ -99,5 +99,3 @@ def sanitize_input(input_str):
         return "no"
     else:
         raise
-
-#backup_lpsd()
