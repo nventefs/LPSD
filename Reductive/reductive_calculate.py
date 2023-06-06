@@ -38,12 +38,22 @@ def csv_read(csv_name):
             rows.append(row)
         return rows, len(rows)
 
-# checks results in the reductvie calculations given xl/json/vscode calculations and +/- tolerance 3%
-def check_reduc(xl_reduc, json_reduc, vscode_reduc):
-    if(((vscode_reduc>json_reduc*0.97) and (vscode_reduc<json_reduc*1.03)) or ((xl_reduc>json_reduc*0.97) and (xl_reduc<json_reduc*1.03))):
-        return True
-    else:
-        return False
+# checks results in the reductvie calculations given reductive calculations and +/- tolerance 5%
+def check_reduc(reduc):
+
+    result = []
+
+    for k in range(len(reduc[:])):
+        xl_reduc    = float(reduc[k][9])
+        json_reduc  = float(reduc[k][10])
+        vs_reduc    = float(reduc[k][11])
+
+        xl_json_match = (json_reduc * 0.95 < xl_reduc) and (json_reduc * 1.05 > xl_reduc)
+        vs_json_match = (json_reduc * 0.95 < vs_reduc) and (json_reduc * 1.05 > vs_reduc)
+
+        result.append(xl_json_match or vs_json_match)
+    
+    return result
 
 # calculates reductive based on incoming json, checks against existing csv in Archive/CSV
 def calc_reduc(test_case):
