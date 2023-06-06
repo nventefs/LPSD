@@ -19,8 +19,8 @@ def sanitize_input(input_str):
         return "no"
     else:
         raise
-#TODO: sanitize based on file presence and not folder presence
-def generate_folder_location():
+
+def generate_folder_location(test_case):
 
     # Generate a folder C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD
     folder_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
@@ -32,14 +32,30 @@ def generate_folder_location():
         print(f"Directory '{directory_name}' created successfully.")
     else:
         print(f"Directory '{directory_name}' already exists")
-        x = input("Continue with JSON fetch? ")
-        try: 
-            if(sanitize_input(x) == "no"):
-                return
-            else:
-                return(folder_name)
-        except:
-            print("Input not recognized.")
+        if os.path.isfile(directory_name + test_case_to_json(test_case)):
+            print(directory_name + test_case_to_json(test_case) + "  exists!")
+            x = input("Continue with JSON fetch? ")
+            try: 
+                if(sanitize_input(x) == "no"):
+                    return
+                else:
+                    return(folder_name)
+            except:
+                print("Input not recognized.")
+        else:
+            return(folder_name)
+
+def test_case_to_json(test_case):
+    tc = {
+        1: "CVM Test Case 1 metric_CVMResults.json",
+        2: "CVM Test Case 2_CVMResults.json",
+        3: "CVM Test Case 3 Rev B_CVMResults.json",
+        4: "CVM Test Case 4_CVMResults.json",
+        5: "CVM Test Case 5_CVMResults.json",
+        6: "CVM Test Case 6 Rev F_CVMResults.json",
+        7: "CVM Test Case 7_CVMResults.json"
+    }
+    return tc.get(test_case)
 
 def test_case_to_string(test_case):
     tc = {
@@ -53,13 +69,12 @@ def test_case_to_string(test_case):
     }
     return tc.get(test_case)
 
-#TODO: Update the callout for individual test case json pull
 def get_json(test_case):
 
     options = Options()
     try:
         prefs = {'profile.default_content_setting_values.automatic_downloads': 1, \
-             'download.default_directory' : ("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\JSON\\" + generate_folder_location())}
+             'download.default_directory' : ("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\JSON\\" + generate_folder_location(test_case))}
         
         options.add_experimental_option("prefs", prefs)
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -172,3 +187,4 @@ def get_json(test_case):
             driver.quit()
     except:
         print("Not acquiring JSON files.")
+
