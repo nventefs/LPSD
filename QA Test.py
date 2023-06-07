@@ -3,6 +3,10 @@ from Automation import get_json
 from Multiplicative import multiplicative_calculate
 from Reductive import reductive_calculate
 
+import os
+import time
+import datetime
+
 import pandas as pd
 import xlsxwriter
 
@@ -39,14 +43,16 @@ reduc = {}
 multi = {}
 reduc_summary = {}
 multi_summary = {}
-path = r"C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD\test.xlsx"
+
+path = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/" + datetime.datetime.now().strftime("%Y-%m-%d") \
+            + "/" + datetime.datetime.now().strftime("%Y-%m-%d") +"_CVMResults.xlsx"
 writer = pd.ExcelWriter(path, engine = 'xlsxwriter')
-"""
+
 backup_lpsd.backup_lpsd()
 
 for k in test_cases:
     get_json.get_json(k)
-"""
+
 for k in test_cases:
 
     # Multiplicative calculations and added to excel workbook
