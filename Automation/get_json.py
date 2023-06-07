@@ -12,6 +12,7 @@ import time
 import datetime
 import os
 
+# Sanitizes yes/no input from terminal
 def sanitize_input(input_str):
     if input_str == "Yes" or input_str == "YES" or input_str == "yEs" or input_str == "yes":
         return "yes"
@@ -20,6 +21,7 @@ def sanitize_input(input_str):
     else:
         raise
 
+# Generates a folder location of Archive\JSON\yyyy-mm-dd
 def generate_folder_location(test_case):
 
     # Generate a folder C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD
@@ -45,6 +47,7 @@ def generate_folder_location(test_case):
         else:
             return(folder_name)
 
+# Selector for .json file names
 def test_case_to_json(test_case):
     tc = {
         1: "CVM Test Case 1 metric_CVMResults.json",
@@ -57,6 +60,7 @@ def test_case_to_json(test_case):
     }
     return tc.get(test_case)
 
+# Selector for test case name
 def test_case_to_string(test_case):
     tc = {
         1: "CVM Test Case 1 metric",
@@ -69,6 +73,7 @@ def test_case_to_string(test_case):
     }
     return tc.get(test_case)
 
+# Loads LPSD and pulls json output of input test case
 def get_json(test_case):
 
     options = Options()
@@ -81,6 +86,7 @@ def get_json(test_case):
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         driver.get("https://qa-lpsd.nvent.com/") #TODO: allow for production server testing
+        #driver.get("https://lpsd.nvent.com/")
 
         try:
             search_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
@@ -108,7 +114,7 @@ def get_json(test_case):
             #edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[contains( text(), 'CVM Test Case 1 metric')]/following-sibling::td/button")))
             edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[contains( text(), '" +test_case_to_string(test_case)+"')]/following-sibling::td/button")))
             edit_button.click()                                                      
-            time.sleep(30)
+            time.sleep(35)
 
             ActionChains(driver).key_down(Keys.ALT).key_down(Keys.CONTROL).send_keys("q").perform()
             time.sleep(1)
@@ -167,7 +173,7 @@ def get_json(test_case):
 
             next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_analyzeproject_run_button")))
             next_button.click()
-            time.sleep(10)
+            time.sleep(12)
 
             next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_startanalysis_nextbutton6")))
             next_button.click()
@@ -187,4 +193,3 @@ def get_json(test_case):
             driver.quit()
     except:
         print("Not acquiring JSON files.")
-
