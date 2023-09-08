@@ -1,33 +1,42 @@
 import csv
 import json
+import datetime
 import os
 
-# provides csv name and json name
+# converts test case number to name of json file
+def test_case_to_string(test_case):
+    tc = {
+        1: "CVM Test Case 1 metric",
+        2: "CVM Test Case 2",
+        3: "CVM Test Case 3 Rev B",
+        4: "CVM Test Case 4",
+        5: "CVM Test Case 5",
+        6: "CVM Test Case 6 Rev F",
+        7: "CVM Test Case 7"
+    }
+    return tc.get(test_case) + "_CVMResults"
+
+# TODO: Change pathing to reference pathing for scaleability
 def load_test_case(test_case):
-    csvname = 'Test Case - ' + str(test_case) + '/Test Case ' + str(test_case) +'.csv'
-    directory = './Test Case - ' + str(test_case) + '/'
+    csv_folder = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/CSV/"
+    csv_file = csv_folder + "Test Case " + str(test_case) + ".csv"
+    
+    json_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
 
-    filenames = []
-    timestamps = []
+    filenames = {}
 
-    for filename in os.listdir(directory):
-        if(filename.endswith('.json')):
-            f = os.path.join(directory, filename)
-            filenames.append(f)
-            d = os.path.getmtime(f)
-            timestamps.append(str(d))
-
-    for j in range(len(filenames)):
-        index = j
-        try:
-            if timestamps[j + 1] > timestamps[j]:
-                index = j + 1
-        except:
-            index = j
-    print("Read data from {}".format(filenames[index]))
-    return[csvname, filenames[index]]
+    for filename in os.listdir(json_location):
+        filenames[filename] = os.path.getmtime(json_location + filename)
+        
+    v = list(filenames.values())
+    k = list(filenames.keys())
+    json_folder = json_location + (k[v.index(max(v))])
+    json_file = (json_folder + "/" + test_case_to_string(test_case) + ".json")
+    print("Read reductive data from {}".format(json_file))
+    return [csv_file, json_file]
 
 # reads in csv data and puts it into a dictionary
+# TODO: Change pathing to reference pathing for scaleability
 def csv_read(csv_name):
 
     rows = []

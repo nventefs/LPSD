@@ -7,11 +7,31 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+import logging
 import time
 import datetime
 import os
 
+def test_logging(log_path):
+    logger = logging.getLogger('selenium')
+
+    logger.setLevel(logging.DEBUG)
+
+    handler = logging.FileHandler(log_path)
+    logger.addHandler(handler)
+
+    logging.getLogger('selenium.webdriver.remote').setLevel(logging.WARN)
+    logging.getLogger('selenium.webdriver.common').setLevel(logging.DEBUG)
+
+    logger.info("this is useful information")
+    logger.warning("this is a warning")
+    logger.debug("this is detailed debug information")
+
+    with open(log_path, 'r') as fp:
+        assert len(fp.readlines()) == 3
+
 def backup_lpsd():
+    logger = logging.getLogger('selenium')
     # Generate a folder
     folder_location = "C:/Users/e1176752/Downloads/"
     folder_name = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -27,22 +47,21 @@ def backup_lpsd():
             if(sanitize_input(x) == "no"):
                 return
         except:
-            print("Input not recognized.")
+            print("Proceeding.")
         
-
+    service = Service()
+    #options = webdriver.ChromeOptions()
     options = Options()
     prefs = {'profile.default_content_setting_values.automatic_downloads': 1, \
             'download.default_directory' : ("C:\\Users\\e1176752\\Downloads\\" + folder_name)}
 
-
-    #prefs1 = {"download.default_directory" : r"C:\Users\e1176752\Downloads\\" + folder_name}
-    #prefs.update(prefs1)
     options.add_experimental_option("prefs", prefs)
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-
+    driver = webdriver.Chrome(service=service, options=options)
+    
+    driver.get("https://qa-lpsd.nvent.com")
     #driver.get("https://qa-lpsd.nvent.com/api/v1/administration")
-    driver.get("https://qa-lpsd.nvent.com/")
+    #driver.get("https://lpsd.nvent.com/")
 
     json_exports = ["administration_admin_data_export_button", "administration_components_data_export_button", "administration_assembly_data_export_button", \
                     "administration_bim360projects_data_export_button",  "administration_pricing_export_button", \
@@ -93,9 +112,12 @@ def backup_lpsd():
         driver.quit()
 
 def sanitize_input(input_str):
+
     if input_str == "Yes" or input_str == "YES" or input_str == "yEs":
         return "yes"
     elif input_str == "No" or input_str == "NO" or input_str == "no":
         return "no"
     else:
         raise
+
+backup_lpsd()

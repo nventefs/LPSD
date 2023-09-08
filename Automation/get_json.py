@@ -22,6 +22,7 @@ def sanitize_input(input_str):
         raise
 
 # Generates a folder location of Archive\JSON\yyyy-mm-dd
+# TODO: Change pathing to reference pathing for scaleability
 def generate_folder_location(test_case):
 
     # Generate a folder C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD
@@ -32,6 +33,7 @@ def generate_folder_location(test_case):
     if not os.path.exists(directory_name):
         os.makedirs(directory_name)
         print(f"Directory '{directory_name}' created successfully.")
+        return(folder_name)
     else:
         print(f"Directory '{directory_name}' already exists")
         if os.path.isfile(directory_name + test_case_to_json(test_case)):
@@ -48,6 +50,7 @@ def generate_folder_location(test_case):
             return(folder_name)
 
 # Selector for .json file names
+# TODO: Change pathing to reference pathing for scaleability
 def test_case_to_json(test_case):
     tc = {
         1: "CVM Test Case 1 metric_CVMResults.json",
@@ -61,6 +64,7 @@ def test_case_to_json(test_case):
     return tc.get(test_case)
 
 # Selector for test case name
+# TODO: Change pathing to reference pathing for scaleability
 def test_case_to_string(test_case):
     tc = {
         1: "CVM Test Case 1 metric",
@@ -75,7 +79,8 @@ def test_case_to_string(test_case):
 
 # Loads LPSD and pulls json output of input test case
 def get_json(test_case):
-
+    services = Service()
+    #options = webdriver.ChromeOptions()
     options = Options()
     try:
         prefs = {'profile.default_content_setting_values.automatic_downloads': 1, \
@@ -83,7 +88,7 @@ def get_json(test_case):
         
         options.add_experimental_option("prefs", prefs)
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver = webdriver.Chrome(service=services, options=options)
 
         driver.get("https://qa-lpsd.nvent.com/") #TODO: allow for production server testing
         #driver.get("https://lpsd.nvent.com/")
@@ -193,3 +198,4 @@ def get_json(test_case):
             driver.quit()
     except:
         print("Not acquiring JSON files.")
+

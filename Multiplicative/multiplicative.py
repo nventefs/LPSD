@@ -33,16 +33,16 @@ def eq_g(H, W, Rc, P): # W = Building min width, P = Gable pitch  | Extended: H 
 def eq_h(h_at, r_d): # h_at = air terminal height, r_d = 0.175
     return (1.4 * ((h_at/r_d)**0.87) + 1)
 
-def eq_i(h_at, Rc): # h_at = air terminal height, r_d = 0.175
+def eq_i(h_at, Rc): # h_at = air terminal height, r_c = 0.38    
     return (1.4 * ((h_at/Rc)**0.87) + 1)
 
-def eq_j(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
+def eq_j(H, W, Hf): #LVL0: H = H_lvl0, W = minW_lvl0, Hf = z - H_lvl0 || EXTENDED: H = H_lvl, W = minW_lvl0, Hf = z - H_lvl
     return (0.57 * (H**0.75) * (W**-0.13) * (Hf ** -0.53) + 0.4)
 
-def eq_j5(H, W, Hf): # H = H_level, W = Building min width, Hf = Z_p - H
+def eq_j5(H, W, Hf): #H = H_lvl - H_lvl0, W = minW_lvl, Hf = z - H_lvl
     return (0.57 * (H**0.75) * (W**-0.13) * (Hf ** -0.53) + 0.4)
 
-def eq_k(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
+def eq_k(H, W, Hf): #LVL0: H = H_lvl0, W = minW_lvl0, Hf = z - H_lvl0 || EXTENDED: H = H_lvl, W = minW_lvl0, Hf = z - H_lvl
     return (0.84 * (H**0.474) * (W**-0.109) * (Hf ** -0.326) + 0.27)
 
 def eq_k5(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
@@ -52,8 +52,15 @@ def eq_l(H, W, Hf): # H = Level 0 height, W = Level 0 min width, Hf = Z_p - H
     e = 2.718281828459045
     return (0.95 * ((H/W)**0.57) * (e**(-0.55*((Hf/W)**1.33))) + 1)
 
+def eq_l5(H, H0, W, z): #H = level height, H0 = level 0 height, W = level min width (not level0), z = z_point
+    e = 2.718281828459045
+    return((0.95 * ((H - H0)**0.57) * (W**-0.57)) * (e**(-0.55*((z-H)/W)**1.33)) + 1)
+
 def eq_m(H, W, Hf):
-    return (0.68 * (H**0.78) * (W**-0.28) * (Hf ** -0.43) + 0.45)
+    return (0.68 * (H**0.78) * (W**-0.28) * (Hf**-0.43) + 0.45)
+
+def eq_m5(H, W, Hf):
+    return (0.68 * (H**0.78) * (W**-0.28) * (Hf**-0.43) + 0.45)
 
 def eq_n(H, W, Hf): # H = Level - Level 0 height, W = Level min width, Hf = Z_p - H
     e = 2.718281828459045
