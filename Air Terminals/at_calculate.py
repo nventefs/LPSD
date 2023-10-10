@@ -215,4 +215,4 @@ def load_test_case(test_case):
 #striking_distance(137.56, 1, 0)
 #TODO: determine ki, height of attractive radius, derating angle, attractive radius
 # Completed: striking distance
-z_m(18.26, 1, 0, striking_distance(28.3, 1, 0))
+z_m(34.28, 1, 0, striking_distance(125, 1, 0))

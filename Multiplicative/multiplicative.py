@@ -48,7 +48,7 @@ def eq_k(H, W, Hf): #LVL0: H = H_lvl0, W = minW_lvl0, Hf = z - H_lvl0 || EXTENDE
 def eq_k5(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
     return (0.84 * (H**0.474) * (W**-0.109) * (Hf ** -0.326) + 0.27)
 
-def eq_l(H, W, Hf): # H = Level 0 height, W = Level 0 min width, Hf = Z_p - H
+def eq_l(H, W, Hf): # H = Level 0 height, W = Level 0 min width, Hf = Z_p - H_lvl0
     e = 2.718281828459045
     return (0.95 * ((H/W)**0.57) * (e**(-0.55*((Hf/W)**1.33))) + 1)
 
@@ -80,13 +80,19 @@ def eq_p(H, W, Hf, P):
     return ([K_imax, K_imin, K_i])
 
 def eq_q(z): # Need to understand what 'With FIR_max = 1.8 means...
-    return ((0.1 * z) + 1.2)
+    if (0.1 * z) + 1.2 > 1.8:
+        return 1.8
+    else:
+        return ((0.1 * z) + 1.2)
 
 def eq_r():
     return (1.4)
 
 def eq_s(z):
-    return (1.35 - 0.2 * z)
+    if (1.35 - 0.2 * z) < 0.9:
+        return 0.9
+    else:
+        return (1.35 - 0.2 * z)
 
 def eq_t():
     return (1.5)
