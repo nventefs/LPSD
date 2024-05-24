@@ -1,7 +1,7 @@
 def __init__(self) -> None:
     pass
 
-def eq_a(H, W, Rc): # Rc = 0.38, Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width 
+def eq_a(H, W, Rc): # POI_Rc = 0.05, AT_Rc = 0.38 | Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width 
     return (0.43 * (H**0.8) * (W**-0.14) * (Rc**-0.57) + 1)
 
 def eq_b(H, W, Rc): # Rc = 0.38, Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width
@@ -11,7 +11,7 @@ def eq_c(H, W, Rc): # Rc = 0.38, H = Z_p, W = Level min width, Rc = 0.38
     e = 2.718281828459045
     return (0.95 * ((H/W)**0.57) * (e**(-0.55*((Rc/W)**1.33))) + 1)
 
-def eq_d(H, W, Rc): # Rc = 0.38, Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width
+def eq_d(H, W, Rc): # Rc = 0.05, Extended or lvl0: H = Z_p, W = Level min width | Else H = Z_p - Z_lvl0, W = Level min width
     return (0.56 * (H**0.82) * (W**-0.31) * (Rc ** -0.45) + 1)
 
 def eq_e(H, W, Rc): # Rc = 0.38, H = Z_p, W = Level min width
@@ -45,7 +45,7 @@ def eq_j5(H, W, Hf): #H = H_lvl - H_lvl0, W = minW_lvl, Hf = z - H_lvl
 def eq_k(H, W, Hf): #LVL0: H = H_lvl0, W = minW_lvl0, Hf = z - H_lvl0 || EXTENDED: H = H_lvl, W = minW_lvl0, Hf = z - H_lvl
     return (0.84 * (H**0.474) * (W**-0.109) * (Hf ** -0.326) + 0.27)
 
-def eq_k5(H, W, Hf): # Level 0: H = Building height, W = Building min width, Hf = Z_p - H | Extended: H = H_level, W = Building min width, Hf = Z_p - H
+def eq_k5(H, W, Hf): # H = H_lvl-H_lvl0, W = minW_lvl, Hf = z_point - H_lvl
     return (0.84 * (H**0.474) * (W**-0.109) * (Hf ** -0.326) + 0.27)
 
 def eq_l(H, W, Hf): # H = Level 0 height, W = Level 0 min width, Hf = Z_p - H_lvl0
@@ -63,6 +63,10 @@ def eq_m5(H, W, Hf):
     return (0.68 * (H**0.78) * (W**-0.28) * (Hf**-0.43) + 0.45)
 
 def eq_n(H, W, Hf): # H = Level - Level 0 height, W = Level min width, Hf = Z_p - H
+    e = 2.718281828459045
+    return (1.375 * ((H/W)**0.839) * (e**(-1.33*((Hf/W)**1.43))) + 1)
+
+def eq_n5(H, W, Hf): #H = H_lvl - H_lvl0, W = W_lvl, Hf = Z_p - H_lvl
     e = 2.718281828459045
     return (1.375 * ((H/W)**0.839) * (e**(-1.33*((Hf/W)**1.43))) + 1)
 
@@ -111,7 +115,7 @@ def eq_x(H, W):
 
 def eq_y(H, W, P):
     FIR_max = 1.8 * ((H + W)**-0.12) + 1
-    FIR_min = 0.9 * (H**0.25) * (W**-0.3) + 0.7
+    FIR_min = 0.9 * (H**0.25) * (W**-0.13) + 0.2
     FIR = ((FIR_max - FIR_min) / 2) * P + FIR_min
     return ([FIR_max, FIR_min, FIR])
 

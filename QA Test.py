@@ -44,13 +44,13 @@ multi = {}
 reduc_summary = {}
 multi_summary = {}
 
-#backup_lpsd.backup_lpsd()
+backup_lpsd.backup_lpsd()
 
 for k in test_cases:
     get_json.get_json(k)
 
 #TODO: Change pathing to local pathing for scaleability
-path = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/" + datetime.datetime.now().strftime("%Y-%m-%d") \
+path = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/" + datetime.datetime.now().strftime("%Y-%m-%d") \
             + "/" + datetime.datetime.now().strftime("%Y-%m-%d") +"_CVMResults.xlsx"
 writer = pd.ExcelWriter(path, engine = 'xlsxwriter')
 
@@ -79,4 +79,4 @@ excel_write(sheetname, reduc_summary_padded, writer, "reduc_summary")
 sheetname = "mSummary"
 excel_write(sheetname, multi_summary_padded, writer, "multi_summary")
 
-writer.save()
+writer.close()

@@ -1,0 +1,536 @@
+{
+  "FORGE_APP_BUNDLE_NAME": "LpsdDA4RForge",
+  "FORGE_APP_NICKNAME": "LPSDnVentERICO",
+  "FORGE_APP_URL": "https://lpsd.nvent.com",
+  "FORGE_CALLBACK_URL": "https://lpsd.nvent.com/api/forge/oauth/callback",
+  "FORGE_CLIENT_ID": "ICIELLjjsVZWYIKc8LPUZXOb9qjsk4dP",
+  "FORGE_CLIENT_SECRET": "DRYIMXIE8qsUIGn1",
+  "FORGE_ADDITIONAL_APPS": [
+    {
+      "AppGuid": "94096b2e-7893-4f09-a28c-a93317d46fd6",
+      "AppState": 0,
+      "ForgeClientId": "",
+      "ForgeClientSecret": ""
+    }
+  ],
+  "LPSD_ACCOUNT_ADMIN_ROLE": "account_admin",
+  "LPSD_ACCOUNT_EMAIL_DOMAIN": "nvent.com",
+  "LPSD_ACCOUNT_ID": "158be2b8-a216-465f-9bb0-8a48161e989b",
+  "LPSD_ADMIN_ACCOUNT_ID": "4b457af9-2969-43d8-93a1-c02e2275d7e1",
+  "LPSD_ANALYSIS_NOTES_FILE": "AnalysisNotes.txt",
+  "LPSD_ASSEMBLY_DATA_FILE": "AssemblyData.csv",
+  "LPSD_BIM360PROJECT_DATA_FILE": "BIM360Data.json",
+  "LPSD_BOM_NOTES_FILE": "BOMNotes.txt",
+  "LPSD_BUILD_VERSION": "1.0.23.1210",
+  "LPSD_COMPANY_NAME": "nVent ERICO",
+  "LPSD_COMPONENTS": {
+    "FIELDS": [
+      {
+        "FIELD_GROUP": "Product",
+        "FIELD_GUID": "641607fa-e334-4c86-8c88-a87dfc706e4f",
+        "FIELD_NAME": "Series",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": true,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "0f7215e5-0ffc-409b-8c3a-432db303d8da",
+        "FIELD_NAME": "AT Diameter",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "3edeeb68-3c28-4684-a3aa-0c035ba1074b",
+        "FIELD_NAME": "AT Height",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": true,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "a33a449a-66f6-4043-8083-107e3cf8de3d",
+        "FIELD_NAME": "Material",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "3fa06b21-c345-4364-ac88-8c9b168e42bb",
+        "FIELD_NAME": "Mounting Style",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "37efd21f-125e-4d51-9875-64025b116b19",
+        "FIELD_NAME": "Thread Size",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "nVent",
+        "FIELD_GUID": "96dcfcba-5998-4559-a491-a59c29e6eaeb",
+        "FIELD_NAME": "Conductor Size (UL)",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "",
+        "FIELD_GUID": "7a6ee6ac-ef53-4878-ba0a-e27b4e9fc387",
+        "FIELD_NAME": "Conductor Type",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "",
+        "FIELD_GUID": "e1c062d3-dd65-497a-8308-db5ffce02f43",
+        "FIELD_NAME": "Mast Series",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "",
+        "FIELD_GUID": "ed69ca78-d095-4360-872e-a7c9e6c9a1b5",
+        "FIELD_NAME": "Mast Height (m)",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "Grounding",
+        "FIELD_GUID": "fff0f161-2f57-43fc-9534-cdc9824deb53",
+        "FIELD_NAME": "Ground Rod Diameter",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "Grounding",
+        "FIELD_GUID": "99f79966-c0cb-4da1-a09e-ca31a5291a45",
+        "FIELD_NAME": "Ground Rod Length",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "",
+        "FIELD_GUID": "e0aedb58-b236-4713-ae05-375a9f72d60a",
+        "FIELD_NAME": "Conductor Size",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": false,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "Grounding",
+        "FIELD_GUID": "b0f153e0-df60-4acd-a9b4-36d39d629c19",
+        "FIELD_NAME": "Mold Family",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      },
+      {
+        "FIELD_GROUP": "Product",
+        "FIELD_GUID": "313020d7-c58b-48cb-87e5-798310198b45",
+        "FIELD_NAME": "Part Style",
+        "FIELD_PUSH_REVIT": false,
+        "FIELD_SHOW_COMPONENTS": false,
+        "FIELD_SHOW_FILTER": true,
+        "FIELD_SHOW_TABLE": false,
+        "FIELD_SUM": false,
+        "FIELD_TYPE": "Text"
+      }
+    ],
+    "COMPONENTS": [],
+    "GROUPS": [
+      "Product",
+      "nVent",
+      "",
+      "Grounding"
+    ]
+  },
+  "LPSD_DETAILS_DOCUMENTS": [
+    {
+      "Href": "https://developer.api.autodesk.com/oss/v2/buckets/wip.dm.prod/objects/5f681f3f-aa50-4a6c-a99c-1e13400d1d13.pdf",
+      "Name": "nVent ERICO LPSD Dashboard.pdf"
+    }
+  ],
+  "LPSD_DEFAULT_PROJECT_TYPE": "Infrastructure",
+  "LPSD_EXT_USER_ROLE_NAME": "External Designer",
+  "LPSD_EXT_SALES_ROLE_NAME": "External Sales",
+  "LPSD_INT_USER_ROLE_NAME": "Internal Designer",
+  "LPSD_INT_SALES_ROLE_NAME": "Internal Sales",
+  "LPSD_FORGE_APP_BUNDLES": {
+    "2019": {
+      "AppVersion": 1,
+      "Date": "2021/09/21",
+      "Name": "Revit2019_11",
+      "Id": "ICIELLjjsVZWYIKc8LPUZXOb9qjsk4dP.LpsdDA4RForge2019"
+    },
+    "2020": {
+      "AppVersion": 1,
+      "Date": "2021/09/21",
+      "Name": "Revit2020_11",
+      "Id": "ICIELLjjsVZWYIKc8LPUZXOb9qjsk4dP.LpsdDA4RForge2020"
+    },
+    "2021": {
+      "AppVersion": 1,
+      "Date": "2021/09/21",
+      "Name": "Revit2021_11",
+      "Id": "ICIELLjjsVZWYIKc8LPUZXOb9qjsk4dP.LpsdDA4RForge2021"
+    },
+    "2022": {
+      "AppVersion": 1,
+      "Date": "2021/09/21",
+      "Name": "Revit2022_11",
+      "Id": "ICIELLjjsVZWYIKc8LPUZXOb9qjsk4dP.LpsdDA4RForge2022"
+    }
+  },
+  "LPSD_PLACEHOLDER_MODEL_FILE": "CoordinatesPlaceholder.skp",
+  "LPSD_PLACEHOLDER_MODEL_ID": "urn:adsk.wipprod:dm.lineage:Fo9dXB9ETWS_K5sMIGGhTw",
+  "LPSD_PLACEHOLDER_MODEL_MANIFEST": {
+    "urn": "dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLkZvOWRYQjlFVFdTX0s1c01JR0doVHc_dmVyc2lvbj0y",
+    "type": "manifest",
+    "progress": "complete",
+    "status": "success",
+    "hasThumbnail": true,
+    "derivatives": [
+      {
+        "name": "CoordinatesPlaceholder.skp",
+        "hasThumbnail": true,
+        "outputType": "svf",
+        "status": "success",
+        "progress": "complete",
+        "children": [
+          {
+            "guid": "801aa105-643e-4f4c-9623-d9755d8734e7",
+            "role": "3d",
+            "isMasterView": false,
+            "phaseNames": null,
+            "mime": "",
+            "urn": "",
+            "progress": "complete",
+            "status": "success"
+          },
+          {
+            "guid": "13372cd4-6a4a-4a16-bc53-394e73ef0d33",
+            "role": "Autodesk.CloudPlatform.PropertyDatabase",
+            "isMasterView": false,
+            "phaseNames": null,
+            "mime": "application/autodesk-db",
+            "urn": "urn:adsk.viewing:fs.file:dXJuOmFkc2sud2lwcHJvZDpmcy5maWxlOnZmLkZvOWRYQjlFVFdTX0s1c01JR0doVHc_dmVyc2lvbj0y/output/1/properties.db",
+            "progress": "",
+            "status": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "LPSD_PLACEHOLDER_MODEL_PATH": "Project Files/Models",
+  "LPSD_PLACEHOLDER_MODEL_PATH_ID": "urn:adsk.wipprod:fs.folder:co.ozcjPBPTTxKAZOOFELo8hQ",
+  "LPSD_PRICING_DATA_FILE": "PricingData.csv",
+  "LPSD_PROJECT_COMPONENTS_PATH": "Project Files/Components",
+  "LPSD_PROJECT_COMPONENTS_PATH_ID": "urn:adsk.wipprod:fs.folder:co.Iawi_k2lTwKQsVTVcHHo0A",
+  "LPSD_PROJECT_DATA_PATH": "Project Files/Settings/Data",
+  "LPSD_PROJECT_DATA_PATH_ID": "urn:adsk.wipprod:fs.folder:co.35z_Zaf-RRiqdsm1yVts7w",
+  "LPSD_PROJECT_DOCUMENTS_PATH": "Project Files/Documents",
+  "LPSD_PROJECT_DOCUMENTS_PATH_ID": "urn:adsk.wipprod:fs.folder:co.0e52UoTWRY-GSAOizDZ1Ag",
+  "LPSD_PROJECT_MODELS_PATH": "Project Files/Models",
+  "LPSD_PROJECT_MODELS_PATH_ID": "urn:adsk.wipprod:fs.folder:co.ozcjPBPTTxKAZOOFELo8hQ",
+  "LPSD_PROJECT_OUTPUT_PATH": "Project Files/Reports",
+  "LPSD_PROJECT_SIGNIFIER": "LPSD_",
+  "LPSD_PROJECT_TEMPLATE_ID": "560a2ebf-0567-463d-9b19-22e5ae9e8627",
+  "LPSD_PROJECTS_FILE": "LPSDProjects.json",
+  "LPSD_REVIT_DETAILS_FILE": "RevitDetailViews.csv",
+  "LPSD_REVIT_TEMPLATE_FILE": "nVent_LPSD_Imperial_Template_R21_V1.1.rvt",
+  "LPSD_REVIT_TEMPLATE_ID": "urn:adsk.wipprod:dm.lineage:HQhSGQKDR6OuJ2WJFB_R8w",
+  "LPSD_REVIT_TEMPLATE_PATH": "Project Files/Models",
+  "LPSD_REVIT_TEMPLATE_PATH_ID": "urn:adsk.wipprod:fs.folder:co.ozcjPBPTTxKAZOOFELo8hQ",
+  "LPSD_RISKASSESSMENTIEC_NOTES_FILE": "RiskAssessmentIECNotes.txt",
+  "LPSD_RISKASSESSMENTNFPA_NOTES_FILE": "RiskAssessmentNFPANotes.txt",
+  "LPSD_SFDC_MAPPINGS_FILE": "UserAssociations.csv",
+  "LPSD_SFDC_QUEUE_FILE": "SalesforceQueue.json",
+  "LPSD_SFDC_SERVERS": [],
+  "LPSD_SHARED_PARAMETERS_FILE": "LPSDSharedParameters.txt",
+  "LPSD_USER_ACCOUNT_IDS": [
+    {
+      "EMAIL": "matthew.malensek@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "emmanuel.duc@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "Ahmed.Kassem@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "Ruud.Timmers@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "Joan.Arino@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "Walter.Wen@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "Smitha.HarshaVardhana@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "Ted.Huang@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "emmanuel.duc@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "Ahmed.Kassem@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "Ruud.Timmers@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "Joan.Arino@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "Tim.Carroll@nVent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "John.Tichon@nVent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "Davy.Xu@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "YuLin.Wen@nVent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "tom.vissers@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "tom.vissers@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "viktor.kapatsyna@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "viktor.kapatsyna@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "jenny.debniak@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "matthew.malensek@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "matthew.malensek@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "greg.martinjak@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "zach.zellhart@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "nicholas.camburako@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "alok.jha@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "alok.jha@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "alok.jha@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "Ruud.Timmers@nVent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "pierre.thevenin@nvent.com",
+      "ROLE": "External Sales",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "pierre.thevenin@nvent.com",
+      "ROLE": "External Sales",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "nhat.pham@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "North America"
+    },
+    {
+      "EMAIL": "Luis.Uvalle@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Latin America"
+    },
+    {
+      "EMAIL": "Luis.Uvalle@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "Luis.Uvalle@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "nhat.pham@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Asia"
+    },
+    {
+      "EMAIL": "nhat.pham@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Europe"
+    },
+    {
+      "EMAIL": "nhat.pham@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Latin America"
+    },
+    {
+      "EMAIL": "nhat.pham@nvent.com",
+      "ROLE": "Administrator",
+      "REGION": "Middle East"
+    },
+    {
+      "EMAIL": "Luis.Uvalle@nvent.com",
+      "ROLE": "Internal Designer",
+      "REGION": "North America"
+    }
+  ],
+  "LPSD_USER_ROLES": {
+    "Administrator": "deddb377-41a0-4109-9198-b5e03c18a44f",
+    "Architect": "de5c09f5-63ab-4001-96a1-8d143d6a97e3",
+    "BIM Manager": "4d056f70-62ac-4829-bc7a-e7c7ba666b65",
+    "Construction Manager": "e28377e0-4b2d-4ea1-a2bf-58e6ce38f7fc",
+    "Document Manager": "0579c446-651d-492b-80e1-01451863e928",
+    "Engineer": "65e0d009-5381-448e-b171-4222b2b001de",
+    "Estimator": "c150b766-b24d-4185-82c3-18057789c74f",
+    "Executive": "dd766166-4cd3-48f2-89b6-06163dd56317",
+    "External Designer": "75e7026b-6b8d-4b5a-83ca-293653b8a3ea",
+    "External Sales": "6ec78c01-c191-4202-b234-60716f62adc5",
+    "Foreman": "51a804be-7d50-4961-845b-c2aeddb8b911",
+    "Internal Designer": "8067b59d-efc2-4b9b-be79-e42eedc9e22d",
+    "Internal Sales": "559ce41d-fbc0-42cc-acf3-7abff21d4ce2",
+    "IT": "d8c388e7-fad8-4245-bb88-95bf61071fae",
+    "Project Engineer": "20502f8c-f6fb-4294-b0da-2d3738769704",
+    "Project Manager": "b03c1d8d-2667-4f60-a889-b08cbf06e48a",
+    "Superintendent": "1f494020-9bf4-4bd7-8558-da9263ffcd9f",
+    "VDC Manager": "d5a81df1-a6fb-4029-8494-1a520d96f157"
+  },
+  "MULESOFT_CLIENT_ID": "226130e087744d94830914d08bbcad95",
+  "MULESOFT_CLIENT_SECRET": "9692357cf29D41D4a0F4124460356214",
+  "MULESOFT_ENDPOINT_URL": "https://api.nvent.com/order2cash/v1/opportunity",
+  "SALESFORCE_API_SECRET_KEY": "8Mv3M8XI2LshQwxYxwMozd2JJtdkoegn"
+}

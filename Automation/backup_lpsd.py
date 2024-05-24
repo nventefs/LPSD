@@ -11,24 +11,12 @@ import logging
 import time
 import datetime
 import os
+from dotenv import load_dotenv
 
-def test_logging(log_path):
-    logger = logging.getLogger('selenium')
-
-    logger.setLevel(logging.DEBUG)
-
-    handler = logging.FileHandler(log_path)
-    logger.addHandler(handler)
-
-    logging.getLogger('selenium.webdriver.remote').setLevel(logging.WARN)
-    logging.getLogger('selenium.webdriver.common').setLevel(logging.DEBUG)
-
-    logger.info("this is useful information")
-    logger.warning("this is a warning")
-    logger.debug("this is detailed debug information")
-
-    with open(log_path, 'r') as fp:
-        assert len(fp.readlines()) == 3
+load_dotenv()
+AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
+NVENT_USERNAME = os.getenv('NVENT_USERNAME')
+NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 
 def backup_lpsd():
     logger = logging.getLogger('selenium')
@@ -57,11 +45,13 @@ def backup_lpsd():
 
     options.add_experimental_option("prefs", prefs)
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
+    
     driver = webdriver.Chrome(service=service, options=options)
     
-    driver.get("https://qa-lpsd.nvent.com")
+    #driver.get("https://qa-lpsd.nvent.com")
     #driver.get("https://qa-lpsd.nvent.com/api/v1/administration")
-    #driver.get("https://lpsd.nvent.com/")
+    driver.get("https://lpsd.nvent.com/")
+    time.sleep(5)
 
     json_exports = ["administration_admin_data_export_button", "administration_components_data_export_button", "administration_assembly_data_export_button", \
                     "administration_bim360projects_data_export_button",  "administration_pricing_export_button", \
@@ -71,26 +61,43 @@ def backup_lpsd():
                                     "administration_bom_notes_export_button"]
 
     try:
-        search_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
+        search_button = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
         search_button.click()
         time.sleep(1)
 
-
         input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "userName")))
-        input_field.send_keys("greg.martinjak@nvent.com")
+        input_field.send_keys(AUTODESK_USERNAME)
         
         submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "verify_user_btn")))
         submit_button.click()
+        time.sleep(3)
+
+        # Updated due to SSO as of 04.16.2024
+        input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0116")))
+        input_field.send_keys(NVENT_USERNAME)
         time.sleep(1)
 
+        next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+        next_button.click()
+        time.sleep(1)
 
+        input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0118")))
+        input_field.send_keys(NVENT_PASSWORD)
+        time.sleep(1)
+
+        next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+        next_button.click()
+        time.sleep(1)
+
+        time.sleep(60)
+        """
         input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"password")))
         input_field.send_keys("nVent!23")
 
         submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "btnSubmit")))
         submit_button.click()
         time.sleep(1)
-
+        """
         allow_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "allow_btn")))
         allow_button.click()
         time.sleep(10)
@@ -119,5 +126,3 @@ def sanitize_input(input_str):
         return "no"
     else:
         raise
-
-backup_lpsd()

@@ -18,10 +18,10 @@ def test_case_to_string(test_case):
 
 # TODO: Change pathing to reference pathing for scaleability
 def load_test_case(test_case):
-    csv_folder = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/CSV/"
+    csv_folder = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/CSV/"
     csv_file = csv_folder + "Test Case " + str(test_case) + ".csv"
     
-    json_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
+    json_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
 
     filenames = {}
 

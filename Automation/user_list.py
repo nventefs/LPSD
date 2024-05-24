@@ -17,11 +17,17 @@ import csv
 import time
 import datetime
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
+NVENT_USERNAME = os.getenv('NVENT_USERNAME')
+NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 
 # creates a folder in USERS folder with date, if folder exists returns date format
 def generate_folder_location():
 
-    folder_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"
+    folder_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"
     folder_name = datetime.datetime.now().strftime("%Y-%m-%d")
 
     directory_name = folder_location + folder_name
@@ -35,7 +41,7 @@ def generate_folder_location():
 # downloads userlist from BIM360 and puts it in USERS folder
 #TODO: rename field names to coorespond to what they're actually searching for
 def get_bim_users():
-    if os.path.exists("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location() + "\\BIM360_Members.csv"):
+    if os.path.exists("C:\\Users\\e1176752\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location() + "\\BIM360_Members.csv"):
         print("BIM360 file already exists!")
         return
     
@@ -43,36 +49,44 @@ def get_bim_users():
 
     try:
         prefs = {'profile.default_content_setting_values.automatic_downloads': 1, \
-             'download.default_directory' : ("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location())}
+             'download.default_directory' : ("C:\\Users\\e1176752\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location())}
                 
         options.add_experimental_option("prefs", prefs)
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
         driver.get("https://b2.autodesk.com/login")
-
+        time.sleep(5)
         try:
-            search_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "primary_button")))
+            search_button = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID, "new_sign_in")))
             search_button.click()
             time.sleep(1)
 
-            #print((driver.find_element(By.ID,"userName")))
-            #print((driver.find_element(By.NAME,"UserName")))
-            #print((driver.find_element(By.CLASS_NAME, "form-control customInput2")))
-            #print((driver.find_element(By.XPATH, "//*[@id='userName']")))
-            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "UserName")))
-            input_field.send_keys("greg.martinjak@nvent.com")
+            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "userName")))
+            input_field.send_keys(AUTODESK_USERNAME)
             
             submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "verify_user_btn")))
             submit_button.click()
+            time.sleep(3)
+
+            # Updated due to SSO as of 04.16.2024
+            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0116")))
+            input_field.send_keys(NVENT_USERNAME)
             time.sleep(1)
 
-            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"password")))
-            input_field.send_keys("nVent!23")
-
-            submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "btnSubmit")))
-            submit_button.click()
+            next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+            next_button.click()
             time.sleep(1)
+
+            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0118")))
+            input_field.send_keys(NVENT_PASSWORD)
+            time.sleep(1)
+
+            next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+            next_button.click()
+            time.sleep(1)
+
+            time.sleep(60)
 
             allow_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "hq")))
             allow_button.click()
@@ -96,7 +110,7 @@ def get_bim_users():
         raise
 
 # loads bim360 csv file into memory and returns the data
-def load_bim_data(folder_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"):
+def load_bim_data(folder_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"):
     folder_name = datetime.datetime.now().strftime("%Y-%m-%d")
     directory_name = folder_location + folder_name + "/"
 
@@ -123,7 +137,7 @@ def to_excel(sheetname, data, writer):
 
 # retrieves the LPSD users list in outlook and saves as csv file
 def get_outlook_list():
-    if os.path.exists("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location() + "\\LPSEDUsers_Outlook.csv"):
+    if os.path.exists("C:\\Users\\e1176752\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\" + generate_folder_location() + "\\LPSEDUsers_Outlook.csv"):
         print("Outlook file already exists!")
         return
     outlookwindow = get_outlookwindow()
@@ -132,9 +146,9 @@ def get_outlook_list():
                          )
     outlookwindow.activate()
     time.sleep(2)
-    coords = pyautogui.locateOnScreen("C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/contacts.png", confidence = 0.65)
-    pyautogui.click(coords[0], coords[1])
-    time.sleep(2.5)
+    coords = pyautogui.locateOnScreen("C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/contacts.png", confidence = 0.65)
+    pyautogui.click(coords[0]+5, coords[1]+5)
+    time.sleep(5)
     pyautogui.press('alt'),     time.sleep(0.75)
     pyautogui.press('f'),       time.sleep(0.5)
     pyautogui.press('o'),       time.sleep(0.5)
@@ -144,8 +158,8 @@ def get_outlook_list():
     pyautogui.press('up'),      time.sleep(0.5) # Select file output
     pyautogui.press('enter'),   time.sleep(0.5) # Export to file
     pyautogui.press('enter'),   time.sleep(0.5) # Comma seperated values
-    coords = pyautogui.locateOnScreen("C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/LPSDUsers.png", confidence = 0.65)
-    pyautogui.click(coords[0], coords[1])
+    coords = pyautogui.locateOnScreen("C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/LPSDUsers.png", confidence = 0.65)
+    pyautogui.click(coords[0]+20, coords[1]+5)
     time.sleep(2.5)
     #pyautogui.press('down'),    time.sleep(0.5)
     #pyautogui.press('down'),    time.sleep(0.5)
@@ -153,7 +167,7 @@ def get_outlook_list():
     #pyautogui.press('down'),    time.sleep(0.5)
     #pyautogui.press('down'),    time.sleep(0.5)
     pyautogui.press('enter'),   time.sleep(0.5)
-    pyautogui.write('C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\' + generate_folder_location() + '\\LPSDUsers_Outlook.csv'), time.sleep(1)
+    pyautogui.write('C:\\Users\\e1176752\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\USERS\\' + generate_folder_location() + '\\LPSDUsers_Outlook.csv'), time.sleep(1)
     pyautogui.press('enter'),   time.sleep(1)
     pyautogui.press('enter'),   time.sleep(1)
     time.sleep(4)
@@ -167,7 +181,7 @@ def get_outlookwindow():
             return gw.getWindowsWithTitle(k)[0]
 
 # loads outlook csv file into memory and returns the data
-def load_outlook_data(folder_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"):
+def load_outlook_data(folder_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/USERS/"):
     folder_name = datetime.datetime.now().strftime("%Y-%m-%d")
     directory_name = folder_location + folder_name + "/"
 
@@ -191,9 +205,9 @@ outlook_list = []
 get_outlook_list()
 outlook_data = load_outlook_data()
 for k in range(1,outlook_data[1]):
-    left = outlook_data[0][k][59].find('(')
-    right = outlook_data[0][k][59].find(')')
-    outlook_list.append(outlook_data[0][k][59][left+1:right])
+    left = outlook_data[0][k][60].find('(')
+    right = outlook_data[0][k][60].find(')')
+    outlook_list.append(outlook_data[0][k][60][left+1:right])
     
 # Retreive BIM360 user data from BIM360, creates list of users 
 active_bim_user_list = []

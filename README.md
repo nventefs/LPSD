@@ -6,6 +6,7 @@ Revision 0.3.1
 - Greg Martinjak <greg.martinjak@nvent.com>
 - Christian Barcey <chris.barcey@nvent.com>
 - Andrew Ritosa <andrew.ritosa@nvent.com>
+- David Skocic <david.skocic@nvent.com>
 
 # Summary of Project
 The quality testing for LPSD 4.0 confirms the CVM (Collection Volume Method) calculations for LPSD.  Seven test cases are selected to cover the various buildings that LPSD is expected to handle and a CVM model was created for each of these test cases.  The test cases are as follows:

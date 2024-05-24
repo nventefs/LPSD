@@ -1,0 +1,20 @@
+Name,Priority
+ER 3m Cantilevered_2m_above_IP79106,1
+ER 4m Cantilevered_3m_above_IP79107,2
+ER 6m Cantilevered_4m_above_IP79110,3
+ER 7m Cantilevered_5m_above_IP79109,4
+SIM 4m Cantilevered_3m_above_IP79140,5
+SIM 5m Cantilevered _4m_above_IP79141,6
+SIM 7m Cantilevered_5m_above_IP79142,7
+ER 2m Guyed_2m_above_IP79116,8
+ER 3m Guyed_3m_above_IP79117,9
+ER 4m Guyed_4m_above_IP79118,10
+ER 5m Guyed_5m_above_IP79119,11
+ER 6m Guyed_6m_above_IP79120,12
+ER 7m Guyed_7m_above_IP79121,13
+ER 8m Guyed_8m_above_IP79122,14
+SIM 2m Guyed_2m_above_IP79135,15
+SIM 4m Guyed_4m_above_IP79136,16
+SIM 5m Guyed_5m_above_IP79137,17
+SIM 6m Guyed_6m_above_IP79138,18
+SIM 7m Guyed_7m_above_IP79139,19

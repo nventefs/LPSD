@@ -1,0 +1,9 @@
+1) This bill of materials is subject to the nVent ERICO Terms and Conditions of Sale, a copy of which is available online on nVent ERICOs Website.
+2) The above pricing does not include installation charges. Installation will be performed by a general or electrical contractor or lightning protection installation subcontractor. 
+3) The above material quotation has been compiled based upon project specifications & drawings furnished to ERICO. It is the customers responsibility to provide accurate and complete specifications, drawings, and other information relevant to this material quotation.
+4) nVent ERICO engineering has taken great care in compiling this material list. However, it is not possible to anticipate all actual site conditions or changes, project addendums, etc
+5) It is the responsibility of the customer to verify all materials, quantities, and costs associated with this quotation.
+6) Surge Protective Devices are not included since requirements will depend upon electrical service and other incoming and outgoing conductors.
+7) Quotation is valid for 30 days.
+8) The length of the quoted down-conductor(s) are an estimate only. Once the final routing has been determined, a precise measurement should be taken prior to ordering.
+9) The mounting material quoted is an estimate only. The lightning protection installer is responsible for anchoring the cantilevered mast supporting brackets, anchoring the guy system mast base and the anchoring points of the guy wires as applicable. A review by a structural engineer may be needed.

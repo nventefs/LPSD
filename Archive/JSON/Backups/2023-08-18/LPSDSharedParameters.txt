@@ -1,0 +1,319 @@
+# This is a Revit shared parameter file.
+# Do not edit manually.
+*META	VERSION	MINVERSION
+META	2	1
+*GROUP	ID	NAME
+GROUP	1	nVent
+*PARAM	GUID	NAME	DATATYPE	DATACATEGORY	GROUP	VISIBLE	DESCRIPTION	USERMODIFIABLE
+PARAM	94232800-a362-4de2-a6b7-63a06d9623fc	EF004251 Material of holder	TEXT		1	1		1
+PARAM	284e3f00-9fa8-4fb3-8ebd-20c863277819	Unit Weight (imperial) Nom	TEXT		1	1		1
+PARAM	03325300-c28b-4efe-b2ab-5872b3566a52	Price Key	TEXT		1	1		1
+PARAM	2e94a802-c5b8-4f59-a73e-1ef24dbb009f	Installation Height (imperial) Max	LENGTH		1	1		1
+PARAM	a498f503-8026-4fbc-bb21-f41954517a7a	Handle Clamp	TEXT		1	1		1
+PARAM	376cd905-218d-45a7-8d4b-759964e46409	IP Reference  PG #	TEXT		1	1		1
+PARAM	4dce8806-27bf-4c83-8a86-aa6db11160b4	ISOnV Height Below (ft.)	LENGTH		1	1		1
+PARAM	e1dbae07-fe2b-4ed8-a4f8-568af6cde95e	ERICO System	TEXT		1	1		1
+PARAM	c0d0fb07-5b9b-4836-9a3a-e7028220eb0a	System	TEXT		1	1		1
+PARAM	14257d0a-1a24-41dc-8b2a-61f5fd577645	Thickness (mm) Nom	TEXT		1	1		1
+PARAM	3f2fcf0a-3a70-4352-b66b-6a466781fd3d	Wear Plates	TEXT		1	1		1
+PARAM	5dcb280b-92a7-41f7-b4d7-d301ace93046	Global Description	TEXT		1	1		1
+PARAM	2623980b-5092-4cc0-8395-afd123084852	Mast Height (ft)	LENGTH		1	1		1
+PARAM	261d250c-b215-4842-90c9-3b68710ba455	Outer Diameter (mm) Max	TEXT		1	1		1
+PARAM	e1b83a0c-e0f3-4493-8575-c1c90a7f12a0	Connection Material, Parallel Conductor	TEXT		1	1		1
+PARAM	f2352c0e-3e51-414e-ac19-25f361974969	Connects To	TEXT		1	1		1
+PARAM	e303fd10-7ece-4d0e-96d5-8d0769a20aae	Revit Family Type	TEXT		1	1		1
+PARAM	4bf50a12-344c-4ff8-9668-f73e4f8f023a	Welder Style	TEXT		1	1		1
+PARAM	c188e412-ef0a-4ce2-a332-ce553f252a59	Connection, Solid (metric) Nom	TEXT		1	1		1
+PARAM	9496ca13-3caa-4802-801f-33fa700efb79	LOWER MAST SECTION HEIGHT	TEXT		1	1		1
+PARAM	1f35e413-01a3-47c1-961d-51d01f0acf74	OSAT Radius (in.)	LENGTH		1	1		1
+PARAM	9e99c314-e83c-4b15-811d-04c862f268a9	Conductor 1	TEXT		1	1		1
+PARAM	3147df14-d404-44bc-b886-2a47a50002bd	Length 2 (') Nom	LENGTH		1	1		1
+PARAM	71f66f15-ddfb-4a45-a6c5-d53e0c8fcca3	Rod Length (imperial)	LENGTH		1	1		1
+PARAM	addcee16-8e8c-4b1b-95d0-0d87b015c00b	Operating Pressure (imperial)	LENGTH		1	1		1
+PARAM	f0b56117-bd9c-4775-80f6-d23a4e7b5c7c	Block Height (mm)	TEXT		1	1		1
+PARAM	3d4d4418-c963-413a-94be-393e24fe9d4c	Diameter (Largest mast size) (in.)	LENGTH		1	1		1
+PARAM	8bb1b91b-b51e-49c7-88fe-ae0e237fb12c	Height (m)	TEXT		1	1		1
+PARAM	a314ea1b-3dbb-4836-81fa-b8d3a9eff802	ISOnV Lower Mast Height Above (ft.)	LENGTH		1	1		1
+PARAM	4c79661c-154d-48eb-8a13-bda113cac583	Mast Height (ft) 	LENGTH		1	1		1
+PARAM	53d73f1d-730e-4f9a-95d5-993df90ead4a	Compatible Conductor	TEXT		1	1		1
+PARAM	c126c520-7879-4e59-816b-f5d330a88045	EF007857 High-voltage-proof insulated model	TEXT		1	1		1
+PARAM	45314824-d7bc-44b3-a6ad-25823b88fa0b	Depth (') Nom	LENGTH		1	1		1
+PARAM	65c9ab24-8843-4eb0-933b-b733ec0ee51b	Below Structure Mast Height (ft.)	LENGTH		1	1		1
+PARAM	ea12bf24-d672-4fce-9529-074a5f072277	ISOFRP-HEIGHT (in.)	LENGTH		1	1		1
+PARAM	f6982025-2961-4f4e-b5dc-c213779742f5	Angle Nom	TEXT		1	1		1
+PARAM	4e33a625-31ae-44ca-aea1-5a6327b2f493	Ground Rod Diameter, Actual (') Max	LENGTH		1	1		1
+PARAM	3100a825-ceac-4466-ae60-327134db599f	Rod Length (metric)	TEXT		1	1		1
+PARAM	feb1c727-9241-44ef-afef-2db24306af81	Temperature (C) Min	TEXT		1	1		1
+PARAM	0f184328-3f77-43bd-8d6d-7df352942467	Installation Height (metric) Max	TEXT		1	1		1
+PARAM	0dd2c328-e558-4c36-9579-433e0cb9b1fd	Height Below (ft.)	LENGTH		1	1		1
+PARAM	d06bcb29-c80e-4ea0-a6c1-2e5fd22ad70d	Shim	TEXT		1	1		1
+PARAM	3c9b0e2a-209e-4e50-b24e-0ba0652ac9d1	Conductor 3 Outer Diameter, Nominal (imperial)	LENGTH		1	1		1
+PARAM	51ed422a-17ba-4c83-aff3-1dc0962d9ba8	Thread Size 1	TEXT		1	1		1
+PARAM	f127982a-78f8-4208-8958-d3014770e9c3	Conductor Outer Diameter, Nominal (metric)	TEXT		1	1		1
+PARAM	1720052b-6408-4288-b73c-5630537cfe17	ISONVBLOCK-HEIGHT (in.)	LENGTH		1	1		1
+PARAM	d9fbb32b-7790-44f0-a95e-3921014f86d2	Connection Type	TEXT		1	1		1
+PARAM	55277b2c-3392-4f22-965a-3005f2cf0e7a	Height Above (ft.)	LENGTH		1	1		1
+PARAM	dedb2f2e-8b17-4731-a170-650e85f9cae9	Rod Size (')	LENGTH		1	1		1
+PARAM	c76d582e-b9d5-48d2-b54e-c27f7602447d	Ground Rod Length (Imperial)	LENGTH		1	1		1
+PARAM	aff6e830-0310-4ae3-8888-87f5aef7a292	Air Terminal	TEXT		1	1		1
+PARAM	7f1a6332-0311-4304-9846-ed22afb00a35	Installation Height (imperial) Min	LENGTH		1	1		1
+PARAM	5f336432-c0df-4086-bc17-39cefb0f25df	Connection Material, In-Line Conductor	TEXT		1	1		1
+PARAM	b067ef32-d95f-45ab-bb06-e71de3b9bc8f	NB_DN (mm) Nom	TEXT		1	1		1
+PARAM	05429433-8518-46ee-83a3-c0dc5ae6e095	Terminal Height	TEXT		1	1		1
+PARAM	0815fc33-e9c6-4bc7-a4b5-d55815f8a504	Height (in.) Nom	LENGTH		1	1		1
+PARAM	04630c34-6234-46f5-af5b-0d20e5e2fbbf	Connection, Solid (imperial) Nom	LENGTH		1	1		1
+PARAM	45195f34-adda-4913-a1c5-4c761ccdb95a	Length (imperial) Nom	LENGTH		1	1		1
+PARAM	3265e734-9188-4c7e-b8f7-4668e6745ba6	Stand Width (m)	TEXT		1	1		1
+PARAM	5eaec535-8969-4d8b-a896-9bc497c93b4c	Replacement Mold	TEXT		1	1		1
+PARAM	d09de635-7980-41a3-8ce4-4c58c11b406f	Torque (imperial) Nom	LENGTH		1	1		1
+PARAM	6839c137-920d-4641-846d-64eee56d5fba	Thread Size	TEXT		1	1		1
+PARAM	dcbd3938-0dec-4dc8-b718-1da620f4778d	Post Frame Diameter, Actual (imperial)	LENGTH		1	1		1
+PARAM	ee903e38-9f95-448d-882f-c875049048ff	Connection Material, Air Terminal	TEXT		1	1		1
+PARAM	1e3bd038-04e4-4b35-bb84-62a6e9cd7663	Category	TEXT		1	1		1
+PARAM	79768c39-5cfc-4a63-85a9-ce461341dcea	Drill Hole Depth (')	LENGTH		1	1		1
+PARAM	f038013a-55c1-4807-ab04-e391b07e8ee5	GP-Length (in.)	LENGTH		1	1		1
+PARAM	9db8663a-febd-462d-85fb-f98243f2cf90	Family Family Type 	TEXT		1	1		1
+PARAM	7012b93a-a8e1-4942-b9b0-9792f447c0b0	P-Height (in.)	LENGTH		1	1		1
+PARAM	a212413b-e2b2-452f-9956-c225f17d324d	Rebar Size, Canada Min	TEXT		1	1		1
+PARAM	f8738c3b-fe5c-438b-804a-ec7f911f7090	Ground Rod Diameter, Actual (mm) Max	TEXT		1	1		1
+PARAM	7e56a83b-2dd0-42d0-abe7-20984f61c4f3	Mast Height (m) 	TEXT		1	1		1
+PARAM	17a5b83b-673f-4a10-b036-c7e23d89b11d	TC-Height (in.)	LENGTH		1	1		1
+PARAM	5e8b6d3c-0833-42d1-bb86-69b16fe60088	Frame	TEXT		1	1		1
+PARAM	2287d93c-68be-4b5a-b56e-02eef47c8028	NB_DN (mm) Max	TEXT		1	1		1
+PARAM	7ed29f3d-fe51-4e9a-9655-17aacbd67d44	Depth (mm) Nom	TEXT		1	1		1
+PARAM	65ef7f3e-970f-43b2-9d3d-9d7020a9f415	A (') Max	LENGTH		1	1		1
+PARAM	4950ef3e-ba0c-43fd-9120-103d8b007982	EF004210 Conductor dimension	TEXT		1	1		1
+PARAM	1cd73d3f-7bff-4dd7-a2fb-ea880e3d9ed0	Ease of Use	TEXT		1	1		1
+PARAM	cf83a740-4520-4cb1-9d8a-b9283960cc33	Downlead Qty	TEXT		1	1		1
+PARAM	4d9ca741-e665-4787-b523-666d89699fa4	Mold Only	TEXT		1	1		1
+PARAM	f04c5442-40ed-4dd2-bccd-991097f1508d	Style	TEXT		1	1		1
+PARAM	544efa44-fcd0-4d1b-bef7-8d1b06cc8d12	EF004185 Mounting type holder	TEXT		1	1		1
+PARAM	c8450a45-11c0-4a15-b57e-5ce1ed9e1779	Total Width (ft.)	LENGTH		1	1		1
+PARAM	53ca8e45-3717-422c-b9ab-55d2a5130808	Ground PlateGrounding Receptacle	TEXT		1	1		1
+PARAM	180df945-8d84-4d82-a79b-63d8d2d8ac4d	Bracket Width (mm)	TEXT		1	1		1
+PARAM	87392247-45fe-4ed2-99ed-d98badc67d80	Conductor 2 Outer Diameter, Nominal (imperial)	LENGTH		1	1		1
+PARAM	829b7248-c8f5-4fda-9715-eafe3d3c560a	Diameter (mm) Nom	TEXT		1	1		1
+PARAM	da15d049-ebc7-479f-b337-40237fc51bcd	Diameter (') Min	LENGTH		1	1		1
+PARAM	55386a4a-3d8c-4b03-8c50-7e0fba56b5a0	Unit Weight (metric) Nom	TEXT		1	1		1
+PARAM	95a3e94c-5698-49ff-9187-f1d2b09fc29d	Resulting AT Height	TEXT		1	1		1
+PARAM	6d0bd84d-7b81-48a5-bf80-937745bd0559	alias	TEXT		1	1		1
+PARAM	9bcacb4f-7310-46c1-ac0a-3ff533e8d6a4	Cable Length (')	LENGTH		1	1		1
+PARAM	7e05f750-bd52-4830-bb4b-4210a9e90db0	Revit Family Type 	TEXT		1	1		1
+PARAM	6564d051-d82d-42ba-9890-c4e0b16b1f9a	Below Structure Mast Assembly Height (')	LENGTH		1	1		1
+PARAM	8c506a52-5e79-46b3-b68b-f4d21602f51d	Stand Height (in.)	LENGTH		1	1		1
+PARAM	2892f752-1075-4998-9629-4b3775ebe313	EF000010 Model	TEXT		1	1		1
+PARAM	3c2d5d53-b3e7-4166-aee3-f325ca45b3f9	Installation Height (metric) Min	TEXT		1	1		1
+PARAM	107a5054-b7f0-4bdc-9016-5db2265b356a	Effective Projected Area (imperial)	LENGTH		1	1		1
+PARAM	34cd8d55-2db8-4e3b-b236-5bd582319927	Conductor Sleeve	TEXT		1	1		1
+PARAM	17323256-6a1a-4354-bdad-353da9c19baa	A (') Min	LENGTH		1	1		1
+PARAM	b1db7b56-a6d2-446b-9520-c40aea5f5cc7	Mast Diameter (in)	LENGTH		1	1		1
+PARAM	18937f57-bbd3-422f-abc2-d84afa266eb1	Rebar Size, US Nom	TEXT		1	1		1
+PARAM	603b2758-cb64-4363-98ec-ca76e69cca6d	IP Reference	TEXT		1	1		1
+PARAM	3f037b58-4964-41e5-900e-c2b967863fd2	Drill Bit Diameter (')	LENGTH		1	1		1
+PARAM	bdc11159-5ed5-40f9-b5fb-49f5287222d1	ER-Height (in.)	LENGTH		1	1		1
+PARAM	b45f035b-860b-456f-8351-2607fe4d2da5	Width (in.) Nom	LENGTH		1	1		1
+PARAM	9ec0d45b-8c44-4ce9-a1c6-e916e9824722	ER-Diameter (in.)	LENGTH		1	1		1
+PARAM	874a045e-84db-4aaa-8ed8-71600826ed94	Outer Diameter (') Nom	LENGTH		1	1		1
+PARAM	82093a5e-d8cd-4168-8804-1e2af23f084d	Conductor 1 Outer Diameter, Nominal (metric)	TEXT		1	1		1
+PARAM	60870060-6e00-4ab2-b8ff-6a522c7bbbc8	Effective Projected Area (metric)	TEXT		1	1		1
+PARAM	50e14360-544e-407a-ad3b-f50d994e614a	Alias	TEXT		1	1		1
+PARAM	ab974f61-871d-4cde-8c0f-ff2ce72e655c	ISONVMASTAXX-Height (in.)	LENGTH		1	1		1
+PARAM	42b77a61-35b4-4b71-9c8f-a65815636ec3	Conductor 3 Outer Diameter, Nominal (metric)	TEXT		1	1		1
+PARAM	7315b661-05ba-4ca0-81d8-53bfddf5244e	Thickness (GA)	TEXT		1	1		1
+PARAM	0101fa61-1fa0-414d-b0c8-8245462b4f7b	EF004620 Diameter Min	TEXT		1	1		1
+PARAM	c6286f62-0da4-4048-87f8-69660181e43d	Mast Used	YESNO		1	1		1
+PARAM	34bd8762-ec40-472c-ba35-adaddff84b6f	Offset (in.)	LENGTH		1	1		1
+PARAM	a1c5b362-bcb0-45ea-956d-aa9de39a35ed	EF004620 Diameter Max	TEXT		1	1		1
+PARAM	cf81db62-87ca-4086-95e4-6215e2d4d56d	P-Width (in.)	LENGTH		1	1		1
+PARAM	78a31863-c41d-4ebb-8119-7aeb8fb57921	NBDN (mm) Min	TEXT		1	1		1
+PARAM	69bf2263-cbb1-4bd0-9c5b-2168d8f36254	Below structure  Mast Assembly Height (ft)	LENGTH		1	1		1
+PARAM	337a8966-a04e-4aeb-b975-5e109c5ff3ea	Reduced Emission	TEXT		1	1		1
+PARAM	1264c667-a360-486a-9eef-1f1bfee4766e	Stand Height (m)	TEXT		1	1		1
+PARAM	7fa3ef67-4470-4530-b9c6-ee394a2abe35	Thread Size 2	TEXT		1	1		1
+PARAM	e5581668-873c-4d1f-ac9c-3a397b41ca2f	Hole Size (mm) Nom	TEXT		1	1		1
+PARAM	3dacb768-e1df-4738-80e0-925ff8047775	Tape Size	TEXT		1	1		1
+PARAM	d2d2c669-83c7-424a-9042-cf9594758f51	ISOnV Height Above	LENGTH		1	1		1
+PARAM	65c40e6a-bb9e-42ae-8e1d-ed467101d0d8	Cadweld Width (in.)	LENGTH		1	1		1
+PARAM	a4a1486a-269b-4048-b3e4-a03a860ac2c5	Mast Series	TEXT		1	1		1
+PARAM	890dbf6a-1933-46ae-8c8a-fdf56298f165	Rail Foot Thickness (imperial) Min	LENGTH		1	1		1
+PARAM	b1d07f6b-1f30-471d-9e50-144c1bc96f44	Above Structure Mast Assembly Height (ft.)	LENGTH		1	1		1
+PARAM	7645b76c-6472-455d-8fe1-872c47045e66	Rebar Size, US Max	TEXT		1	1		1
+PARAM	cf0f5c6d-3366-4475-b766-78a20b2d9cac	OSAT Angle	ANGLE		1	1		1
+PARAM	e0f2426e-fb40-4259-817a-ec4205637f0f	Depth (in.) Nom	LENGTH		1	1		1
+PARAM	f4b6f76e-cf33-4e7c-880a-b4e21140f293	Terminal Height (m)	TEXT		1	1		1
+PARAM	a8c41770-d38b-4279-a359-80f0d2946e57	Ground Rod Diameter, Actual (mm) Min	TEXT		1	1		1
+PARAM	4d655b70-ead0-441d-a7d7-05315af093e4	Height Above (ft)	LENGTH		1	1		1
+PARAM	27d5e170-d17a-4b95-9489-426b3758b44e	Total Width (m)	TEXT		1	1		1
+PARAM	50a7fe70-e8ec-4953-8122-f4a7f734ef5e	Outer Diameter (') Min	LENGTH		1	1		1
+PARAM	5a731871-a646-4187-b86e-4a28732f7b79	Hole Size 2 (mm) Nom	TEXT		1	1		1
+PARAM	4f9c0372-f31d-4241-8fdf-de86541fc4ef	Lug_Busbar Size	TEXT		1	1		1
+PARAM	f65c1172-0ba8-4067-87ef-6e111fa2afe7	Offset (mm)	TEXT		1	1		1
+PARAM	70e25172-cff6-44bb-b963-8cc64ee58407	Flange Thickness (') Max	LENGTH		1	1		1
+PARAM	5137a575-e813-4e0d-9b81-0662575b0940	Diameter (mm)	TEXT		1	1		1
+PARAM	45f9a775-f01a-4b13-a8ef-8a82818bfd1b	ISOnV Height Below	LENGTH		1	1		1
+PARAM	77249c77-c96a-4310-bd3f-53c8fe184150	Stud Type	TEXT		1	1		1
+PARAM	6d5ed677-dfcb-44b0-9499-1fd88d7d2487	OSAT Bend Length (in.)	LENGTH		1	1		1
+PARAM	d6b00878-b549-45cc-abf4-8d543a855d7a	PG #	TEXT		1	1		1
+PARAM	38cf8679-7db3-4c71-b565-e228a3e78ae0	Above Structure Terminal Height	TEXT		1	1		1
+PARAM	05f5c979-7555-4466-ae27-305cb5ddc13e	EF008276 Material of saddle clamp	TEXT		1	1		1
+PARAM	7370347a-ffa6-4bad-a2b2-9461f6c92607	Length 1 (') Nom	LENGTH		1	1		1
+PARAM	d3de527a-15ce-41cf-89f8-c347d2dabd6e	Rebar Size, Metric Nom	TEXT		1	1		1
+PARAM	26577c7a-1ab0-44e5-865c-da9461f8dffb	Overall Air Terminal Height Actual	TEXT		1	1		1
+PARAM	6468097b-57a3-4790-b756-14b8d859cadb	Conductor 2	TEXT		1	1		1
+PARAM	66547a7b-85b1-4db2-b179-9480c518f46a	A (') Nom	LENGTH		1	1		1
+PARAM	75f3817b-f0d0-47b8-848f-432bdbac5cce	Mast Height (m)	TEXT		1	1		1
+PARAM	fe7db37b-f832-4cb5-a9fd-f35e83839cc1	ER-Diameter	LENGTH		1	1		1
+PARAM	e5cbad7c-4e31-4118-84be-0bd788e6d5f8	Height 1 (')	LENGTH		1	1		1
+PARAM	900f3f7d-ce1c-4bdb-bc12-e6e257b122f9	Ground Rod Diameter (Imperial)	LENGTH		1	1		1
+PARAM	67e75e7e-b1ac-4564-a344-fc4f00b13e73	EF000443 Connection	TEXT		1	1		1
+PARAM	a0a08d7e-b504-4c9b-b018-f0f6beb945a7	Diameter (Largest Size) (in.)	LENGTH		1	1		1
+PARAM	b1d81a7f-926d-4db3-a422-a73a927b5a8a	EF004254 Material of carrier	TEXT		1	1		1
+PARAM	4029b87f-1db1-4ed4-83ce-0c877c023d01	Flange Thickness (') Nom	LENGTH		1	1		1
+PARAM	aed64980-f9f7-49a1-b840-44c701c5dee8	Width 1 (imperial) Nom	LENGTH		1	1		1
+PARAM	a50c8380-ec92-49e2-9aa5-e4e836b5a4d3	LugBusbar Size	TEXT		1	1		1
+PARAM	d92a3d81-8e03-462f-9308-59675fe73d74	B (') Nom	LENGTH		1	1		1
+PARAM	caecbd81-1989-48e4-b3fe-65161c5cd42d	Ground Rod Diameter, Nominal Nom	TEXT		1	1		1
+PARAM	40e33a82-1df3-4b93-ae2b-589bf762605e	Rebar Size, US Min	TEXT		1	1		1
+PARAM	c2cdea82-afd5-45ab-bc17-1aa6cba8c82e	Below structure Mast Assembly Height (ft.)	LENGTH		1	1		1
+PARAM	3477e784-a419-4aa5-8e35-c4bbfd2fef52	ISOnV Lower Mast Height	LENGTH		1	1		1
+PARAM	7acd6585-f3d3-4b79-811a-76f814a8aefc	Bracket Length  (in.)	LENGTH		1	1		1
+PARAM	33e24786-150e-4320-bcf0-b87aad18f7b5	Diameter 1 (') Nom	LENGTH		1	1		1
+PARAM	80c03687-d208-424c-a1ec-334fd46fa461	Included Parts	TEXT		1	1		1
+PARAM	c8896a87-65be-4257-b56f-ec58da5455b7	Height Below (m)	TEXT		1	1		1
+PARAM	a1ba2c88-6c52-49da-84dd-c815f8dbbe71	Rod Size (mm)	TEXT		1	1		1
+PARAM	d7d60589-8397-44cb-8e1d-f834ba1c49ff	Torque (imperial) Max	LENGTH		1	1		1
+PARAM	de12818c-1981-41c4-816b-04fe1506f4b3	Class	TEXT		1	1		1
+PARAM	2d92858d-4654-447c-8968-81d7a54527c5	Finish	TEXT		1	1		1
+PARAM	14c40e8e-2b1d-4f77-bba5-38b8016b50b4	Ground Plate_Grounding Receptacle	TEXT		1	1		1
+PARAM	567a0590-cda5-4e81-b938-41031113ad92	X (')	LENGTH		1	1		1
+PARAM	41b8e591-fbd5-40a2-a258-dad0a4edd06f	Rebar Size, Canada Max	TEXT		1	1		1
+PARAM	03943f93-a921-4a41-b17f-93161b1c1644	Hole Size (') Nom	LENGTH		1	1		1
+PARAM	ed497c94-b8ff-47a6-b178-f8a83a27beec	Conductor 2 Outer Diameter, Nominal (metric)	TEXT		1	1		1
+PARAM	2e5b1695-913a-4816-b7a1-a23174e78f77	Material	TEXT		1	1		1
+PARAM	b2de6d95-205e-4da3-b923-10af03274408	Diameter (in.)	LENGTH		1	1		1
+PARAM	16afb495-ea0b-45e2-8a37-80584f8db5d0	NBDN (mm) Nom	TEXT		1	1		1
+PARAM	c8f64d96-b57f-4648-a6db-c41fdd5d90f8	Width 2 (imperial) Nom	LENGTH		1	1		1
+PARAM	98776896-50ba-4e30-ab18-07e0ac13d2a4	Outer Diameter (mm) Nom	TEXT		1	1		1
+PARAM	6aec9796-3c2c-47e4-aca4-4f1356b6b2ac	Conductor 1 Outer Diameter, Nominal (imperial)	LENGTH		1	1		1
+PARAM	f4fef897-00c3-44d5-a2e1-1ea724104541	Length (metric) Nom	TEXT		1	1		1
+PARAM	750bd898-1a17-44f1-8aa0-7345f5180d92	Type	TEXT		1	1		1
+PARAM	1329a499-e882-4a08-a88c-2ade6c6f10ef	Upper Mast Material	TEXT		1	1		1
+PARAM	7cdb379a-4535-4f4f-b29e-d81528de17d8	Rebar Size, Metric Max	TEXT		1	1		1
+PARAM	27fb8d9a-9d16-4a6b-afe5-e37f13e44ee2	Welding Material	TEXT		1	1		1
+PARAM	825df49a-7751-4a52-9548-2836b6f571d0	Certifications	TEXT		1	1		1
+PARAM	59b0429c-d3c7-49b4-9ad8-716ca45a0a5d	GP-Depth Below Grade	LENGTH		1	1		1
+PARAM	6ab12f9d-0393-4b02-8f28-ad661b5a78e7	ISOnV Height Above (ft)	LENGTH		1	1		1
+PARAM	30fba49f-5f4a-4bbd-bb11-e893044d0d2e	ActiveInactive	TEXT		1	1		1
+PARAM	6ad79fa0-3541-416d-bcd9-fa5c48ffcae0	Split Crucible	TEXT		1	1		1
+PARAM	bff1a0a0-72df-4a4a-bf81-9fa1d25c3f1d	System Description	TEXT		1	1		1
+PARAM	2ec0a0a1-b8d8-4ad6-88c1-e49885cb9920	Pipe Size Min	TEXT		1	1		1
+PARAM	f64806a2-61d2-4d77-89c9-10ba192be98a	ISOnV Lower Mast Height Above (ft)	LENGTH		1	1		1
+PARAM	645532a2-d369-410c-8fb7-95198ebf2dc6	ER-Height	LENGTH		1	1		1
+PARAM	37a1d1a2-9bff-44f5-8a23-2b37a45c92cf	Sub Revit Family	TEXT		1	1		1
+PARAM	84830da4-09c5-4575-bc2c-0e208975ddc1	D (') Nom	LENGTH		1	1		1
+PARAM	a554eaa5-d74b-473f-b611-0dac72cb4c87	OSAT Height (in.)	LENGTH		1	1		1
+PARAM	a5572ba6-1bb2-4e53-bdff-1c093ca6d827	Width (in.)	LENGTH		1	1		1
+PARAM	50ef78a6-0691-431f-a56f-0c2b8ede80a2	Diameter 2 (') Nom	LENGTH		1	1		1
+PARAM	b74877a8-e8db-4774-838d-717bac5810b4	Complies With	TEXT		1	1		1
+PARAM	2bd8d3a9-e3e5-470d-ae92-347854e6695e	Slot Size (imperial)	LENGTH		1	1		1
+PARAM	7029a3aa-a41b-4bc2-bd3f-6443a42d4204	Height Above (m)	TEXT		1	1		1
+PARAM	bd52c9ab-b1b6-41e4-9645-a75ed27741d8	A (mm) Nom	TEXT		1	1		1
+PARAM	bde8e2ab-b1a0-4d59-944c-34c38be675a0	Lower Mast Material	TEXT		1	1		1
+PARAM	fcba82ac-2f40-4608-8e48-3fd71aeb4024	Mast Material	TEXT		1	1		1
+PARAM	5bc8c1ae-8df6-4455-a325-f24f66891d2d	NBDN (mm) Max	TEXT		1	1		1
+PARAM	f96514af-7eab-449d-bf8a-3bb6add14514	Temperature (C) Max	TEXT		1	1		1
+PARAM	14e17aaf-f4c9-4565-b867-27b0237b0bbd	Parts Included	TEXT		1	1		1
+PARAM	8fad3ab0-4bc0-45d5-99d8-5b5dcd87d930	Width (mm) Nom	TEXT		1	1		1
+PARAM	c661ccb0-85aa-4ffd-b69e-3587ff80d15c	Pipe Size Nom	TEXT		1	1		1
+PARAM	960f18b2-d5df-4f52-a379-bc2b435462c2	Pedestal Size (imperial)	LENGTH		1	1		1
+PARAM	c2c69fb2-68d6-4fa0-ae9a-43207b13ce06	Global Part Number	TEXT		1	1		1
+PARAM	eef39db3-1ea4-4b32-a748-1fef3342a602	Below structure  Mast Assembly Height (m)	TEXT		1	1		1
+PARAM	704755b7-323f-48a6-94af-8d9a4ed65e5e	Air Terminal Height	TEXT		1	1		1
+PARAM	24bec2b8-7416-44af-a3a0-5674e43e8e90	Rigid Conduit Size (')	LENGTH		1	1		1
+PARAM	415500b9-9424-4ff0-b803-91ae9a7b5124	Diameter 1 (mm) Nom	TEXT		1	1		1
+PARAM	86342ab9-e8dc-4dc6-8f9d-5a68aede9b4d	Total Assy Height (m)	TEXT		1	1		1
+PARAM	db9ffbb9-01ae-417b-9edc-cd33c7ed9e96	Metric Description	TEXT		1	1		1
+PARAM	13992bba-35d6-405a-b103-a65ef7bb2ccf	Height (in.)	LENGTH		1	1		1
+PARAM	93cb5fbc-adc6-425c-8c42-c93c80bbdae0	Conductor Size, UL	TEXT		1	1		1
+PARAM	66a3e9bc-b8aa-4332-aae3-ab4427142e7b	Diameter 2 (mm) Nom	TEXT		1	1		1
+PARAM	1ded94bd-5891-4981-8028-84908efcaf3f	Conductor Outer Diameter, Nominal (imperial)	LENGTH		1	1		1
+PARAM	4319e3bd-a40c-4dab-a2b2-53b3b7d99a1f	Torque (imperial) Min	LENGTH		1	1		1
+PARAM	9a8a3cc2-e951-40c0-990c-a2b6338cb664	Below structure  Mast Assembly Height (ft.)	LENGTH		1	1		1
+PARAM	77dc90c2-a488-4613-bd92-0cc51bccfaca	Lug Busbar Size	TEXT		1	1		1
+PARAM	5056f2c2-b8a3-452a-8cbf-fec3e0c7d96e	Connection, Stranded (imperial) Nom	LENGTH		1	1		1
+PARAM	c1492cc3-4e5e-4659-9a0e-0059a1387a95	Mold Family	TEXT		1	1		1
+PARAM	1c02cdc3-0a61-4355-bf29-27c975d99fda	Radius (imperial)	LENGTH		1	1		1
+PARAM	25d816c5-c89a-4fa7-af8a-a97c73449486	EF004209 LengthHeight	TEXT		1	1		1
+PARAM	944f22c6-7f6f-4b8c-9f14-d038125681bd	Rebar Size, Canada Nom	TEXT		1	1		1
+PARAM	844aa0c7-cfeb-4520-ae5e-402a65cf0976	Outer Diameter 2 (') Nom	LENGTH		1	1		1
+PARAM	5f9b6dc8-a2dc-4945-81c9-4bf4c7b5668a	Ground Rod Diameter, Actual (') Nom	LENGTH		1	1		1
+PARAM	e32097c9-fe65-4803-8ca4-4acad926d385	Method(s)	TEXT		1	1		1
+PARAM	c1e53bca-94a5-4975-bba1-52b65f42efa7	alias (hole size, depth, height, width)	TEXT		1	1		1
+PARAM	45d72ecc-5290-4975-8d3e-19a9e7630e8c	C (') Nom	LENGTH		1	1		1
+PARAM	b98080ce-128f-432c-aed6-c88524f4dc9a	EF004183 Mounting type conductor	TEXT		1	1		1
+PARAM	c1200acf-a200-4e3e-a5f9-fac6e80d44f3	Rail	TEXT		1	1		1
+PARAM	21dae0cf-5273-4ab4-91aa-e812470e7864	Brand	TEXT		1	1		1
+PARAM	9f3f25d0-880a-4178-b83b-be3d686050e2	Connection, Stranded (metric) Nom	TEXT		1	1		1
+PARAM	f73e2fd0-9c23-498a-b0fe-b67fbc3aefee	GP-Thickness (in.)	LENGTH		1	1		1
+PARAM	b35657d1-2e65-48b8-9c44-e5b3759847d7	NB_DN (mm) Min	TEXT		1	1		1
+PARAM	496ac5d1-936e-4707-a5d9-1afbd4423dd6	Rebar Size, Metric Min	TEXT		1	1		1
+PARAM	6140c5d4-ae51-4bd0-a8b6-31a4b7efb447	Hole Size 1 (mm)	TEXT		1	1		1
+PARAM	5906dbd5-c646-4547-8415-45c38fb1712a	Contact Area (imperial) Min	LENGTH		1	1		1
+PARAM	872f5bd6-092c-47f7-8aea-40bc002394df	Overall Assembly Height (m)	TEXT		1	1		1
+PARAM	a30dd1d7-4de4-499e-af78-8474b7ba33ed	Temperature (F) Min	TEXT		1	1		1
+PARAM	3d3911d8-1554-480b-b379-4f0d2c9343d1	Diameter (largest Mast size) (in.)	LENGTH		1	1		1
+PARAM	2f9f5fd8-fe5f-49d2-ba77-6031227b1021	Outer Diameter (mm) Min	TEXT		1	1		1
+PARAM	5b37f3d9-5182-4d26-9f21-1084e03bda82	Cadweld Height (in.)	LENGTH		1	1		1
+PARAM	1d899cda-da64-4190-8166-40b01ec2f833	Mounting	TEXT		1	1		1
+PARAM	b6db4adb-5698-4f12-8ca6-3e94ae76ca0b	Rail Foot Thickness (imperial) Nom	LENGTH		1	1		1
+PARAM	d7dfa1dc-9f4d-4a2a-aeec-3edc9d8b8676	Studs	TEXT		1	1		1
+PARAM	32951bdd-4954-4552-b4a2-f329229a4141	Number of Cable Attachments	TEXT		1	1		1
+PARAM	5dda2fdd-6f05-4096-b93e-6a8cfdd1f7a0	Above Structure Mast Assembly Height (ft)	LENGTH		1	1		1
+PARAM	a2fbd3dd-d4e8-4949-a945-b4d516614990	EF008277 Material base	TEXT		1	1		1
+PARAM	110a22de-aa8e-47cb-a74f-ec5de53125a4	Triggered Advance, ∆T	TEXT		1	1		1
+PARAM	0fd575de-f567-49d3-b759-fd023443c4bb	Stand Width (in.)	LENGTH		1	1		1
+PARAM	5d2740df-aaf4-44bf-832f-8c6e9f0d969d	Height (mm) Nom	TEXT		1	1		1
+PARAM	7dcbfee1-69fc-49e3-8145-52cad04a0032	Revit Family	TEXT		1	1		1
+PARAM	1f91a2e2-974e-4b9c-bc11-f3f1ceab7634	GP-Width (in.)	LENGTH		1	1		1
+PARAM	6d4952e5-1585-4125-9305-c4bfc50d15c4	Thickness (') Nom	LENGTH		1	1		1
+PARAM	12e38be5-d4be-42c0-98f6-52deea835bdd	Hole Size 1 (')	LENGTH		1	1		1
+PARAM	9eb297e5-029c-4e1c-adac-09dea06175d3	EF001779 Suited for EX-applications	TEXT		1	1		1
+PARAM	cce1d6e5-cd2a-4c8b-9c56-3392c37490d6	Ground Rod Diameter, Actual (mm) Nom	TEXT		1	1		1
+PARAM	8e373ae8-2f1f-4428-8629-d056bea18b37	Width (') Nom	LENGTH		1	1		1
+PARAM	e8f1d8e8-033e-4343-b111-02611f7991b7	Water Pipe Size (imperial) Max	LENGTH		1	1		1
+PARAM	4c8e14ea-71c3-4818-a493-eb5542e39019	Product	TEXT		1	1		1
+PARAM	2b295aeb-27a2-4964-82fd-5e49b3b22e1f	Washers	TEXT		1	1		1
+PARAM	202369eb-b823-4186-be96-6d1ee1ec593c	Height Below (ft)	LENGTH		1	1		1
+PARAM	835153ec-84b9-4133-abd2-c6920b620122	Outer Diameter 1 (') Nom	LENGTH		1	1		1
+PARAM	881ba1ec-6833-4835-8074-d1b95127e5fd	Ground Rod Diameter, Actual (') Min	LENGTH		1	1		1
+PARAM	d857c8ec-9a2b-4e46-a3d9-4c768f97f979	Flange Thickness (') Min	LENGTH		1	1		1
+PARAM	171e1fed-e94f-4378-b899-b680e7904699	OSAT Half Height (in.)	LENGTH		1	1		1
+PARAM	e29328ed-de30-4d16-9bdd-850326c46478	Diameter (') Nom	LENGTH		1	1		1
+PARAM	25bc2aed-0433-4c2d-a9e4-2bff2181bbcc	Bracket Length (in.)	LENGTH		1	1		1
+PARAM	30e79bed-db86-4c89-81b0-755a69a2806a	Imperial Description	TEXT		1	1		1
+PARAM	7bcd1bee-8a7d-49ee-99c1-958a0b60cf57	Length (in.)	LENGTH		1	1		1
+PARAM	382523ee-af17-4c21-a447-59306fc78593	Below Structure Mast Assembly Height (ft)	LENGTH		1	1		1
+PARAM	c8e37bee-ece0-4dc3-abde-4ffe43b28545	Above Structure Mast Assembly Height (m)	TEXT		1	1		1
+PARAM	4c96d3ee-c701-4fa7-9688-2720618c2aa4	Conductor Size	TEXT		1	1		1
+PARAM	d12489f0-8a6e-4731-9feb-9886930a25ce	Active_Inactive	TEXT		1	1		1
+PARAM	a2d83ff1-7916-4465-8156-cd8fe8daf996	Ground Rod Type	TEXT		1	1		1
+PARAM	17fae0f5-526a-4223-8758-c9b1778f1d06	Bracket Width (in.)	LENGTH		1	1		1
+PARAM	dd75eaf6-ae37-4cc3-a36b-a316fda0f5b5	Hole Size 2 (') Nom	LENGTH		1	1		1
+PARAM	9022fff6-9bc6-4391-b3ed-2e07faf9ff5c	Pipe Size Max	TEXT		1	1		1
+PARAM	bd5e3ef7-a1bf-40f2-ab95-2caa9572f0e3	Temperature (F) Max	TEXT		1	1		1
+PARAM	8fa98df7-1d2d-4c7a-b761-728954e3264e	Height (') Nom	LENGTH		1	1		1
+PARAM	0716c6f7-3bbe-4fb8-862d-f5e7a22e8d8a	Thread Length (imperial)	LENGTH		1	1		1
+PARAM	d928aef9-fbb0-42b1-b920-857fe3722581	Thread Length (metric)	TEXT		1	1		1
+PARAM	d703eef9-eb31-4220-b4f7-1fd77e9d9a7f	Water Pipe Size (imperial) Min	LENGTH		1	1		1
+PARAM	6430a6fa-3bf9-4207-bee1-ac7c3f8cd04b	Outer Diameter (') Max	LENGTH		1	1		1
+PARAM	8fddd6fa-afcd-4f6a-a34a-763a9aa61a58	Diameter (') Max	LENGTH		1	1		1
+PARAM	e91085fb-4bef-4b77-84bf-ca805ef6e001	Rail Foot Thickness (imperial) Max	LENGTH		1	1		1
+PARAM	45611dfc-a2e7-40e9-8351-8b14a2a78140	ISOnV Lower Mast Height Above	LENGTH		1	1		1
+PARAM	d6f921fc-4317-421c-95ca-38a2f22478f0	ISOnV Height Below (ft)	LENGTH		1	1		1
+PARAM	00a2d1fc-ad4b-4431-acb3-8f0227421966	Conductor 3	TEXT		1	1		1
+PARAM	937b4bfd-10e4-46f5-b01e-30971d8a7423	Rail Type	TEXT		1	1		1
+PARAM	33146efd-98d5-4d47-9e58-73d2f7632b5b	Mast Height (ft.)	LENGTH		1	1		1
+PARAM	b6bed3fd-9d22-408a-a264-a78773139286	Cadweld Length (in.)	LENGTH		1	1		1
+PARAM	97b4c1fe-bc6c-4f6b-ad11-d9f9c3b00499	P-Length (in.)	LENGTH		1	1		1
+PARAM	5a3a15ff-4c21-4495-9c52-ff20d055fb65	ISOnV Downleads	TEXT		1	1		1
+PARAM	44e8a3ff-77bc-4809-8822-0744d155b5d0	Height 2 (')	LENGTH		1	1		1

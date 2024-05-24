@@ -11,6 +11,12 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import datetime
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
+NVENT_USERNAME = os.getenv('NVENT_USERNAME')
+NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 
 # Sanitizes yes/no input from terminal
 def sanitize_input(input_str):
@@ -26,7 +32,7 @@ def sanitize_input(input_str):
 def generate_folder_location(test_case):
 
     # Generate a folder C:\Users\e1176752\Documents\VSCode\Projects\LPSD\LPSD
-    folder_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
+    folder_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
     folder_name = datetime.datetime.now().strftime("%Y-%m-%d")
 
     directory_name = folder_location + folder_name
@@ -84,38 +90,51 @@ def get_json(test_case):
     options = Options()
     try:
         prefs = {'profile.default_content_setting_values.automatic_downloads': 1, \
-             'download.default_directory' : ("C:\\Users\\e1176752\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\JSON\\" + generate_folder_location(test_case))}
-        
+             'download.default_directory' : ("C:\\Users\\e1176752\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\LPSD\\Archive\\JSON\\" + generate_folder_location(test_case))}
+
         options.add_experimental_option("prefs", prefs)
         options.add_experimental_option("excludeSwitches", ["enable-logging"])
         driver = webdriver.Chrome(service=services, options=options)
 
         driver.get("https://qa-lpsd.nvent.com/") #TODO: allow for production server testing
         #driver.get("https://lpsd.nvent.com/")
+        time.sleep(5)
 
         try:
-            search_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
+            search_button = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.ID, "autodeskSigninButton")))
             search_button.click()
             time.sleep(1)
 
             input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "userName")))
-            input_field.send_keys("greg.martinjak@nvent.com")
+            input_field.send_keys(AUTODESK_USERNAME)
             
             submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "verify_user_btn")))
             submit_button.click()
+            time.sleep(3)
+
+            # Updated due to SSO as of 04.16.2024
+            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0116")))
+            input_field.send_keys(NVENT_USERNAME)
             time.sleep(1)
 
-            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"password")))
-            input_field.send_keys("nVent!23")
-
-            submit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "btnSubmit")))
-            submit_button.click()
+            next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+            next_button.click()
             time.sleep(1)
 
+            input_field = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID,"i0118")))
+            input_field.send_keys(NVENT_PASSWORD)
+            time.sleep(1)
+
+            next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "idSIButton9")))
+            next_button.click()
+            time.sleep(1)
+
+            time.sleep(60)
+            
             allow_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "allow_btn")))
             allow_button.click()
-            time.sleep(10)
-            
+            time.sleep(1)
+
             #edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[contains( text(), 'CVM Test Case 1 metric')]/following-sibling::td/button")))
             edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[contains( text(), '" +test_case_to_string(test_case)+"')]/following-sibling::td/button")))
             edit_button.click()                                                      
@@ -198,4 +217,3 @@ def get_json(test_case):
             driver.quit()
     except:
         print("Not acquiring JSON files.")
-

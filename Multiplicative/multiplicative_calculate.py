@@ -20,10 +20,10 @@ def test_case_to_string(test_case):
 # provides csv name and json name
 # TODO: Change pathing to reference pathing for scaleability
 def load_test_case(test_case):
-    csv_folder = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/CSV/"
+    csv_folder = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/CSV/"
     csv_file = csv_folder + "Test Case " + str(test_case) + ".csv"
     
-    json_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
+    json_location = "C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
 
     filenames = {}
 
@@ -88,7 +88,7 @@ def calc_multi(test_case):
                             H = i['position']['z']-level_z[len(level_z)-1]
                         W = minwidth[i['levelGuid']]
                         #W = building_dictionary[i['hostGuid']][0]
-                        multi_3 = [multiplicative.eq_a(H, W, 0.38), "A"]
+                        multi_3 = [multiplicative.eq_a(H, W, 0.05), "A"]
                     elif(i['isEdgeRectangular']):                       # Equation B
                         if(i['extendedPoint']):
                             H = level_z[len(level_z) - 1]
@@ -96,24 +96,22 @@ def calc_multi(test_case):
                             H = i['position']['z']-level_z[len(level_z)-1]
                         W = minwidth[i['levelGuid']]
                         #W = building_dictionary[i['hostGuid']][0]
-                        multi_3 = [multiplicative.eq_b(H, W, 0.38), "B"]
+                        multi_3 = [multiplicative.eq_b(H, W, 0.05), "B"]
                     elif(i['isFaceHorizontal']):                        # Equation C
                         H = i['position']['z']
                         W = minwidth[i['levelGuid']]
                         #W = building_dictionary[i['hostGuid']][0]
-                        multi_3 = [multiplicative.eq_c(H, W, 0.38), "C"]
+                        multi_3 = [multiplicative.eq_c(H, W, 0.05), "C"]
                     elif(i['isEdgeOval']):                              # Equation D
-                        if(i['levelGuid'] == level_g[len(level_g) - 1]):
-                            H = i['position']['z']
-                        else:
-                            H = i['position']['z']-level_z[len(level_z)-1]
-                        #W = building_dictionary[i['hostGuid']][0]
-                        W = minwidth[i['levelGuid']]
-                        multi_3 = [multiplicative.eq_d(H, W, 0.38), "D"]
+                        H = i['position']['z']-level_z[len(level_z)-1]
+                        W = building_dictionary[i['hostGuid']][0]
+                        #W = minwidth[i['levelGuid']]
+                        print("Height: {}, Width: {}".format(H,W))
+                        multi_3 = [multiplicative.eq_d(H, W, 0.05), "D"]
                     #else:                                           # Equation E
                     #    H = i['position']['z']
                     #    W = minwidth[i['levelGuid']]
-                    #    multi_3 = [multiplicative.eq_e(H, W, 0.38), "E"]
+                    #    multi_3 = [multiplicative.eq_e(H, W, 0.05), "E"]
                     elif(i['isGableEaveCorner'] or i['isGableRidgeCorner']): # Equation F
                         if(i['extendedPoint']):
                             H = i['position']['z']
@@ -122,7 +120,7 @@ def calc_multi(test_case):
                             H = i['position']['z'] - level_z[len(level_z) - 1]
                         W = building_dictionary[i['hostGuid']][0]
                         P = float(checkpoints[k][13])
-                        multi_3 = [multiplicative.eq_f(H, W, 0.38,P), "F"]
+                        multi_3 = [multiplicative.eq_f(H, W, 0.05,P), "F"]
                     elif(i['isGableEaveEdge'] or i['isGableRidgeEdge'] or i['isGableRoof']): # Equation G
                         if(i['extendedPoint']):
                             H = i['position']['z']
@@ -130,17 +128,17 @@ def calc_multi(test_case):
                             H = i['position']['z'] - level_z[len(level_z) - 1]
                         W = building_dictionary[i['hostGuid']][0]
                         P = float(checkpoints[k][13])
-                        multi_3 = [multiplicative.eq_g(H, W, 0.38,P), "G"]
+                        multi_3 = [multiplicative.eq_g(H, W, 0.05,P), "G"]
                     else:
                         raise
                     
                     #Equation 4
                     if(i['isCorner'] or i['isGableEaveCorner'] or i['isGableRidgeCorner']):
-                        multi_4 = [multiplicative.eq_q(0.05), "Q"]
+                        multi_4 = [multiplicative.eq_q(i['position']['z']), "Q"]
                     elif(i['isEdgeOval'] or i['isEdgeRectangular'] or i['isGableEaveEdge'] or i['isGableRidgeEdge'] or i['isGableRoof']):
                         multi_4 = [multiplicative.eq_r(), "R"]
                     else:
-                        multi_4 = [multiplicative.eq_s(0.05), "S"]
+                        multi_4 = [multiplicative.eq_s(i['position']['z']), "S"]
                         
                 #Equation 5
                 if (i['levelGuid'] == level_g[len(level_g)-1] or i['extendedPoint']):
@@ -150,22 +148,23 @@ def calc_multi(test_case):
                         else:
                             H = i['position']['z']-level_z[len(level_z)-1]
                         W = building_dictionary[i['hostGuid']][0]
-                        multi_5 = [multiplicative.eq_a(H, W, 0.38), "A"]
+                        multi_5 = [multiplicative.eq_a(H, W, 0.05), "A"]
                     elif(i['isEdgeRectangular']):
                         if(i['extendedPoint']):
                             H = i['position']['z']
                         else:
                             H = i['position']['z']-level_z[len(level_z)-1]
                         W = building_dictionary[i['hostGuid']][0]
-                        multi_5 = [multiplicative.eq_b(H, W, 0.38), "B"]
+                        multi_5 = [multiplicative.eq_b(H, W, 0.05), "B"]
                     elif(i['isFaceHorizontal']):
                         H = i['position']['z']
                         W = building_dictionary[i['hostGuid']][0]
-                        multi_5 = [multiplicative.eq_c(H, W, 0.38), "C"]
+                        multi_5 = [multiplicative.eq_c(H, W, 0.05), "C"]
                     elif(i['isEdgeOval']):
                         H = i['position']['z']
                         W = building_dictionary[i['hostGuid']][0]
-                        multi_5 = [multiplicative.eq_d(H, W, 0.38), "D"]
+                        #print("Height: {}, Width: {}".format(H,W))
+                        multi_5 = [multiplicative.eq_d(H, W, 0.05), "D"]
                     elif(i['isGableRidgeCorner'] or i['isGableEaveCorner']):
                         if(i['extendedPoint']):                                 # IF Extended
                             H = i['position']['z']                              # Height of the point
@@ -173,7 +172,7 @@ def calc_multi(test_case):
                             H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
                         W = building_dictionary[i['hostGuid']][0]
                         P = float(checkpoints[k][13])                           # Pitch
-                        multi_5 = [multiplicative.eq_f(H, W, 0.38, P), "F"]     # EQUATION F
+                        multi_5 = [multiplicative.eq_f(H, W, 0.05, P), "F"]     # EQUATION F
                     elif(i['isGableRidgeEdge'] or i['isGableEaveEdge'] or i['isGableRoof']):
                         if(i['extendedPoint']):                                 # IF Extended
                             H = i['position']['z']                              # Height of the point
@@ -181,7 +180,7 @@ def calc_multi(test_case):
                             H = i['position']['z'] - level_z[len(level_z) - 1]  # Height of the point - height of level 0
                         W = building_dictionary[i['hostGuid']][0]
                         P = float(checkpoints[k][13])                           # Pitch
-                        multi_5 = [multiplicative.eq_g(H, W, 0.38, P), "G"]     # EQUATION G
+                        multi_5 = [multiplicative.eq_g(H, W, 0.05, P), "G"]     # EQUATION G
                     else:
                         raise
 
@@ -194,7 +193,7 @@ def calc_multi(test_case):
                     else:
                         H = level_z[len(level_z)-1]
                         W = building_dictionary[i['hostGuid']][0]
-                        Hf = i['position']['z'] - H
+                        Hf = i['position']['z'] - level_z[len(level_z)-1]
                         multi_5 = [multiplicative.eq_n(H, W, Hf), "N"]
 
                 if(multi_3 == 1): multi_3 = [1, ""]

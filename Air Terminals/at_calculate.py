@@ -7,9 +7,9 @@ import numpy as np
 import matplotlib 
 
 global E_p
-global Q
 global e_b
 global k_v
+global Q
 
 E_p = 8.85e-12                          # Permittivity of free space
 h = 5000                                # Base cloud height (5000m)
@@ -29,10 +29,11 @@ k_v = {
 
 # Determines striking distance based on Ki value [DONE]
 def striking_distance(Ki, LPL, SE):
+    global Q
     e_b = e_0 * (0.82 + 0.18 * ( 1 - 0.5 * SE/1000))    # This might be missing from LPSD 4.0
     E_up = e_b/Ki
     d = 0.5
-    z = np.arange(0,1000,0.1) # striking distance range from 0 to 1000 (ds_max)
+    z = np.arange(0,4000,0.1) # striking distance range from 0 to 1000 (ds_max)
 
     # ELECTRIC FIELD CALCULATIONS
     EA_1 = np.array((Q.get(LPL) / (math.pi * E_p * (h - z) ** 2)))
@@ -48,16 +49,21 @@ def striking_distance(Ki, LPL, SE):
     if z[index_min] < 0.1:
         print("Striking distance is zstep or 0.1")
     else:
-        print("Striking distance is equal to: {} m".format(z[index_min]))
+        print("Striking distance (ds): " + str(round(z[index_min],3)) + "m")
     return z[index_min]
 
 def z_m(H, LPL, SE, ds):
+
     """
     Calculations for CVM Down - This finds the minimum point on the second plot and extracts the z value that it corresponds to. 
     This approximates the striking distance to the nearest zstep (0.1m). zstep value here is defaulted to 0.1 m because typical 
     values for dist are significantly larger than 0.1 m. Eup measures the effective e-field value that must be attained for an 
     upward leader to form from the POI.
     """
+    global Q
+    global E_p
+    global h
+    global k_v
 
     z_max = 8       # maximum meters for z_m values
     z_step = 0.01
@@ -78,7 +84,6 @@ def z_m(H, LPL, SE, ds):
     This approximates zm to the nearest zstep (0.01m). zstep is defaulted here to 0.01m because zm is commonly less than 1m and 
     rounding to the nearest 0.1m doesn't provide smooth results.
     """
-
     
     z_up = np.arange(H,5*H,z_step)
     z_0 = np.round((k_v.get(LPL) * H - z_m * (k_v.get(LPL) - 1)) / ((k_v.get(LPL) + 1) + 0.01), 2)
@@ -87,45 +92,29 @@ def z_m(H, LPL, SE, ds):
     x = np.arange(z_0, H, z_step)
 
     d_h = np.round((z_m * (k_v.get(LPL) + 1) + H) / k_v.get(LPL), 2)
-    print("d_h is equal to {}".format(d_h))
-    """
-    s = np.arange(-ds, ds, x_step)
-
-    # Setting up drawing for striking distance curve and velocity driven boundary
-    d_b = np.array((((z_m * (k_v.get(LPL) - 1) + z) / k_v.get(LPL)) ** 2 - (z - H) ** 2) ** 0.5 ) # positive solid blue curve
-    d_r = np.array((((z_m * (k_v.get(LPL) - 1) + x) / k_v.get(LPL)) ** 2 - (x - H) ** 2) ** 0.5 ) # positive solid blue curve
-
-    d_b_neg = d_b * -1 # negative solid blue curve
-    d_r_neg = d_r * -1 # negative solid red curve
-    
-    sdc = np.array((ds ** 2 - s ** 2) + H) # solid red curve
-    """
+    #print("d_h is equal to {}".format(d_h))
 
     if ds < d_h:
-        print("ds > d_h")
+        print("ds ({}m) < d_h ({}m)".format(round(ds,2),d_h))
         z_r = H         # height of intersection between both curves
         r_a = ds        # attractive radius is set to striking distance
         #y_max = 2*H
     elif ds > 5 * H:
-        print("ds > 5*H")
+        print("ds ({}m) > 5*H ({}m)".format(ds,5*H))
         z_r = 5 * H
         r_a = (((z_m * (k_v.get(LPL) - 1) + (5 * H)) / k_v.get(LPL)) ** 2 - (4 * H) ** 2) ** 0.5            
         #y_max = np.max(sdc)
     else: 
+        print("ds ({}m) > d_h ({}m) and ds ({}m) < 5*H ({}m)".format(ds,d_h,ds,5*H))
         z_r = k_v.get(LPL) * ds - z_m * (k_v.get(LPL) - 1)
         r_a = ((ds ** 2) - (z_r - H) ** 2) ** 0.5
         #y_max = np.max(sdc)
 
-    print("z_m = {}, height of intersection = {}, attractive radius = {}, kv = {}".format(z_m, z_r, r_a, k_v.get(LPL)))
+    r_a = round(r_a,2)
 
-
-
-
-
-    #z_m = z[index_min]
+    print("z_m = {}, height of intersection (z_r) = {}, attractive radius (r_a) = {}, kv = {}, z_0 = {}".format(z_m, z_r, r_a, k_v.get(LPL),z_0))
     return 
 
-def cvm(LPL):
     E_p = 8.85e-12  # permittivity of free space
     Q = {           # charge based on LPL (dictionary | LPL:Q)
         1: 0.16,
@@ -170,49 +159,18 @@ def cvm(LPL):
 def ki(data):
     print('pewpew')
 
-#TODO: everything
-def csv_read(csv_name):
+# H = Height of the AT
+H = 25
 
-    rows = []
+# LPL
+LPL = 2
 
-    with open(csv_name, newline = '') as csvfile:
-        csv_object = csv.reader(csvfile, delimiter = ',')
-        for row in csv_object:
-            rows.append(row)
-        return rows, len(rows)
-    
-def test_case_to_string(test_case):
-    tc = {
-        1: "CVM Test Case 1 metric",
-        2: "CVM Test Case 2",
-        3: "CVM Test Case 3 Rev B",
-        4: "CVM Test Case 4",
-        5: "CVM Test Case 5",
-        6: "CVM Test Case 6 Rev F",
-        7: "CVM Test Case 7"
-    }
-    return tc.get(test_case) + "_CVMResults"
+# Site Elevation
+SE = 0
 
-def load_test_case(test_case):
+# striking distance =(Ki, LPL, SE)
+Ki = 25.5
 
-    csv_folder = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/AT/"
-    csv_file = csv_folder + "Test Case " + str(test_case) + ".csv"
-    
-    json_location = "C:/Users/e1176752/Documents/VSCode/Projects/LPSD/LPSD/Archive/JSON/"
-
-    filenames = {}
-
-    for filename in os.listdir(json_location):
-        filenames[filename] = os.path.getmtime(json_location + filename)
-        
-    v = list(filenames.values())
-    k = list(filenames.keys())
-    json_folder = json_location + (k[v.index(max(v))])
-    json_file = (json_folder + "/" + test_case_to_string(test_case) + ".json")
-    print("Read multiplicative data from {}".format(json_file))
-    return [csv_file, json_file]
-
-#striking_distance(137.56, 1, 0)
-#TODO: determine ki, height of attractive radius, derating angle, attractive radius
-# Completed: striking distance
-z_m(34.28, 1, 0, striking_distance(125, 1, 0))
+#print("Setting starting Ki to {}".format(Ki))
+ds = striking_distance(Ki, LPL, SE)
+z_m(H, LPL, SE, ds)

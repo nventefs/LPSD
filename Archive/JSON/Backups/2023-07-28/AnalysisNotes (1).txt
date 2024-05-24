@@ -1,0 +1,6 @@
+1) It is the customers responsibility to provide accurate and complete specifications, drawings, and other information relevant to this lightning protection system.
+2) It is the responsibility of the lightning protection system installer to ensure the design and installation of the lightning protection system, including the grounding and bonding system, complies with the latest revisions of relevant national and international electrical installation and lightning protection standards.
+3) All installations must be inspected (or certified if mandated by the authority having jurisdiction).
+4) The length of the quoted down-conductor(s) are an estimate only. Once the final routing has been determined, a precise measurement should be taken prior to ordering.
+5) The lightning protection installer is responsible for anchoring the cantilevered mast supporting brackets, anchoring the guy system mast base and the anchoring points of the guy wires as applicable. A review by a structural engineer may be needed.
+6) The crows foot grounding (earthing) electrode design is based on uniform soil with resistivity of 150 Ohms. If the soil resistivity differs, the design and the materials may need to be altered.
