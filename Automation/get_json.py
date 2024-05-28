@@ -65,7 +65,8 @@ def test_case_to_json(test_case):
         4: "CVM Test Case 4_CVMResults.json",
         5: "CVM Test Case 5_CVMResults.json",
         6: "CVM Test Case 6 Rev F_CVMResults.json",
-        7: "CVM Test Case 7_CVMResults.json"
+        7: "CVM Test Case 7_CVMResults.json",
+        8: "S1000 QA TC1"
     }
     return tc.get(test_case)
 
@@ -209,11 +210,12 @@ def get_json(test_case):
 
             print("end")
             time.sleep(10)
+            
             #//*[@id="userProjectsTable_Body"]/tr[388]/td[3]/button
             #<td class="table-project-name">CVM Test Case 1 metric</td>
-
 
         finally:
             driver.quit()
     except:
         print("Not acquiring JSON files.")
+
