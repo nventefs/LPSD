@@ -162,7 +162,6 @@ def configure_webdriver(test_case):
 def get_json(test_case):
 
     try:
-        # Updated due to SSO as of 04.16.2024
         
         edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[text() = '" +test_case_to_string(test_case, "S1000")+"']/following-sibling::td/button")))
         edit_button.click()                                                      
@@ -233,10 +232,12 @@ def get_json(test_case):
 
         driver.quit()
     except:
-        print("Not acquiring JSON files.")
+        print("Failed when acquiring JSON files.")
+
 
 if __name__ == '__main__':
     global driver
+
     for i in range(1,17,1):
         configure_webdriver(i)
         print(f"Beginning to run test case {i}")
@@ -244,5 +245,6 @@ if __name__ == '__main__':
         time.sleep(5)
         login()
         get_json(i)
+
 
     driver.quit()
