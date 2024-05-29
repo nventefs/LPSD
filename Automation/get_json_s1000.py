@@ -62,22 +62,23 @@ def get_json(test_case):
         ActionChains(driver).key_down(Keys.ALT).key_down(Keys.CONTROL).send_keys("q").perform()
         time.sleep(1)
         ActionChains(driver).key_up(Keys.ALT).key_up(Keys.CONTROL).perform()
+        time.sleep(.2)
 
         debug_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "debugToolsButton")))
         debug_button.click()
-        time.sleep(3)
+        time.sleep(.2)
 
         debug_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "debugtools_exportanalysisresults_input")))
         debug_button.click()
-        time.sleep(1)
+        time.sleep(.2)
 
         debug_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "debugtools_exit_button")))
         debug_button.click()
-        time.sleep(1)
+        time.sleep(.2)
 
         debug_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "lpsd_toolbar_vertical_button_analysistools")))
         debug_button.click()
-        time.sleep(1)
+        time.sleep(.2)
 
         debug_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "lpsd_toolbar_vertical_button_analyze")))
         debug_button.click()
@@ -101,7 +102,7 @@ def get_json(test_case):
 
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_startanalysis_nextbutton4")))
         next_button.click()
-        time.sleep(1)        
+        time.sleep(1)       
 
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_startanalysis_nextbutton5")))
         next_button.click()
@@ -109,18 +110,17 @@ def get_json(test_case):
 
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_analyzeproject_run_button")))
         next_button.click()
-        time.sleep(12)
+        time.sleep(7)
 
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_startanalysis_nextbutton6")))
         next_button.click()
-        time.sleep(1)       
+        time.sleep(1)      
 
         next_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "analysis_startanalysis_donebutton7")))
         next_button.click()
         time.sleep(1)
 
         print("JSON file successfully downloaded")
-        time.sleep(1)
 
         driver.quit()
     except:
@@ -130,11 +130,11 @@ def get_json(test_case):
 if __name__ == '__main__':
     global driver
 
-    for i in [8,11,13,16]:#range(1,17,1):
+    for i in [16]:#range(1,17,1):
         configure_webdriver(i)
         print(f"Beginning to run test case {i}")
         driver.get("https://qa-lpsd.nvent.com/")
-        time.sleep(3)
+        time.sleep(.5)
         login()
         get_json(i)
 

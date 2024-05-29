@@ -74,8 +74,9 @@ def test_case_to_string(type, test_case):
         case "S1000":
             return s1000_tc.get(test_case)
         
-#Generates a folder based on the given test case
-#If testing S1000, it returns creates and returns path //LPSD/Archive/S1000/YYYY-MM-DD
+# Generates a folder based on the given type and test case and checks to see if a file for the 
+#   specific test case does or does not exist. If it does, it provides the option to end the 
+#   function or delete the file
 def generate_folder_location(type, test_case = None):
 
     # Generate a folder within archive/s1000/json for the current test case
