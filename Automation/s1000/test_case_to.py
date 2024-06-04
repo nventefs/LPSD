@@ -56,8 +56,7 @@ def name(type, test_case):
 # Generates a folder based on the given type and test case and checks to see if a file for the 
 #   specific test case does or does not exist. If it does, it provides the option to end the 
 #   function or delete the file
-def folder_location(type, test_case = None):
-
+def folder_path(type, generative=False):
     # Generate a folder within archive/s1000/json for the current test case
     #Get directory of //LPSD
     root_dir = Path(__file__).resolve().parent.parent.parent
@@ -65,35 +64,46 @@ def folder_location(type, test_case = None):
     #Add the rest of the path to the file, more cases for the type variable can be added to easily support more situations
     match (type):
         case "S1000 TEST":
-            file_directory = root_dir / "Archive" / "S1000" / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
-            if test_case == None:
-                return (file_directory)
-            file_path = file_directory / json_filename ("S1000", test_case)
+            return_path = root_dir / "Archive" / "S1000" / "JSON"/ datetime.datetime.now().strftime("%Y-%m-%d") 
         case "S1000 OUTPUT":
-            file_directory = root_dir / "Archive" / "S1000" / "Results"
-            file_path = file_directory / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
+            return_path = root_dir / "Archive" / "S1000" / "Results"
         case "S1000 PARAMS":
-            file_directory = root_dir / "Archive" / "S1000"
-            return (file_directory)
+            return_path = root_dir / "Archive" / "S1000"
+
 
     #make directory if it does not already exist
-    if not os.path.exists(file_directory):
-        os.makedirs(file_directory)
-        print(f"Directory '{file_directory}' created successfully.")
-        return(file_directory)
-    #if the file already exists, present user with option to replace file or quit
-    else:
-        print(f"Directory '{file_directory}' already exists")
-        
-        if os.path.isfile(file_path):
-            print(str(file_path) + "  exists!")
-            x = input("\nContinue to use this file (yes/no)? If yes, the current file will be " + '\033[31m' + "overwritten. " + '\033[0m') 
-            if(x.lower() == "no"):
-                return None
-            elif(x.lower() == "yes"):
-                os.remove(file_path)
-                return(file_directory)
-            else:
-                print("Input not recognized.")
+    
+    if not os.path.exists(return_path):
+        if generative:
+            os.makedirs(return_path)
+            print(f"Directory '{return_path}' created successfully.")
+            return(return_path)
         else:
-            return(file_directory)
+            print(return_path + " does not exist!")
+            return None
+        
+    return return_path
+    
+
+def file_path (type, test_case = None, generative=False, removing=False):
+    folder = folder_path(type, generative)
+    match type:
+        case "S1000 TEST":
+            return_path = folder / json_filename ("S1000", test_case)
+        case "S1000 OUTPUT":
+            return_path = folder / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
+        case "S1000 PARAMS":
+            return_path = folder / "S1000 Parameters.csv"
+
+    if not os.path.exists(return_path):
+        if generative:
+            os.makedirs(return_path)
+            print(f"Directory '{return_path}' created successfully.")
+            return(return_path)
+        else:
+            print(return_path + " does not exist!")
+            return None
+    elif removing:
+        os.remove(return_path)
+        
+    return return_path

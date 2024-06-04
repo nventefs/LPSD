@@ -16,11 +16,13 @@ AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
 NVENT_USERNAME = os.getenv('NVENT_USERNAME')
 NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 
+# fills in the options for the webdriver
 def configure_webdriver(test_case):
     options = Options()
-    default_directory = str(test_case_to.folder_location("S1000 TEST",test_case))
-
-    if default_directory == "None":
+    file_path = test_case_to.file_path("S1000 TEST", test_case,removing=True)
+    if default_directory is not None:
+        default_directory = str(file_path.parent)
+    else:
         return None
     prefs = {'download.prompt_for_download"': False, 'download.default_directory' : default_directory}
     options.add_experimental_option("prefs", prefs)

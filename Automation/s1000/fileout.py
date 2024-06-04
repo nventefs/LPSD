@@ -11,7 +11,7 @@ RADIUS_FIELDS = ['Test Case', 'R2 Parameter', 'R2 Test Output', 'R5 Parameter', 
 
 # function to output the data from the list of dictionaries to the file at the specified path
 def write_output_to_csv (path, dict_list):
-    output_csv = open(path, "w+", newline='')
+    output_csv = open(path, "w", newline='')
     writer = csv.DictWriter(output_csv, fieldnames=RADIUS_FIELDS)
     writer.writeheader()
     writer.writerows(dict_list)
@@ -19,21 +19,9 @@ def write_output_to_csv (path, dict_list):
 # function to get a dictionary for the expected (parameter) values and the values from the json file for a given test case
 def get_radii_dict(test_case):
     #open the json file for the test case, return if it cannot be opened
-    try:
-        json_filename = test_case_to.json_filename("S1000", test_case)
-        test_json_file = open(test_dir / test_case_to.json_filename("S1000",test_case))
-    except:
-        print(f"could not open file named {json_filename} for case test case {test_case}")
-        return
-    
-    #open the parameter csv file, return if it cannot be opened
-    try:
-        param_filename = "S1000 Parameters.csv"
-        param_csv_file = open(param_dir / param_filename)
-    except:
-        print(f"could not open parameter file {param_filename}")
-        return
-    
+    test_json_file = open(test_case_to.file_path("S1000 TEST",test_case))
+    param_csv_file = open(test_case_to.file_path("S1000 PARAMS"))
+
     #read data
     json_data = json.load(test_json_file)
     csv_data = csv.DictReader(param_csv_file)
@@ -51,7 +39,7 @@ def get_radii_dict(test_case):
 
 def get_point_protected_values(test_case):
     try:
-        input_json_file = open(test_dir / test_case_to.json_filename("S1000",test_case))
+        input_json_file = open(test_case_to.file_path("S1000 TEST",test_case))
     except:
         print(f"test case {test_case} failed")
         return
@@ -60,14 +48,9 @@ def get_point_protected_values(test_case):
     for point in json_data['points']:
         print(point['pointGuid'] + " --- " + str(point["protectedPoint"]))
 
-
-test_dir = test_case_to.folder_location("S1000 TEST")
-output_dir = test_case_to.folder_location("S1000 OUTPUT")
-param_dir = test_case_to.folder_location("S1000 PARAMS")
-
 if __name__ == '__main__':
     dict_list = []
-    radii_csv_path = output_dir / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
+    radii_csv_path = test_case_to.file_path("S1000 OUTPUT", generative=True, removing=True)
 
     get_point_protected_values(1)
     for i in range(NUMBER_OF_TEST_CASES):
