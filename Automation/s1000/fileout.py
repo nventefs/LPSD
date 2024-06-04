@@ -37,6 +37,8 @@ def get_radii_dict(test_case):
     
     return {"Test Case" : test_case, "R2 Parameter": R2_expected, "R2 Test Output" : R2_result, "R5 Parameter": R5_expected, "R5 Test Output" : R5_result}
 
+#Unfinished, currently just gets value of point protected for a given test case
+# TODO: Make a parameters file for the point protected values and compare test values to it.
 def get_point_protected_values(test_case):
     try:
         input_json_file = open(test_case_to.file_path("S1000 TEST",test_case))
@@ -47,6 +49,7 @@ def get_point_protected_values(test_case):
     json_data = json.load(input_json_file)
     for point in json_data['points']:
         print(point['pointGuid'] + " --- " + str(point["protectedPoint"]))
+
 
 if __name__ == '__main__':
     dict_list = []

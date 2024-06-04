@@ -53,9 +53,9 @@ def name(type, test_case):
         case "S1000":
             return s1000_tc.get(test_case)
         
-# Generates a folder based on the given type and test case and checks to see if a file for the 
-#   specific test case does or does not exist. If it does, it provides the option to end the 
-#   function or delete the file
+# Generates a folder based on the given type
+# Checks to see if the folder exists, if it does, it returns the path
+# if it does not exist, the generative option can greate the folder
 def folder_path(type, generative=False):
     # Generate a folder within archive/s1000/json for the current test case
     #Get directory of //LPSD
@@ -71,22 +71,27 @@ def folder_path(type, generative=False):
             return_path = root_dir / "Archive" / "S1000"
 
 
-    #make directory if it does not already exist
-    
     if not os.path.exists(return_path):
+        # make directory if it does not already exist and return it
         if generative:
             os.makedirs(return_path)
             print(f"Directory '{return_path}' created successfully.")
             return(return_path)
+        # or just warn user and return None
         else:
             print(return_path + " does not exist!")
             return None
         
     return return_path
     
-
+# very similar to folder_path, but gets a file instead of a folder
+# has a few more options including test case and removing.
+# "removing" = True will remove a file and return its path so a new file can be created (or downloaded in the case of get_json)
 def file_path (type, test_case = None, generative=False, removing=False):
+    # get the folder path that the file is in, passing generative through
     folder = folder_path(type, generative)
+    
+    # More options for type can be added in the future
     match type:
         case "S1000 TEST":
             return_path = folder / json_filename ("S1000", test_case)
@@ -95,6 +100,7 @@ def file_path (type, test_case = None, generative=False, removing=False):
         case "S1000 PARAMS":
             return_path = folder / "S1000 Parameters.csv"
 
+    # if the path does not exist, and generative is true, create the file
     if not os.path.exists(return_path):
         if generative:
             os.makedirs(return_path)
@@ -103,6 +109,7 @@ def file_path (type, test_case = None, generative=False, removing=False):
         else:
             print(return_path + " does not exist!")
             return None
+    # if the path does exist and removing is true, remove the file
     elif removing:
         os.remove(return_path)
         
