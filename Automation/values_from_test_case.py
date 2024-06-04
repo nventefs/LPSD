@@ -22,7 +22,7 @@ def test_case_to_json(type, test_case):
         6: "S1000 QA TC6_ESEResults.json",
         7: "S1000 QA TC7_ESEResults.json",
         8: "S1000 QA TC8_ESEResults.json",
-        9: "S1000 TC9_ESEResults.json",
+        9: "S1000 QA TC9_ESEResults.json",
         10: "S1000 QA TC10_ESEResults.json",
         11: "S1000 QA TC17_ESEResults.json",
         12: "S1000 QA TC12_ESEResults.json",

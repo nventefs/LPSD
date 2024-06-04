@@ -130,7 +130,7 @@ def get_json(test_case):
 if __name__ == '__main__':
     global driver
 
-    for i in [16]:#range(1,17,1):
+    for i in range(1,17,1):
         configure_webdriver(i)
         print(f"Beginning to run test case {i}")
         driver.get("https://qa-lpsd.nvent.com/")
