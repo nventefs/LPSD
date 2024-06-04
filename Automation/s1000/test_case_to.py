@@ -2,17 +2,9 @@ from pathlib import Path
 import os
 import datetime
 
-# Selector for .json file names
+# Selector for .json file names based on their test case
+# "type" variable can be used to support other systems in the future like CVM
 def json_filename(type, test_case):
-    cvm_tc = {
-        1: "CVM Test Case 1 metric_CVMResults.json",
-        2: "CVM Test Case 2_CVMResults.json",
-        3: "CVM Test Case 3 Rev B_CVMResults.json",
-        4: "CVM Test Case 4_CVMResults.json",
-        5: "CVM Test Case 5_CVMResults.json",
-        6: "CVM Test Case 6 Rev F_CVMResults.json",
-        7: "CVM Test Case 7_CVMResults.json",
-    }
     s1000_tc = {
         1: "S1000 QA TC1_ESEResults.json",
         2: "S1000 QA TC2_ESEResults.json",
@@ -31,24 +23,13 @@ def json_filename(type, test_case):
         15: "S1000 QA TC15_ESEResults.json",
         16: "S1000 QA TC19_ESEResults.json",
     }
-
     match (type):
-        case "CVM":
-            return cvm_tc.get(test_case)
         case "S1000":
             return s1000_tc.get(test_case)
         
 # Selector for names of test cases based on their type
-def string(type, test_case):
-    cvm_tc = {
-        1: "CVM Test Case 1 metric",
-        2: "CVM Test Case 2",
-        3: "CVM Test Case 3 Rev B",
-        4: "CVM Test Case 4",
-        5: "CVM Test Case 5",
-        6: "CVM Test Case 6 Rev F",
-        7: "CVM Test Case 7"
-    }
+# "type" variable can be used to support other systems in the future like CVM
+def name(type, test_case):
     s1000_tc = {
         1: "S1000 QA TC1",
         2: "S1000 QA TC2",
@@ -69,8 +50,6 @@ def string(type, test_case):
     }
 
     match (type):
-        case "CVM":
-            return cvm_tc.get(test_case)
         case "S1000":
             return s1000_tc.get(test_case)
         
@@ -96,9 +75,6 @@ def folder_location(type, test_case = None):
         case "S1000 PARAMS":
             file_directory = root_dir / "Archive" / "S1000"
             return (file_directory)
-        case "CVM":
-            file_directory = root_dir / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
-            file_path = file_directory / json_filename ("CVM", test_case)
 
     #make directory if it does not already exist
     if not os.path.exists(file_directory):
@@ -113,7 +89,7 @@ def folder_location(type, test_case = None):
             print(str(file_path) + "  exists!")
             x = input("\nContinue to use this file (yes/no)? If yes, the current file will be " + '\033[31m' + "overwritten. " + '\033[0m') 
             if(x.lower() == "no"):
-                return
+                return None
             elif(x.lower() == "yes"):
                 os.remove(file_path)
                 return(file_directory)
