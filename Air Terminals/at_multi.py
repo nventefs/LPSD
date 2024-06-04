@@ -191,7 +191,7 @@ def closemainloop():
             multi.append(multiplicative.eq_p()) #TODO: fill in values
             alphabet.append("P")
     else:
-        if(at_isCorner.get() or at_isEdgeOval.get() or at_isEdgeRectangular.get() or at_isFaceHorizontal.get()):
+        if(at_isCorner.get() or at_isEdgeRectangular.get() or at_isFaceHorizontal.get()):
             H = float(at_H0.get())
             W = float(at_minwdith0.get())
             Hf = float(at_Hf.get()) - float(at_H0.get())
