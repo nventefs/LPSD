@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 
-from values_from_test_case import *
+import Automation.s1000.test_case_to as test_case_to
 
 import time
 from dotenv import load_dotenv
@@ -41,7 +41,7 @@ def configure_webdriver(test_case):
     options = Options()
     try:
         prefs = {'download.prompt_for_download"': False, \
-             'download.default_directory' : str(generate_folder_location("S1000 TEST",test_case))}
+             'download.default_directory' : str(test_case_to.folder_location("S1000 TEST",test_case))}
 
         options.add_experimental_option("prefs", prefs)
         #options.add_experimental_option("excludeSwitches", ["enable-logging"])
@@ -55,7 +55,7 @@ def get_json(test_case):
 
     try:
         
-        edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[text() = '" +test_case_to_string("S1000", test_case)+"']/following-sibling::td/button")))
+        edit_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//td[text() = '" + test_case_to.string("S1000", test_case)+"']/following-sibling::td/button")))
         edit_button.click()                                                      
         time.sleep(25)
 

@@ -3,7 +3,7 @@ import csv
 from pathlib import Path
 import datetime
 
-from values_from_test_case import *
+import Automation.s1000.test_case_to as test_case_to
 
 NUMBER_OF_TEST_CASES = 16
 
@@ -18,7 +18,7 @@ def write_output_to_csv (path, dict_list):
 
 def get_radii_dict(type, test_case):
     try:
-        input_json_file = open(test_dir / test_case_to_json("S1000",test_case))
+        input_json_file = open(test_dir / test_case_to.json_filename("S1000",test_case))
     except:
         print(f"could not open json file for case {test_case}")
         return
@@ -41,7 +41,7 @@ def get_radii_dict(type, test_case):
 
 def get_point_protected_values(type, test_case):
     try:
-        input_json_file = open(test_dir / test_case_to_json("S1000",test_case))
+        input_json_file = open(test_dir / test_case_to.json_filename("S1000",test_case))
     except:
         print(f"test case {test_case} failed")
         return
@@ -51,9 +51,9 @@ def get_point_protected_values(type, test_case):
         print(point['pointGuid'] + " --- " + str(point["protectedPoint"]))
 
 
-test_dir = generate_folder_location("S1000 TEST")
-output_dir = generate_folder_location("S1000 OUTPUT")
-param_dir = generate_folder_location("S1000 PARAMS")
+test_dir = test_case_to.folder_location("S1000 TEST")
+output_dir = test_case_to.folder_location("S1000 OUTPUT")
+param_dir = test_case_to.folder_location("S1000 PARAMS")
 
 if __name__ == '__main__':
     dict_list = []

@@ -3,7 +3,7 @@ import os
 import datetime
 
 # Selector for .json file names
-def test_case_to_json(type, test_case):
+def json_filename(type, test_case):
     cvm_tc = {
         1: "CVM Test Case 1 metric_CVMResults.json",
         2: "CVM Test Case 2_CVMResults.json",
@@ -39,7 +39,7 @@ def test_case_to_json(type, test_case):
             return s1000_tc.get(test_case)
         
 # Selector for names of test cases based on their type
-def test_case_to_string(type, test_case):
+def string(type, test_case):
     cvm_tc = {
         1: "CVM Test Case 1 metric",
         2: "CVM Test Case 2",
@@ -77,7 +77,7 @@ def test_case_to_string(type, test_case):
 # Generates a folder based on the given type and test case and checks to see if a file for the 
 #   specific test case does or does not exist. If it does, it provides the option to end the 
 #   function or delete the file
-def generate_folder_location(type, test_case = None):
+def folder_location(type, test_case = None):
 
     # Generate a folder within archive/s1000/json for the current test case
     #Get directory of //LPSD
@@ -89,7 +89,7 @@ def generate_folder_location(type, test_case = None):
             file_directory = root_dir / "Archive" / "S1000" / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
             if test_case == None:
                 return (file_directory)
-            file_path = file_directory / test_case_to_json ("S1000", test_case)
+            file_path = file_directory / json_filename ("S1000", test_case)
         case "S1000 OUTPUT":
             file_directory = root_dir / "Archive" / "S1000" / "Results"
             file_path = file_directory / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
@@ -98,7 +98,7 @@ def generate_folder_location(type, test_case = None):
             return (file_directory)
         case "CVM":
             file_directory = root_dir / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
-            file_path = file_directory / test_case_to_json ("CVM", test_case)
+            file_path = file_directory / json_filename ("CVM", test_case)
 
     #make directory if it does not already exist
     if not os.path.exists(file_directory):
