@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 
-import Automation.s1000.test_case_to as test_case_to
+import test_case_to as test_case_to
 
 import time
 from dotenv import load_dotenv

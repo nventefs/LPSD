@@ -81,7 +81,7 @@ def folder_location(type, test_case = None):
 
     # Generate a folder within archive/s1000/json for the current test case
     #Get directory of //LPSD
-    root_dir = Path(__file__).resolve().parent.parent
+    root_dir = Path(__file__).resolve().parent.parent.parent
 
     #Add the rest of the path to the file, more cases for the type variable can be added to easily support more situations
     match (type):
