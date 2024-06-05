@@ -94,7 +94,7 @@ def get_json(driver, test_case):
 
 # loop through the 16 cases and pull their json files
 if __name__ == '__main__':
-    for i in range(1,11,1):
+    for i in range(11,17,1):
         options = configure_webdriver(i)
         if options is not None:
             driver = webdriver.Edge(options=options)
