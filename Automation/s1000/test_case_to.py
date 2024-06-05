@@ -1,18 +1,11 @@
 from pathlib import Path
 import os
 import datetime
+import time
 
-# Selector for .json file names
+# Selector for .json file names based on their test case
+# "type" variable can be used to support other systems in the future like CVM
 def json_filename(type, test_case):
-    cvm_tc = {
-        1: "CVM Test Case 1 metric_CVMResults.json",
-        2: "CVM Test Case 2_CVMResults.json",
-        3: "CVM Test Case 3 Rev B_CVMResults.json",
-        4: "CVM Test Case 4_CVMResults.json",
-        5: "CVM Test Case 5_CVMResults.json",
-        6: "CVM Test Case 6 Rev F_CVMResults.json",
-        7: "CVM Test Case 7_CVMResults.json",
-    }
     s1000_tc = {
         1: "S1000 QA TC1_ESEResults.json",
         2: "S1000 QA TC2_ESEResults.json",
@@ -31,24 +24,13 @@ def json_filename(type, test_case):
         15: "S1000 QA TC15_ESEResults.json",
         16: "S1000 QA TC19_ESEResults.json",
     }
-
     match (type):
-        case "CVM":
-            return cvm_tc.get(test_case)
         case "S1000":
             return s1000_tc.get(test_case)
         
 # Selector for names of test cases based on their type
-def string(type, test_case):
-    cvm_tc = {
-        1: "CVM Test Case 1 metric",
-        2: "CVM Test Case 2",
-        3: "CVM Test Case 3 Rev B",
-        4: "CVM Test Case 4",
-        5: "CVM Test Case 5",
-        6: "CVM Test Case 6 Rev F",
-        7: "CVM Test Case 7"
-    }
+# "type" variable can be used to support other systems in the future like CVM
+def name(type, test_case):
     s1000_tc = {
         1: "S1000 QA TC1",
         2: "S1000 QA TC2",
@@ -69,55 +51,70 @@ def string(type, test_case):
     }
 
     match (type):
-        case "CVM":
-            return cvm_tc.get(test_case)
         case "S1000":
             return s1000_tc.get(test_case)
         
-# Generates a folder based on the given type and test case and checks to see if a file for the 
-#   specific test case does or does not exist. If it does, it provides the option to end the 
-#   function or delete the file
-def folder_location(type, test_case = None):
-
+# Generates a folder based on the given type
+# Checks to see if the folder exists, if it does, it returns the path
+# if it does not exist, the generative option can greate the folder
+def folder_path(type, generative=False):
     # Generate a folder within archive/s1000/json for the current test case
     #Get directory of //LPSD
-    root_dir = Path(__file__).resolve().parent.parent
+    root_dir = Path(__file__).resolve().parent.parent.parent
 
     #Add the rest of the path to the file, more cases for the type variable can be added to easily support more situations
     match (type):
         case "S1000 TEST":
-            file_directory = root_dir / "Archive" / "S1000" / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
-            if test_case == None:
-                return (file_directory)
-            file_path = file_directory / json_filename ("S1000", test_case)
+            return_path = root_dir / "Archive" / "S1000" / "JSON"/ datetime.datetime.now().strftime("%Y-%m-%d") 
         case "S1000 OUTPUT":
-            file_directory = root_dir / "Archive" / "S1000" / "Results"
-            file_path = file_directory / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
-        case "S1000 PARAMS":
-            file_directory = root_dir / "Archive" / "S1000"
-            return (file_directory)
-        case "CVM":
-            file_directory = root_dir / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
-            file_path = file_directory / json_filename ("CVM", test_case)
+            return_path = root_dir / "Archive" / "S1000" / "Results"
+        case "S1000 PARAMS" | "S1000 PROTECTEDPOINTS":
+            return_path = root_dir / "Archive" / "S1000"
 
-    #make directory if it does not already exist
-    if not os.path.exists(file_directory):
-        os.makedirs(file_directory)
-        print(f"Directory '{file_directory}' created successfully.")
-        return(file_directory)
-    #if the file already exists, present user with option to replace file or quit
-    else:
-        print(f"Directory '{file_directory}' already exists")
-        
-        if os.path.isfile(file_path):
-            print(str(file_path) + "  exists!")
-            x = input("\nContinue to use this file (yes/no)? If yes, the current file will be " + '\033[31m' + "overwritten. " + '\033[0m') 
-            if(x.lower() == "no"):
-                return
-            elif(x.lower() == "yes"):
-                os.remove(file_path)
-                return(file_directory)
-            else:
-                print("Input not recognized.")
+
+
+    if not os.path.exists(return_path):
+        # make directory if it does not already exist and return it
+        if generative:
+            os.makedirs(return_path)
+            print(f"Directory '{return_path}' created successfully.")
+            return(return_path)
+        # or just warn user and return None
         else:
-            return(file_directory)
+            print(f"{return_path} does not exist!")
+            return None
+        
+    return return_path
+    
+# very similar to folder_path, but gets a file instead of a folder
+# has a few more options including test case and removing.
+# "removing" = True will remove a file and return its path so a new file can be created (or downloaded in the case of get_json)
+def file_path (type, test_case = None, generative=False, removing=False):
+    # get the folder path that the file is in, passing generative through
+    folder = folder_path(type, generative)
+    
+    # More options for type can be added in the future
+    match type:
+        case "S1000 TEST":
+            return_path = folder / json_filename ("S1000", test_case)
+        case "S1000 OUTPUT":
+            return_path = folder / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
+        case "S1000 PARAMS":
+            return_path = folder / "S1000 Parameters.csv"
+        case "S1000 PROTECTEDPOINTS":
+            return_path = folder / "point_protection_values.json"
+
+    # if the path does not exist, and generative is true, create the file
+    if not os.path.exists(return_path):
+        if generative:
+            f = open(return_path, "w")
+            f.close()
+            print(f"Directory '{return_path}' created successfully.")
+        else:
+            print(f"{return_path} does not exist!")
+            return None
+    # if the path does exist and removing is true, remove the file
+    if removing:
+        os.remove(return_path)
+        
+    return return_path
