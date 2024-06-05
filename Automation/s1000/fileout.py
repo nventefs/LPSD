@@ -43,7 +43,7 @@ def get_radii_dict(test_case):
 # TODO: Make a parameters file for the point protected values and compare test values to it.
 def get_point_protected_values(test_case):
     try:
-        input_json_file = open("C:\\Users\\E2023355\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\Archive\\S1000\\JSON\\2024-06-04\\S1000 QA TC1_ESEResults.json")#test_case_to.file_path("S1000 TEST",test_case))
+        input_json_file = open(test_case_to.file_path("S1000 TEST",test_case))
     except:
         print(f"test case {test_case} failed")
         return
@@ -84,7 +84,6 @@ def compare_point_protected_values(test_case):
         total_points = total_points + 1
     
     percent_correct = (1 - len(incorrect_guid_list) / total_points)*100
-    print(len(missing_guid_list))
     print(f"{percent_correct}% of the points are correct")
     if len(missing_guid_list) != 0:
         print("The following pointGuids are not in the official list and must have changed:")
@@ -98,9 +97,13 @@ def compare_point_protected_values(test_case):
 if __name__ == '__main__':
     dict_list = []
     radii_csv_path = test_case_to.file_path("S1000 OUTPUT", generative=True, removing=True)
-
-    #get_point_protected_values(1)
-    compare_point_protected_values(1)
-#    for i in range(NUMBER_OF_TEST_CASES):
-#        dict_list.append(get_radii_dict(i + 1))
-#    write_output_to_csv(radii_csv_path, dict_list)
+    json_filepath = test_case_to.file_path("S1000 PROTECTEDPOINTS",generative=True,removing=False)
+    protected_values_dict = {}
+    #for i in range(10):
+    #    protected_values_dict.update(get_point_protected_values(i+1))
+    #write_json(protected_values_dict, json_filepath)
+    for i in range(10):
+        compare_point_protected_values(i+1)
+    for i in range(10):
+        dict_list.append(get_radii_dict(i + 1))
+    write_output_to_csv(radii_csv_path, dict_list)
