@@ -21,10 +21,10 @@ def configure_webdriver(test_case):
     options = Options()
 
     #get path to test file
-    file_path = test_case_to.file_path("S1000 TEST", test_case,removing=True)
+    file_path = test_case_to.file_path("S1000 TEST", test_case, generative=True, removing=True)
     
     # file was not found, return None, otherwise set default download directory to that file folder
-    if default_directory is not None:
+    if file_path is not None:
         default_directory = str(file_path.parent)
     else:
         return None
@@ -94,7 +94,7 @@ def get_json(driver, test_case):
 
 # loop through the 16 cases and pull their json files
 if __name__ == '__main__':
-    for i in range(1,17,1):
+    for i in range(1,2,1):
         options = configure_webdriver(i)
         if options is not None:
             driver = webdriver.Edge(options=options)

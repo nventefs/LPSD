@@ -1,8 +1,5 @@
 import json
 import csv
-from pathlib import Path
-import datetime
-
 import test_case_to as test_case_to
 
 NUMBER_OF_TEST_CASES = 16
@@ -15,6 +12,11 @@ def write_output_to_csv (path, dict_list):
     writer = csv.DictWriter(output_csv, fieldnames=RADIUS_FIELDS)
     writer.writeheader()
     writer.writerows(dict_list)
+
+def write_json(data, path):
+    json_file = open(path, "w")
+    json.dump(data, json_file)
+    json_file.close()
 
 # function to get a dictionary for the expected (parameter) values and the values from the json file for a given test case
 def get_radii_dict(test_case):
@@ -41,21 +43,64 @@ def get_radii_dict(test_case):
 # TODO: Make a parameters file for the point protected values and compare test values to it.
 def get_point_protected_values(test_case):
     try:
-        input_json_file = open(test_case_to.file_path("S1000 TEST",test_case))
+        input_json_file = open("C:\\Users\\E2023355\\OneDrive - nVent Management Company\\Documents\\VSCode\\Projects\\LPSD\\Archive\\S1000\\JSON\\2024-06-04\\S1000 QA TC1_ESEResults.json")#test_case_to.file_path("S1000 TEST",test_case))
     except:
         print(f"test case {test_case} failed")
         return
 
     json_data = json.load(input_json_file)
-    for point in json_data['points']:
-        print(point['pointGuid'] + " --- " + str(point["protectedPoint"]))
 
+    protected_point_dict = {}
+
+    for terminal in json_data['terminals']:
+        for point in terminal['results']['points']:
+            if point['pointGuid'] not in protected_point_dict or not bool(protected_point_dict[point['pointGuid']]):
+                protected_point_dict[point['pointGuid']] = point["protectedPoint"]
+    
+    return protected_point_dict
+
+    #json_filepath = test_case_to.file_path("S1000 PROTECTEDPOINTS",generative=True,removing=False)
+    #write_json(protected_point_dict, json_filepath)
+        #print(point['pointGuid'] + " --- " + str(point["protectedPoint"]))
+
+def compare_point_protected_values(test_case):
+    try:
+        json_param_file = open(test_case_to.file_path("S1000 PROTECTEDPOINTS",test_case))
+    except:
+        print(f"test case {test_case} failed")
+        return
+
+    official_protected_point_data = json.load(json_param_file)
+    current_protected_point_dict = get_point_protected_values(test_case)
+    
+    total_points = 0
+    incorrect_guid_list = []
+    missing_guid_list = []
+    for key in current_protected_point_dict:
+        if key not in official_protected_point_data:
+            missing_guid_list.append(key)
+        elif official_protected_point_data[key] != current_protected_point_dict[key]:
+            incorrect_guid_list.append(key)
+        total_points = total_points + 1
+    
+    percent_correct = (1 - len(incorrect_guid_list) / total_points)*100
+    print(len(missing_guid_list))
+    print(f"{percent_correct}% of the points are correct")
+    if len(missing_guid_list) != 0:
+        print("The following pointGuids are not in the official list and must have changed:")
+    for guid in missing_guid_list:
+        print (guid)
+    if len(incorrect_guid_list) != 0:
+        print("The following pointGuids are incorrect:")
+    for guid in incorrect_guid_list:
+        print (guid)
 
 if __name__ == '__main__':
     dict_list = []
     radii_csv_path = test_case_to.file_path("S1000 OUTPUT", generative=True, removing=True)
 
-    get_point_protected_values(1)
-    for i in range(NUMBER_OF_TEST_CASES):
-        dict_list.append(get_radii_dict(i + 1))
-    write_output_to_csv(radii_csv_path, dict_list)
+    #get_point_protected_values(1)
+    compare_point_protected_values(1)
+#    for i in range(NUMBER_OF_TEST_CASES):
+#        dict_list.append(get_radii_dict(i + 1))
+#    write_output_to_csv(radii_csv_path, dict_list)

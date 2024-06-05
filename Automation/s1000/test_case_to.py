@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import datetime
+import time
 
 # Selector for .json file names based on their test case
 # "type" variable can be used to support other systems in the future like CVM
@@ -67,8 +68,9 @@ def folder_path(type, generative=False):
             return_path = root_dir / "Archive" / "S1000" / "JSON"/ datetime.datetime.now().strftime("%Y-%m-%d") 
         case "S1000 OUTPUT":
             return_path = root_dir / "Archive" / "S1000" / "Results"
-        case "S1000 PARAMS":
+        case "S1000 PARAMS" | "S1000 PROTECTEDPOINTS":
             return_path = root_dir / "Archive" / "S1000"
+
 
 
     if not os.path.exists(return_path):
@@ -79,7 +81,7 @@ def folder_path(type, generative=False):
             return(return_path)
         # or just warn user and return None
         else:
-            print(return_path + " does not exist!")
+            print(f"{return_path} does not exist!")
             return None
         
     return return_path
@@ -99,18 +101,20 @@ def file_path (type, test_case = None, generative=False, removing=False):
             return_path = folder / (datetime.datetime.now().strftime("%Y-%m-%d") + ".csv")
         case "S1000 PARAMS":
             return_path = folder / "S1000 Parameters.csv"
+        case "S1000 PROTECTEDPOINTS":
+            return_path = folder / "point_protection_values.json"
 
     # if the path does not exist, and generative is true, create the file
     if not os.path.exists(return_path):
         if generative:
-            os.makedirs(return_path)
+            f = open(return_path, "w")
+            f.close()
             print(f"Directory '{return_path}' created successfully.")
-            return(return_path)
         else:
-            print(return_path + " does not exist!")
+            print(f"{return_path} does not exist!")
             return None
     # if the path does exist and removing is true, remove the file
-    elif removing:
+    if removing:
         os.remove(return_path)
         
     return return_path
