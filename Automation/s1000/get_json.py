@@ -109,7 +109,7 @@ def get_json(test_case):
 if __name__ == '__main__':
     start_time = time.time()
     threads = []
-    for cycle in range(1):
+    for cycle in range(4):
         for i in range(4):
             threads.append(threading.Thread(target=get_json, args=(4*cycle + i+1,), name=f"thread {i+1}"))
             threads[i].start()
