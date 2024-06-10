@@ -4,7 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from tester_functions import *
-import test_case_to as test_case_to
+import test_case_to
 import threading
 import time
 from dotenv import load_dotenv
@@ -36,6 +36,7 @@ def configure_webdriver(test_case):
 
 # Loads LPSD and pulls json output of input test_case
 def get_json(test_case):
+    print(f"configuring test case {test_case}")
     options = configure_webdriver(test_case)
     if options is None:
         print("Failed")
@@ -46,11 +47,11 @@ def get_json(test_case):
     time.sleep(.5)
     login(driver, AUTODESK_USERNAME)
 
-    time.sleep(5)
+    time.sleep(10)
 
     try:
         click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S1000", test_case)+"']/following-sibling::td/button"))
-        time.sleep(35)
+        time.sleep(40)
 
         ActionChains(driver).key_down(Keys.ALT).key_down(Keys.CONTROL).send_keys("q").perform()
         time.sleep(1)
@@ -103,19 +104,3 @@ def get_json(test_case):
         print("Failed when acquiring JSON files.")
     print (f"{threading.current_thread().name} finished running test case {test_case}")
     driver.quit()
-
-
-# loop through the 16 cases and pull their json files
-if __name__ == '__main__':
-    start_time = time.time()
-    threads = []
-    for cycle in range(4):
-        for i in range(4):
-            threads.append(threading.Thread(target=get_json, args=(4*cycle + i+1,), name=f"thread {i+1}"))
-            threads[i].start()
-        for _ in range(4):
-            threads[0].join()
-            threads.pop(0)
-    
-    end_time = time.time()
-    print (f"Total time to run program: {end_time - start_time}")

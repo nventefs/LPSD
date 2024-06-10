@@ -93,17 +93,3 @@ def compare_point_protected_values(test_case):
         print("The following pointGuids are incorrect:")
     for guid in incorrect_guid_list:
         print (guid)
-
-if __name__ == '__main__':
-    dict_list = []
-    radii_csv_path = test_case_to.file_path("S1000 OUTPUT", generative=True, removing=True)
-    json_filepath = test_case_to.file_path("S1000 PROTECTEDPOINTS",generative=True,removing=False)
-    protected_values_dict = {}
-    for i in range(NUMBER_OF_TEST_CASES):
-        protected_values_dict.update(get_point_protected_values(i+1))
-    write_json(protected_values_dict, json_filepath)
-    for i in range(NUMBER_OF_TEST_CASES):
-        compare_point_protected_values(i+1)
-    for i in range(NUMBER_OF_TEST_CASES):
-        dict_list.append(get_radii_dict(i + 1))
-    write_output_to_csv(radii_csv_path, dict_list)
