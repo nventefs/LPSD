@@ -9,8 +9,8 @@ NUMBER_OF_TESTS = 16
 if __name__ == '__main__':
     threads = []
     num_threads = int(input("How many threads would you like to use? (maximum 4 recommended): "))
-    total_tests_done = 15
-    cycle = 12
+    total_tests_done = 0
+    cycle = 0
 
 
     #Runs all 16 test cases using num_threads threads

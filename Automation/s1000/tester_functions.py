@@ -68,8 +68,10 @@ def click_element(driver: webdriver.Edge, selection, multiple = False, element_i
         
         element = WebDriverWait(driver,10).until(EC.element_to_be_clickable(selection))
         element.click()
+        return True
     except:
         print(str(selection) + " could not be clicked")
+        return False
 
 #dumps html of the current webpage to the file with the name provided
 def dump_html_to_file(driver: webdriver.Edge, filename):

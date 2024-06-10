@@ -20,6 +20,11 @@ def configure_webdriver(test_case):
     options = Options()
 
     #get path to test file
+    file_path = test_case_to.file_path("S1000 TEST", test_case, generative=False, removing=False)
+    if file_path is not None:
+        a = input("\x1b[95;49;5mThis file already exists. Press enter to skip or enter 'no' to remove it and rerun its test\x1b[39;49m")
+        if a.lower() != 'no':
+            return None
     file_path = test_case_to.file_path("S1000 TEST", test_case, generative=True, removing=True)
     
     # file was not found, return None, otherwise set default download directory to that file folder
@@ -39,7 +44,7 @@ def get_json(test_case):
     print(f"configuring test case {test_case}")
     options = configure_webdriver(test_case)
     if options is None:
-        print("Failed")
+        print(f"Skipping Test Case {test_case}")
         return
     driver = webdriver.Edge(options=options)
     print(f"Beginning to run test case {test_case}")
@@ -49,58 +54,70 @@ def get_json(test_case):
 
     time.sleep(10)
 
-    try:
-        click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S1000", test_case)+"']/following-sibling::td/button"))
-        time.sleep(40)
+    if not click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S1000", test_case)+"']/following-sibling::td/button")):
+        return None
+    time.sleep(40)
 
-        ActionChains(driver).key_down(Keys.ALT).key_down(Keys.CONTROL).send_keys("q").perform()
-        time.sleep(1)
-        ActionChains(driver).key_up(Keys.ALT).key_up(Keys.CONTROL).perform()
-        time.sleep(1)
+    ActionChains(driver).key_down(Keys.ALT).key_down(Keys.CONTROL).send_keys("q").perform()
+    time.sleep(1)
+    ActionChains(driver).key_up(Keys.ALT).key_up(Keys.CONTROL).perform()
+    time.sleep(1)
 
-        click_element(driver,(By.ID, "debugToolsButton"))
-        time.sleep(1)
+    if not click_element(driver,(By.ID, "debugToolsButton")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "debugtools_exportanalysisresults_input"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "debugtools_exportanalysisresults_input")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "debugtools_exit_button"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "debugtools_exit_button")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "lpsd_toolbar_vertical_button_analysistools"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "lpsd_toolbar_vertical_button_analysistools")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "lpsd_toolbar_vertical_button_analyze"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "lpsd_toolbar_vertical_button_analyze")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.CLASS_NAME, "analysis-startanalysis-step1-model"))
-        time.sleep(1)
+    if not click_element(driver, (By.CLASS_NAME, "analysis-startanalysis-step1-model")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "analysis_startanalysis_nextbutton1"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "analysis_startanalysis_nextbutton1")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.CLASS_NAME, "analysis-startanalysis-step3-method"))
-        time.sleep(1)
+    if not click_element(driver, (By.CLASS_NAME, "analysis-startanalysis-step3-method")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "analysis_startanalysis_nextbutton3"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "analysis_startanalysis_nextbutton3")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "analysis_startanalysis_nextbutton4"))
-        time.sleep(1)       
+    if not click_element(driver, (By.ID, "analysis_startanalysis_nextbutton4")):
+        return None
+    time.sleep(1)       
 
-        click_element(driver, (By.ID, "analysis_startanalysis_nextbutton5"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "analysis_startanalysis_nextbutton5")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "analysis_analyzeproject_run_button"))
-        time.sleep(9)
+    if not click_element(driver, (By.ID, "analysis_analyzeproject_run_button")):
+        return None
+    time.sleep(9)
 
-        click_element(driver, (By.ID, "analysis_startanalysis_nextbutton6"))
-        time.sleep(1)
+    if not click_element(driver, (By.ID, "analysis_startanalysis_nextbutton6")):
+        return None
+    time.sleep(1)
 
-        click_element(driver, (By.ID, "analysis_startanalysis_donebutton7"))
-        time.sleep(1)
-        print("JSON file successfully downloaded")
-    except:
-        print("Failed when acquiring JSON files.")
-    print (f"{threading.current_thread().name} finished running test case {test_case}")
+    if not click_element(driver, (By.ID, "analysis_startanalysis_donebutton7")):
+        return None
+    time.sleep(1)
+    
+    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename(test_case)} successfully downloaded.")
     driver.quit()

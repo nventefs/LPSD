@@ -109,7 +109,8 @@ def file_path (type, test_case = None, generative=False, removing=False):
         if generative:
             f = open(return_path, "w")
             f.close()
-            print(f"Directory '{return_path}' created successfully.")
+            if not removing:
+                print(f"Directory '{return_path}' created successfully.")
         else:
             print(f"{return_path} does not exist!")
             return None
