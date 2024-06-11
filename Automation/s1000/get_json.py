@@ -20,10 +20,11 @@ def configure_webdriver(test_case):
     options = Options()
 
     #get path to test file
+    test_case_to.folder_path("S1000 TEST", generative=True)
     file_path = test_case_to.file_path("S1000 TEST", test_case, generative=False, removing=False)
     if file_path is not None:
-        a = input("\x1b[95;49;5mThis file already exists. Press enter to skip or enter 'no' to remove it and rerun its test\x1b[39;49m")
-        if a.lower() != 'no':
+        a = input("\x1b[95;49;5mThis file already exists. Press enter to skip or enter 'rerun' to remove it and rerun its test: \x1b[39;49m")
+        if a.lower() != 'rerun':
             return None
     file_path = test_case_to.file_path("S1000 TEST", test_case, generative=True, removing=True)
     
@@ -119,5 +120,5 @@ def get_json(test_case):
         return None
     time.sleep(1)
     
-    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename(test_case)} successfully downloaded.")
+    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000 Test",test_case)} successfully downloaded.")
     driver.quit()
