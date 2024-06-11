@@ -29,8 +29,8 @@ def get_radii_dict(test_case):
     csv_data = csv.DictReader(param_csv_file)
 
     #put data into variables
-    R2_result = json_data['terminals'][0]['results']['R2']
-    R5_result = json_data['terminals'][0]['results']['R5']
+    R2_result = round(json_data['terminals'][0]['results']['R2'],2)
+    R5_result = round(json_data['terminals'][0]['results']['R5'],2)
     for line in csv_data:
         if line.get("TC") == str(test_case):
             R2_expected = line.get('R2')
@@ -84,7 +84,7 @@ def compare_point_protected_values(test_case):
         total_points = total_points + 1
     
     percent_correct = (1 - len(incorrect_guid_list) / total_points)*100
-    print(f"{percent_correct}% of the points are correct")
+    print(f"{percent_correct}% of the points are correct in test case {test_case}")
     if len(missing_guid_list) != 0:
         print("The following pointGuids are not in the official list and must have changed:")
     for guid in missing_guid_list:

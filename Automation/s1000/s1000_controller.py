@@ -1,6 +1,5 @@
 import threading
-import os
-from get_json import get_json
+from get_json import get_json_s1000
 import test_case_to
 from fileout import *
 
@@ -9,14 +8,14 @@ NUMBER_OF_TESTS = 16
 if __name__ == '__main__':
     threads = []
     num_threads = int(input("How many threads would you like to use? (maximum 4 recommended): "))
-    total_tests_done = 0
+    total_tests_done = 15
     cycle = 0
 
 
     #Runs all 16 test cases using num_threads threads
     while True:
         for i in range(num_threads):
-            threads.append(threading.Thread(target=get_json, args=(num_threads*cycle + i+1,), name=f"thread {i+1}"))
+            threads.append(threading.Thread(target=get_json_s1000, args=(num_threads*cycle + i+1,), name=f"thread {i+1}"))
             threads[i].start()
             total_tests_done += 1
             if total_tests_done == NUMBER_OF_TESTS:

@@ -24,9 +24,35 @@ def json_filename(type, test_case):
         15: "S1000 QA TC15_ESEResults.json",
         16: "S1000 QA TC19_ESEResults.json",
     }
+    s2000_half_tc = {
+        1: "S2000 TC1 HALF.json",
+        2: "S2000 TC2 HALF.json",
+        3: "S2000 TC3 HALF.json",
+        4: "S2000 TC4 HALF.json",
+    }
+    s2000_one_tc = {
+        1: "S2000 TC1 ONE.json",
+        2: "S2000 TC2 ONE.json",
+        3: "S2000 TC3 ONE.json",
+        4: "S2000 TC4 ONE.json",
+    }
+    s2000_old = {
+        1: "RSM IEC L1 PARAPET TEST METRIC_RSResults.json",
+        2: "RSM IEC L2 PARAPET TEST METRIC_RSResults.json",
+        3: "RSM IEC L3 PARAPET TEST METRIC_RSResults.json",
+        4: "RSM IEC L4 PARAPET TEST METRIC_RSResults.json",
+    }
+
     match (type):
         case "S1000":
             return s1000_tc.get(test_case)
+        case "S2000 HALF":
+            return s2000_half_tc.get(test_case)
+        case "S2000 ONE":
+            return s2000_one_tc.get(test_case)
+        case "S2000 OLD":
+            return s2000_old.get(test_case)
+
         
 # Selector for names of test cases based on their type
 # "type" variable can be used to support other systems in the future like CVM
@@ -50,9 +76,18 @@ def name(type, test_case):
         16: "S1000 QA TC19",
     }
 
+    s2000_tc = {
+        1: "RSM IEC L1 PARAPET TEST METRIC",
+        2: "RSM IEC L2 PARAPET TEST METRIC",
+        3: "RSM IEC L3 PARAPET TEST METRIC",
+        4: "RSM IEC L4 PARAPET TEST METRIC",
+    }
+
     match (type):
         case "S1000":
             return s1000_tc.get(test_case)
+        case "S2000":
+            return s2000_tc.get(test_case)
         
 # Generates a folder based on the given type
 # Checks to see if the folder exists, if it does, it returns the path
@@ -70,6 +105,8 @@ def folder_path(type, generative=False):
             return_path = root_dir / "Archive" / "S1000" / "Results"
         case "S1000 PARAMS" | "S1000 PROTECTEDPOINTS":
             return_path = root_dir / "Archive" / "S1000"
+        case "S2000 TEST HALF" | "S2000 TEST ONE" | "S2000 TEST":
+            return_path = root_dir / "Archive" / "S2000" / "JSON" / datetime.datetime.now().strftime("%Y-%m-%d")
 
 
 
@@ -103,6 +140,10 @@ def file_path (type, test_case = None, generative=False, removing=False):
             return_path = folder / "S1000 Parameters.csv"
         case "S1000 PROTECTEDPOINTS":
             return_path = folder / "point_protection_values.json"
+        case "S2000 TEST HALF":
+            return_path = folder / json_filename ("S2000 HALF", test_case)
+        case "S2000 TEST ONE":
+            return_path = folder / json_filename ("S2000 ONE", test_case)
 
     # if the path does not exist, and generative is true, create the file
     if not os.path.exists(return_path):
