@@ -9,6 +9,7 @@ import threading
 import time
 from dotenv import load_dotenv
 import os
+import constants
 
 load_dotenv()
 AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
@@ -16,12 +17,18 @@ NVENT_USERNAME = os.getenv('NVENT_USERNAME')
 NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 
 # fills in the options for the webdriver
-def configure_webdriver(type, test_case):
+def configure_webdriver(type):
     options = Options()
 
     #get path to test file
-    folder_path = test_case_to.folder_path(type, generative=True)
-    
+    if type == "S1000":
+        folder_path = constants.S1000_CURRENT_JSON_FOLDER
+    elif type == "S2000":
+        folder_path = constants.S2000_CURRENT_JSON_FOLDER
+
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
     default_directory = str(folder_path)
     
     prefs = {'download.prompt_for_download"': False, 'download.default_directory' : default_directory}
@@ -96,17 +103,14 @@ def click_through_analysis(driver):
 # Loads LPSD and pulls json output of input test_case
 def get_json_s1000(test_case):
     print(f"configuring test case {test_case}")
-    options = configure_webdriver("S1000 TEST", test_case)
-    if options is None:
-        print(f"Skipping Test Case {test_case}")
-        return
+    options = configure_webdriver("S1000")
     
-    file_path = test_case_to.file_path(type, test_case, generative=False, removing=False)
-    if file_path is not None:
+    file_path = constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S1000", test_case)
+    if os.path.exists(file_path):
         a = input("\x1b[95;49;5mThis file already exists. Press enter to skip or enter 'rerun' to remove it and rerun its test: \x1b[39;49m")
         if a.lower() != 'rerun':
             return
-        file_path = test_case_to.file_path(type, test_case, generative=True, removing=True)
+        os.remove(file_path)
 
     driver = webdriver.Edge(options=options)
     print(f"Beginning to run test case {test_case}")
@@ -119,13 +123,20 @@ def get_json_s1000(test_case):
     time.sleep(40)
     turn_on_export_analysis(driver)
     click_through_analysis(driver)
-    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000 Test",test_case)} successfully downloaded.")
+    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000",test_case)} successfully downloaded.")
     driver.quit()
 
 def get_json_s2000(test_case):
-
     print(f"configuring test case {test_case}")
-    options = configure_webdriver("S2000 TEST", test_case)
+    options = configure_webdriver("S2000")
+
+    file_path = constants.S2000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S2000", test_case)
+    if os.path.exists(file_path):
+        a = input("\x1b[95;49;5mThis file already exists. Press enter to skip or enter 'rerun' to remove it and rerun its test: \x1b[39;49m")
+        if a.lower() != 'rerun':
+            return
+        os.remove(file_path)
+
     driver = webdriver.Edge(options=options)
     print(f"Beginning to run test case {test_case}")
     driver.get("https://qa-lpsd.nvent.com/")
@@ -140,16 +151,16 @@ def get_json_s2000(test_case):
     choose_combobox_value(driver, (By.ID, "dashboard_project_option_select"), choice="manual", manual_values=["HALF METER POINTS"])
     click_through_analysis(driver)
 
-    folder_path = test_case_to.folder_path("S2000 TEST")
-    old_file_path = folder_path / test_case_to.json_filename("S2000 OLD", test_case)
-    new_file_path = folder_path / test_case_to.json_filename("S2000 HALF", test_case)
+    json_folder = constants.S2000_CURRENT_JSON_FOLDER
+    old_file_path = json_folder / (test_case_to.name("S2000", test_case) + "_RSResults.json")
+    new_file_path = json_folder / test_case_to.json_filename("S2000", test_case * 2 - 1)
 
     os.rename(old_file_path, new_file_path)
     choose_combobox_value(driver, (By.ID, "dashboard_project_option_select"), choice="manual", manual_values=["ONE METER POINTS"])
     click_through_analysis(driver)
 
-    new_file_path = folder_path / test_case_to.json_filename("S2000 ONE", test_case)
+    new_file_path = json_folder / test_case_to.json_filename("S2000", test_case * 2)
     os.rename(old_file_path, new_file_path)
 
-    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000 Test",test_case)} successfully downloaded.")
+    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000",test_case * 2 - 1)} and {test_case_to.json_filename("S1000",test_case * 2)} successfully downloaded.")
     driver.quit()

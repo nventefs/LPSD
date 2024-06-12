@@ -2,13 +2,14 @@ import threading
 from get_json import get_json_s1000
 import test_case_to
 from fileout import *
+import constants
 
 NUMBER_OF_TESTS = 16
 
 if __name__ == '__main__':
     threads = []
     num_threads = int(input("How many threads would you like to use? (maximum 4 recommended): "))
-    total_tests_done = 15
+    total_tests_done = 0
     cycle = 0
 
 
@@ -28,18 +29,17 @@ if __name__ == '__main__':
             break
 
     
-    dict_list = []
-    radii_csv_path = test_case_to.file_path("S1000 OUTPUT", generative=True, removing=True)
-    json_filepath = test_case_to.file_path("S1000 PROTECTEDPOINTS",generative=True,removing=False)
-    protected_values_dict = {}
+    csv_results_path = constants.S1000_CURRENT_RESULTS_FILE
 
     for i in range(NUMBER_OF_TESTS):
-        protected_values_dict.update(get_point_protected_values(i+1))
-    #write_json(protected_values_dict, json_filepath)
-    for i in range(NUMBER_OF_TESTS):
-        compare_point_protected_values(i+1)
+        compare_point_protected_values(constants.S1000_POINT_PROTECTION_PARAM_FILE, constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S1000", i + 1))
 
+    # gets the test case and the expected radius values for those test cases from the parameter file
+    radius_dict_list = read_csv(constants.S1000_RADIUS_PARAMETER_FILE)
 
+    # loops through each test case and adds the values from the json files to the radius dict for each test case
+    # after this loop each dictionary in the dict list will have test case, expected r2 and r5, and actual r2 and r5
     for i in range(NUMBER_OF_TESTS):
-        dict_list.append(get_radii_dict(i + 1))
-    write_output_to_csv(radii_csv_path, dict_list)
+        radius_dict_list[i].update(get_test_radius_results(constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S1000", i + 1)))
+
+    write_output_to_csv(csv_results_path, radius_dict_list)

@@ -11,7 +11,7 @@ if __name__ == '__main__':
     threads = []
     num_threads = int(input("How many threads would you like to use? (maximum 4 recommended): "))
     total_tests_done = 3
-    cycle = 3
+    cycle = 0
 
     #Runs all test cases using num_threads threads
     while True:
@@ -27,3 +27,5 @@ if __name__ == '__main__':
         cycle += 1
         if total_tests_done == NUMBER_OF_TESTS:
             break
+
+
