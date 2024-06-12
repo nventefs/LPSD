@@ -32,7 +32,7 @@ if __name__ == '__main__':
     csv_results_path = constants.S1000_CURRENT_RESULTS_FILE
 
     for i in range(NUMBER_OF_TESTS):
-        compare_point_protected_values(constants.S1000_POINT_PROTECTION_PARAM_FILE, constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S1000", i + 1))
+        compare_point_protected_values("S1000", constants.S1000_POINT_PROTECTION_PARAM_FILE, constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename("S1000", i + 1))
 
     # gets the test case and the expected radius values for those test cases from the parameter file
     radius_dict_list = read_csv(constants.S1000_RADIUS_PARAMETER_FILE)

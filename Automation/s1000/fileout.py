@@ -41,7 +41,7 @@ def get_test_radius_results(json_file_path):
 
 #Unfinished, currently just gets value of point protected for a given test case
 # TODO: Make a parameters file for the point protected values and compare test values to it.
-def get_point_protected_values(json_file_path):
+def get_point_protected_values(type, json_file_path):
     try:
         input_json_file = open(json_file_path)
     except:
@@ -52,14 +52,20 @@ def get_point_protected_values(json_file_path):
 
     protected_point_dict = {}
 
-    for terminal in json_data['terminals']:
-        for point in terminal['results']['points']:
+    if type == "S1000":
+        for terminal in json_data['terminals']:
+            for point in terminal['results']['points']:
+                if point['pointGuid'] not in protected_point_dict or not bool(protected_point_dict[point['pointGuid']]):
+                    protected_point_dict[point['pointGuid']] = point["protectedPoint"]
+    elif type == "S2000":
+        iter_results = iter(json_data['Results'])
+        for point in json_data['Results'][next(iter_results)]['Points']:
             if point['pointGuid'] not in protected_point_dict or not bool(protected_point_dict[point['pointGuid']]):
                 protected_point_dict[point['pointGuid']] = point["protectedPoint"]
-    
+
     return protected_point_dict
 
-def compare_point_protected_values(json_param_file_path, json_current_file_path):
+def compare_point_protected_values(type, json_param_file_path, json_current_file_path):
     try:
         json_param_file = open(json_param_file_path)
     except:
@@ -67,7 +73,7 @@ def compare_point_protected_values(json_param_file_path, json_current_file_path)
         return
 
     official_protected_point_data = json.load(json_param_file)
-    current_protected_point_dict = get_point_protected_values(json_current_file_path)
+    current_protected_point_dict = get_point_protected_values(type, json_current_file_path)
     
     total_points = 0
     incorrect_guid_list = []
