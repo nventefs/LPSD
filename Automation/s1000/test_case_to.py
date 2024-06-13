@@ -1,11 +1,7 @@
-from pathlib import Path
-import os
-import datetime
-import time
-
 # Selector for .json file names based on their test case
-# "type" variable can be used to support other systems in the future like CVM
+# "type" should be "S1000" for system 1000 or "S2000" for system 2000
 def json_filename(type, test_case):
+    # test cases for system 1000
     s1000_tc = {
         1: "S1000 QA TC1_ESEResults.json",
         2: "S1000 QA TC2_ESEResults.json",
@@ -24,6 +20,7 @@ def json_filename(type, test_case):
         15: "S1000 QA TC15_ESEResults.json",
         16: "S1000 QA TC19_ESEResults.json",
     }
+    # test cases for system 2000
     s2000_tc = {
         1: "S2000 TC1.json",
         2: "S2000 TC2.json",
@@ -41,9 +38,10 @@ def json_filename(type, test_case):
             return s2000_tc.get(test_case)
 
         
-# Selector for names of test cases based on their type
-# "type" variable can be used to support other systems in the future like CVM
+# Selector for names of tests based on their type
+# "type" should be "S1000" for system 1000 or "S2000" for system 2000
 def name(type, test_case):
+    # System 1000
     s1000_tc = {
         1: "S1000 QA TC1",
         2: "S1000 QA TC2",
@@ -63,11 +61,16 @@ def name(type, test_case):
         16: "S1000 QA TC19",
     }
 
+    # System 2000
     s2000_tc = {
         1: "RSM IEC L1 PARAPET TEST METRIC",
-        2: "RSM IEC L2 PARAPET TEST METRIC",
-        3: "RSM IEC L3 PARAPET TEST METRIC",
-        4: "RSM IEC L4 PARAPET TEST METRIC",
+        2: "RSM IEC L1 PARAPET TEST METRIC",
+        3: "RSM IEC L2 PARAPET TEST METRIC",
+        4: "RSM IEC L2 PARAPET TEST METRIC",
+        5: "RSM IEC L3 PARAPET TEST METRIC",
+        6: "RSM IEC L3 PARAPET TEST METRIC",
+        7: "RSM IEC L4 PARAPET TEST METRIC",
+        8: "RSM IEC L4 PARAPET TEST METRIC",
     }
 
     match (type):
