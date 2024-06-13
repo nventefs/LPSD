@@ -6,20 +6,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
-import time
-import pyotp
-
-#Function to login to the website. May differ between users
-def login(driver: webdriver.Edge, username, twofac_key):
-    totp = pyotp.TOTP(twofac_key)
-    click_element(driver, (By.ID, "autodeskSigninButton"))
-    time.sleep(2)
-    choose_textbox_value(driver, (By.ID, "userName"), [username])
-    click_element(driver, (By.ID, "verify_user_btn"))
-    time.sleep(5)
-    choose_textbox_value(driver, (By.ID, "idTxtBx_SAOTCC_OTC"), [totp.now()])
-    click_element(driver, (By.ID, "idSubmit_SAOTCC_Continue"))
-    click_element(driver, (By.ID, "allow_btn"))
 
 # chooses a combobox value. Can be from all possible options or from a list of user-defined options
 # TODO: add support for 'first' and 'last' choice options

@@ -1,46 +1,21 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.edge.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
 from tester_functions import *
 import test_case_to
 import threading
 import time
-from dotenv import load_dotenv
 import os
 import constants
 
-load_dotenv()
-AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
-NVENT_USERNAME = os.getenv('NVENT_USERNAME')
-NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
-TWO_FACTOR_KEY = os.getenv('TWO_FACTOR_KEY')
+START_LINK = "https://qa-lpsd.nvent.com/"
 
-# fills in the options for the webdriver
-# sets default window size and download folder
-def configure_webdriver(type):
-    options = Options()
-
-    #get path to test file
-    if type == "S1000":
-        folder_path = constants.S1000_CURRENT_JSON_FOLDER
-    elif type == "S2000":
-        folder_path = constants.S2000_CURRENT_JSON_FOLDER
-
-    # make the folder if it doesnt exist
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-
-    # set folder for driver to download to the folder we just made
-    default_directory = str(folder_path)
-    
-    # set some options
-    prefs = {'download.prompt_for_download"': False, 'download.default_directory' : default_directory}
-    options.add_experimental_option("prefs", prefs)
-    options.add_argument("--window-size=1920,1080")
-
-    return options
+def close_tab(driver):
+    ActionChains(driver).key_down(Keys.CONTROL).send_keys("w").perform()
+    time.sleep(1)
+    ActionChains(driver).key_up(Keys.CONTROL).perform()
+    time.sleep(1)
 
 # presses ctrl + alt + q and clicks export analysis then exits
 def turn_on_export_analysis(driver):
@@ -108,34 +83,36 @@ def click_through_analysis(driver):
     time.sleep(1)
 
 # pulls json output for the s1000 test case
-def get_json_s1000(test_case):
-    print(f"configuring test case {test_case}")
-    options = configure_webdriver("S1000")
-
-    driver = webdriver.Edge(options=options)
+def get_json_s1000(driver: webdriver.Edge, test_case):
     print(f"Beginning to run test case {test_case}")
-    driver.get("https://qa-lpsd.nvent.com/")
+    
+   # driver.execute_script("window.open('about:blank', '_blank');")
+    #time.sleep(1)
+    # Switch to the new tab
+    #driver.switch_to.window(driver.window_handles[-1])
+
+    driver.get(START_LINK)
     time.sleep(.5)
-    login(driver, AUTODESK_USERNAME, TWO_FACTOR_KEY)
-    time.sleep(10)
-    if not click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S1000", test_case)+"']/following-sibling::td/button")):
-        return None
+    try:
+        alert = driver.switch_to.alert
+        # If an alert is present, print its text and accept it
+        alert.accept()  # Accept the alert (click OK)
+        time.sleep(1)
+    except:
+        pass
+    while not click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S1000", test_case)+"']/following-sibling::td/button")):
+        #try until the button is ready to be clicked
+        time.sleep(2)
     time.sleep(40)
     turn_on_export_analysis(driver)
     click_through_analysis(driver)
+    print("Clicking")
+    ActionChains(driver).click()
+    print("Clicked")
     print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000",test_case)} successfully downloaded.")
-    driver.quit()
 
-def get_json_s2000(test_case):
-    print(f"configuring test case {test_case}")
-    options = configure_webdriver("S2000")
-
-    driver = webdriver.Edge(options=options)
+def get_json_s2000(driver, test_case):
     print(f"Beginning to run test case {test_case}")
-    driver.get("https://qa-lpsd.nvent.com/")
-    time.sleep(.5)
-    login(driver, AUTODESK_USERNAME, TWO_FACTOR_KEY)
-    time.sleep(10)
     if not click_element(driver, (By.XPATH, "//td[text() = '" + test_case_to.name("S2000", test_case)+"']/following-sibling::td/button")):
         return None
     time.sleep(40)
@@ -153,4 +130,3 @@ def get_json_s2000(test_case):
     os.rename(old_file_path, new_file_path)
 
     print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S2000",test_case)} successfully downloaded.")
-    driver.quit()

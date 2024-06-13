@@ -46,7 +46,7 @@ if __name__ == '__main__':
             in_progress.append(next_test)
             tests_to_run.remove(next_test)
             threads[-1].start()
-            time.sleep(22)
+            time.sleep(25)
 
         #join threads so none run rogue
         for thread in threads:
