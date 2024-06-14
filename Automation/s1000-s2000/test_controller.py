@@ -1,3 +1,15 @@
+"""
+    This file controls the testing functions to get the json files and output results for LPSD system 1000 and system 2000
+    I used a multithreaded approach to accomplish this. Originally, I used one driver and one thread every time I created a test case
+    but I learned that 2 factor authentication does not allow you to sign into multiple things at the same time for a single account, 
+    so you must wait around 30 seconds between logins to be safe. This meant that the maximum rate that I could reliably start a 
+    webdriver, and thus a test case, was once every 30 seconds. This works but is rather slow and was also inconsistent because logins would start to overlap.
+    To solve this, I made a little driver subclass that could tell if it was actively running a test and which test it was running.
+    This way, I could asynchronously start the drivers and just keep a list of them, then every once in a while, the program checks to see if any are inactive.
+    If a driver is inactive, it is assigned a test case that is not "in progress", and it runs it. After all the files are downloaded,
+    the results are compared as they should be and the drivers and threads are killed off.
+"""
+
 from custom_driver import LPSDDriver
 from get_json import get_json
 import test_case_to
