@@ -1,7 +1,6 @@
 import json
 import csv
 import test_case_to as test_case_to
-import constants
 
 NUMBER_OF_TEST_CASES = 16
 
