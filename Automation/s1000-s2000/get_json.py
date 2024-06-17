@@ -41,17 +41,15 @@ def turn_on_export_analysis(driver:webdriver.Edge):
         return False
     time.sleep(1)
 
-    # if the checkbox is already selected somehow, the function will return True
+    # only if the checkbox is not already selected, it will get clicked
     try:
         checkbox = driver.find_element(By.ID, "debugtools_exportanalysisresults_input")
-        if checkbox.is_selected():
-            return True
+        if not checkbox.is_selected():
+            if not click_element(driver, (By.ID, "debugtools_exportanalysisresults_input")):
+                return False
     except:
         return False
 
-    # click the checkbox
-    if not click_element(driver, (By.ID, "debugtools_exportanalysisresults_input")):
-        return False
     time.sleep(1)
 
     # close debug tools menu
@@ -149,4 +147,4 @@ def get_json(driver: webdriver.Edge, type, test_case):
         new_file_path = json_folder / test_case_to.json_filename("S2000", test_case)
         os.rename(old_file_path, new_file_path)
 
-    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename("S1000",test_case)} should have downloaded.")
+    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename(type,test_case)} should have downloaded.")

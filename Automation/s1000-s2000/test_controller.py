@@ -23,7 +23,7 @@ from typing import List
 from killable_thread import KillableThread
 
 NUMBER_OF_TESTS_S1000 = 16
-NUMBER_OF_TESTS_S2000 = 8
+NUMBER_OF_TESTS_S2000 = 16
 drivers: List[LPSDDriver] = []
 threads: List[KillableThread] = []
 

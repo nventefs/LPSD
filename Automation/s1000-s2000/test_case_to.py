@@ -30,6 +30,14 @@ def json_filename(type, test_case):
         6: "S2000 TC6.json",
         7: "S2000 TC7.json",
         8: "S2000 TC8.json",
+        9: "S2000 TC9.json",
+        10: "S2000 TC10.json",
+        11: "S2000 TC11.json",
+        12: "S2000 TC12.json",
+        13: "S2000 TC13.json",
+        14: "S2000 TC14.json",
+        15: "S2000 TC15.json",
+        16: "S2000 TC16.json",
     }
     match (type):
         case "S1000":
@@ -71,6 +79,14 @@ def name(type, test_case):
         6: "RSM IEC L3 PARAPET TEST METRIC",
         7: "RSM IEC L4 PARAPET TEST METRIC",
         8: "RSM IEC L4 PARAPET TEST METRIC",
+        9: "IEC L1 GABLE TEST METRIC",
+        10: "IEC L1 GABLE TEST METRIC",
+        11: "IEC L2 GABLE TEST METRIC",
+        12: "IEC L2 GABLE TEST METRIC",
+        13: "IEC L3 GABLE TEST METRIC",
+        14: "IEC L3 GABLE TEST METRIC",
+        15: "IEC L4 GABLE TEST METRIC",
+        16: "IEC L4 GABLE TEST METRIC",
     }
 
     match (type):
