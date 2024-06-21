@@ -55,18 +55,17 @@ def kill_threads():
     start_drivers_thread.kill()
 
 def signal_handler(signal, frame):
-    print("You ended the program. Killing all threads.")
+    print("You ended the program. Attempting to kill all threads.")
     kill_threads()
     sys.exit(0)
 
-def run_controller(type):
+def run_controller(type, num_threads):
     global start_drivers_thread
     global number_of_tests
     signal.signal(signal.SIGINT, signal_handler)
 
     tests_to_run = []
     in_progress = []
-    num_threads = int(input("How many threads would you like to use? (maximum 4 recommended): "))
     if type == "S1000":
         number_of_tests = NUMBER_OF_TESTS_S1000 
     elif type == "S2000":
@@ -174,8 +173,10 @@ def get_radii_csv():
     write_output_to_csv(csv_results_path, radius_dict_list)
 
 if __name__ == '__main__':
+    
     type = input("What tests would you like to run? (S1000/S2000): ")
-    run_controller(type)
+    num_threads = int(input("How many threads would you like to use? (Maximum of 4 recommended): "))
+    run_controller(type, num_threads)
     check_protected_points(type)
     if type == "S1000":
         get_radii_csv()

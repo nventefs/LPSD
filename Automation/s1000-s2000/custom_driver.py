@@ -42,7 +42,7 @@ class LPSDDriver(webdriver.Edge):
         # set some options
         prefs = {'download.prompt_for_download"': False, 'download.default_directory' : default_directory}
         self.options.add_experimental_option("prefs", prefs)
-        self.options.add_argument("--window-size=1920,1080")
+        self.options.add_argument("--window-size=500,650")
         self.options.add_argument("--disable-popup-blocking")
 
     #Function to login to the website. May differ between users
