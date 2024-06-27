@@ -59,7 +59,7 @@ def signal_handler(signal, frame):
     kill_threads()
     sys.exit(0)
 
-def run_controller(type, num_threads):
+def run_controller(type, num_threads, handle_repeats):
     global start_drivers_thread
     global number_of_tests
     signal.signal(signal.SIGINT, signal_handler)
@@ -80,10 +80,10 @@ def run_controller(type, num_threads):
         elif type == "S2000":
             test_case_file_path = constants.S2000_CURRENT_JSON_FOLDER / test_case_to.json_filename(type, i + 1)
         if os.path.exists(test_case_file_path):
-            a = input(f"\x1b[95;49;5mthe file for \x1b[39;49mtest case {i + 1}\x1b[95;49;5m already exists. Press enter to skip or enter 'rerun' to remove it and rerun its test: \x1b[39;49m")
-            if a.lower() != 'rerun':
+            if handle_repeats == 'rerun':
+                os.remove(test_case_file_path)
+            else:
                 continue
-            os.remove(test_case_file_path)
         tests_to_run.append(i + 1)
 
     #Runs all test cases using num_threads threads
