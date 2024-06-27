@@ -1,6 +1,6 @@
 The files in this folder run all the test cases for System 1000 and 2000. To use it, simply run the run_user_interface.py file then use the UI.
 
-There are a few things that are required for this to work. You need to first have access to the LPSD system, but I am assuming that if you are using this you have that. If not, ask someone, I dont know how you get that. Next, you need to have a .env file somewhere in here, I have mine in the parent directory of this one (/Automation). In that file, you need to have your autodesk username (for me that is my nVent email), your nVent password, and a 2 factor authentication key in the format
+There are a few things that are required for this to work. You need to first have access to the LPSD system, but I am assuming that if you are using this you have that. If not, ask someone, I dont know how you get that. Next, you need to have a .env file somewhere in here, I have mine in the parent directory of this one (/Automation). In that file, you need to have your autodesk username (for me that is my nVent email), your nVent password (this may not be necessary, but I have it), and a 2 factor authentication key in the format:
 
 ```
 AUTODESK_USERNAME = "your@username.here"
