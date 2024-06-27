@@ -2,11 +2,11 @@ The files in this folder run all the test cases for System 1000 and 2000. To use
 
 There are a few things that are required for this to work. You need to first have access to the LPSD system, but I am assuming that if you are using this you have that. If not, ask someone, I dont know how you get that. Next, you need to have a .env file somewhere in here, I have mine in the parent directory of this one (/Automation). In that file, you need to have your autodesk username (for me that is my nVent email), your nVent password, and a 2 factor authentication key in the format
 
-`
-AUTODESK_USERNAME = "your@username.here"<br>
-NVENT_PASSWORD = "your_password"<br>
-TWO_FACTOR_KEY = "your2factorkey"<br>
-`
+```
+AUTODESK_USERNAME = "your@username.here"
+NVENT_PASSWORD = "your_password"
+TWO_FACTOR_KEY = "your2factorkey"
+```
 
 <h4>If you dont have a 2 factor key or you need to get a new key:</h4>
 
