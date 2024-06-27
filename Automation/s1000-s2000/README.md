@@ -18,4 +18,4 @@ TWO_FACTOR_KEY = "your2factorkey"
 6. Click "Can't scan image?"
 7. Copy the "Secret key" and that is your 2 factor key
 
-If you have that all set up and you have python installed, you should be good to run the system 1000 and 2000 tests!
+If you have that all set up and you have python installed, you should be good to run the System 1000 and 2000 tests!
