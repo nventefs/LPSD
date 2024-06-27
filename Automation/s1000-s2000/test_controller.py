@@ -30,6 +30,7 @@ threads: List[KillableThread] = []
 # function to create a new webdriver
 # can only create one every 30 seconds because of two factor authentication limits
 def start_drivers(number_of_drivers, type):
+    # starts a driver every 30 seconds
     while len(drivers) < number_of_drivers:
         driver = LPSDDriver(type=type)
         drivers.append(driver)
@@ -37,31 +38,40 @@ def start_drivers(number_of_drivers, type):
 
 # returns a driver that is not currently running a test or returns none if there are no such drivers
 def get_inactive_driver():
+    # see if any drivers are inactive
     for driver in drivers:
+        # if so return one
         if not driver.active:
             return driver
-    time.sleep(3)
     return None
 
+# sets the driver that was running the associated test passed in to inactive
 def set_driver_inactive(associated_test):
     for driver in drivers:
+        # search for the driver that was running the associated test
         if driver.associated_test == associated_test:
             driver.active = False
 
+# function to try to kill all running threads
 def kill_threads():
     #kill all threads that are still running in case there are any somehow
     for thread in threads:
         thread.kill()
     start_drivers_thread.kill()
 
-def signal_handler(signal, frame):
-    print("You ended the program. Attempting to kill all threads.")
-    kill_threads()
-    sys.exit(0)
+# simple function that catches SIGINT and tries to kill all threads
+def signal_handler(sig, frame):
+    if sig == signal.SIGINT:
+        print("You ended the program. Attempting to kill all threads.")
+        kill_threads()
+        sys.exit(0)
 
+# The main function to run all tests
 def run_controller(type, num_threads, handle_repeats):
     global start_drivers_thread
     global number_of_tests
+    
+    # Catch ctrl-C so it tries to kill threads instead of just ending main thread
     signal.signal(signal.SIGINT, signal_handler)
 
     tests_to_run = []
@@ -70,10 +80,14 @@ def run_controller(type, num_threads, handle_repeats):
         number_of_tests = NUMBER_OF_TESTS_S1000 
     elif type == "S2000":
         number_of_tests = NUMBER_OF_TESTS_S2000
+
     # create a thread that will start the correct number of drivers and only start one every 30 seconds to avoid 2 factor authentication issues
+    # does this asynchronously so other threads will only use a new driver once it is created
     start_drivers_thread = KillableThread(target=start_drivers, args=(num_threads,type),name="Driver start thread")
     start_drivers_thread.start()
 
+    # Loop through tests and check if they already have files downloaded, then if handle_repeats = 'rerun', delete duplicate files
+    #   then add all tests with missing files to tests_to_run so only tests that arent done are run
     for i in range (number_of_tests):
         if type == "S1000":
             test_case_file_path = constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename(type, i + 1)
@@ -92,10 +106,14 @@ def run_controller(type, num_threads, handle_repeats):
         while len(threads) < num_threads:
             next_test = 0
             for test in tests_to_run:
+                # if the test is not currently running
                 if test not in in_progress:
                     if type == "S1000":
                         next_test = test
                     elif type == "S2000":
+                        # if the S2000 test's pair (1 with 2, 3 with 4, etc) is running, then we cant run it 
+                        # because they have the same default download name before theyre renamed so theres
+                        # the chance that one gets a (1) at the end which messes things up
                         if test % 2 == 0:
                             if test - 1 not in in_progress:
                                 next_test = test
@@ -114,21 +132,25 @@ def run_controller(type, num_threads, handle_repeats):
                 inactive_driver.associated_test = next_test
                 # set it to active so it wont be used by another test
                 inactive_driver.active = True
-                # create a thread that will run the test case
+                # create a thread that will run the test caseusing the inactive driver
                 threads.append(KillableThread(target=get_json, args=(inactive_driver, type, next_test), name=f"{next_test}"))
                 # set the test case to in progress so no other threads run it
                 in_progress.append(next_test)
-                # start the most recent thread added to the list
+                # start the most recent thread (the one we just did one line ago) added to the list
                 threads[-1].start()
+            else:
+                # if there are no inactive drivers, take a break so CPU doesnt waste time searching for one over and over
+                time.sleep(3)
 
         for thread in threads:
             # if thread is finished running
             if not thread.is_alive():
+                # use the thread's name to get which test case it ran
                 test_case = int(thread.name)
-                # remove the thread from in_progress. Uses the name to get the test case
                 in_progress.remove(test_case)
                 # remove the thread from threads to make space for a new one
                 threads.remove(thread)
+                # label the driver as inactive so another thread can pick it up
                 set_driver_inactive(test_case)
                 # test if the file actually downloaded, if it did, take it out of the list of tests that arent done
                 if type == "S1000":
@@ -148,6 +170,8 @@ def check_protected_points(type):
         if type == "S1000":
             current_json_file = constants.S1000_CURRENT_JSON_FOLDER / test_case_to.json_filename(type, i + 1)
             compare_point_protected_values(type, protected_point_parameters, current_json_file)
+        # we have two different files for system 2000 because the half meter and one meter tests 
+        # use the same points, hence the same pointGUIDs having different protectedpoints for half and one meter
         elif type == "S2000":
             current_json_file = constants.S2000_CURRENT_JSON_FOLDER / test_case_to.json_filename(type, i + 1)
             if i % 2 == 0:
