@@ -1,7 +1,7 @@
 from tkinter import *
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from test_controller import run_controller
+from test_controller import *
 
 # called by the button. Starts running the tests based on options selected.
 # will warn the user if they havent selected a system that they should have
@@ -11,6 +11,10 @@ def click():
     else:
         root.destroy()
         run_controller(type_var.get(), int(thread_count.get()), handle_repeats.get())
+        check_protected_points(type_var.get())
+        if type_var.get() == "S1000":
+            get_radii_csv()
+        kill_threads()
 
 # called by the radio buttons to make the start button say the right thing based on which test its running
 def change_button_text ():
