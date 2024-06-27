@@ -140,11 +140,12 @@ def get_json(driver: webdriver.Edge, type, test_case):
     if not click_through_analysis(driver):
         return None
     
-    # rename the file for S2000 because case 1 and 2, 3 and 4, etc have the same name since their only difference is changing the combobox value above    
+    # rename the file for S2000 because case 1 and 2, 3 and 4, etc have the same name since their only difference is changing the combobox value above
     if type == "S2000":
         json_folder = constants.S2000_CURRENT_JSON_FOLDER
         old_file_path = json_folder / (test_case_to.name("S2000", test_case) + "_RSResults.json")
         new_file_path = json_folder / test_case_to.json_filename("S2000", test_case)
         os.rename(old_file_path, new_file_path)
 
-    print (f"{threading.current_thread().name} finished running test case {test_case}. {test_case_to.json_filename(type,test_case)} should have downloaded.")
+    # tell user that the file for the current test case should be done
+    print (f"finished running test case {test_case}. {test_case_to.json_filename(type,test_case)} should have downloaded.")
