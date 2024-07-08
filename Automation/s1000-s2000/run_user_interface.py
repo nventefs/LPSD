@@ -22,7 +22,7 @@ def change_button_text ():
 
 # create a window and set its size, title, and prevent resizing
 root = ttk.Window(themename="darkly")
-width=750
+width=800
 height=500
 root.geometry(f"{width}x{height}")
 root.title ("LPSD Tester")
@@ -51,8 +51,8 @@ old_tests_dropdown = ttk.Combobox(root, textvariable=handle_repeats, state=READO
 old_tests_dropdown["values"] = ('rerun', 'skip')
 old_tests_dropdown.place(relx=6/8, rely=2.25/9, width=width/8, height=30)
 old_tests_dropdown.current(0)
-old_tests_label = ttk.Label(root, text="Handle repeat tests?", font=("Calibri", 12))
-old_tests_label.place(relx=4.25/8, rely=2/9, width=1.5*width/8, height=height/9)
+old_tests_label = ttk.Label(root, text="Handle repeats?", font=("Calibri", 12))
+old_tests_label.place(relx=4.45/8, rely=2/9, width=1.5*width/8, height=height/9)
 
 # add the run button that calls click
 run_button = ttk.Button(root, text="Select a test to Run", command=click, bootstyle=SUCCESS)
