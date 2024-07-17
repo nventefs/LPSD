@@ -160,7 +160,7 @@ def ki(data):
     print('pewpew')
 
 # H = Height of the AT
-H = 25
+H = 24
 
 # LPL
 LPL = 2
@@ -169,7 +169,7 @@ LPL = 2
 SE = 0
 
 # striking distance =(Ki, LPL, SE)
-Ki = 25.5
+Ki = 92.95
 
 #print("Setting starting Ki to {}".format(Ki))
 ds = striking_distance(Ki, LPL, SE)

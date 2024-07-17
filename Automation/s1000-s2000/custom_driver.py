@@ -50,7 +50,7 @@ class LPSDDriver(webdriver.Edge):
         totp = pyotp.TOTP(TWO_FACTOR_KEY)
         click_element(self, (By.ID, "autodeskSigninButton"))
         time.sleep(2)
-        choose_textbox_value(self, (By.ID, "userName"), [NVENT_USERNAME])
+        choose_textbox_value(self, (By.ID, "userName"), [AUTODESK_USERNAME])
         click_element(self, (By.ID, "verify_user_btn"))
         time.sleep(5)
         try:

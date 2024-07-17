@@ -226,9 +226,6 @@ def closemainloop():
     print(alphabet)
     app.destroy()
 
-
-
-
 #TODO: add JSON file optional selection to pull the following values:
 # Minwidth lvl0, minwidth of lvl, lvl0 height, lvl height, ...
 
@@ -321,17 +318,3 @@ confirm = customtkinter.CTkButton(master = frame_1, text = "Calculate", command 
 confirm.pack(fill = 'both', side = 'bottom')
 
 app.mainloop()
-
-"""
-        elif(at_isMiddleOval.get()):
-            if(at_level0.get()):
-                H = float(at_H0.get())
-                W = float(at_minwdith0.get())
-                Hf = float(at_Hf.get()) - float(at_H0.get())
-            elif(at_extended.get()):
-                H = float(at_Hlvl.get()) - float(at_H0.get())
-                W = float(at_minwdith0.get())
-                Hf = float(at_Hf.get()) - float(at_Hlvl.get())
-            multi.append(multiplicative.eq_n(H,W,Hf)) 
-            alphabet.append("M")
-"""    
