@@ -8,7 +8,6 @@ import pyotp
 import time
 load_dotenv()
 AUTODESK_USERNAME = os.getenv('AUTODESK_USERNAME')
-NVENT_USERNAME = os.getenv('NVENT_USERNAME')
 NVENT_PASSWORD = os.getenv('NVENT_PASSWORD')
 TWO_FACTOR_KEY = os.getenv('TWO_FACTOR_KEY')
 
@@ -42,7 +41,7 @@ class LPSDDriver(webdriver.Edge):
         # set some options
         prefs = {'download.prompt_for_download"': False, 'download.default_directory' : default_directory}
         self.options.add_experimental_option("prefs", prefs)
-        self.options.add_argument("--window-size=500,650")
+        self.options.add_argument("--window-size=600,750")
         self.options.add_argument("--disable-popup-blocking")
 
     #Function to login to the website. May differ between users

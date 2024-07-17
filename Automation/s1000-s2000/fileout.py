@@ -1,6 +1,7 @@
 import json
 import csv
 import test_case_to as test_case_to
+import constants
 
 NUMBER_OF_TEST_CASES = 16
 
@@ -83,6 +84,12 @@ def compare_point_protected_values(type, json_param_file_path, json_current_file
     except:
         print(f"Could not open {json_param_file_path}")
         return
+    
+    # open the result output file
+    if type == "S1000":
+        result_file = open(constants.S1000_INCORRECT_POINTS_FILE, "a")
+    elif type == "S2000":
+        result_file = open(constants.S2000_INCORRECT_POINTS_FILE, "a")
 
     # read data from parameter file
     official_protected_point_data = json.load(json_param_file)
@@ -107,12 +114,17 @@ def compare_point_protected_values(type, json_param_file_path, json_current_file
 
     # print the missing list if there is any missing
     if len(missing_guid_list) != 0:
-        print("The following pointGuids are not in the official list and must have changed:")
+        print("The following pointGuids are not in the parameter list and must have changed:")
     for guid in missing_guid_list:
+        result_file.write("missing " + guid)
         print (guid)
    
     # print the incorrect list if there are any incorrect
     if len(incorrect_guid_list) != 0:
         print("The following pointGuids are incorrect:")
     for guid in incorrect_guid_list:
+        print(result_file.name)
+        result_file.write("incorrect " + guid + '\n')
         print (guid)
+
+    result_file.close()
