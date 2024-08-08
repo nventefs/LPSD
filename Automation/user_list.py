@@ -145,10 +145,10 @@ def get_outlook_list():
     outlookwindow.moveTo(0,0
                          )
     outlookwindow.activate()
-    time.sleep(2)
-    coords = pyautogui.locateOnScreen("C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/contacts.png", confidence = 0.65)
-    pyautogui.click(coords[0]+5, coords[1]+5)
     time.sleep(5)
+    coords = pyautogui.locateOnScreen("C:/Users/e1176752/OneDrive - nVent Management Company/Documents/VSCode/Projects/LPSD/LPSD/Automation/img/contacts.png", confidence = 0.65)
+    pyautogui.click(coords[0]+10, coords[1]+10)
+    time.sleep(10)
     pyautogui.press('alt'),     time.sleep(0.75)
     pyautogui.press('f'),       time.sleep(0.5)
     pyautogui.press('o'),       time.sleep(0.5)
